@@ -66,12 +66,14 @@ class UsersScreen extends React.Component<Props, State> {
         const userName = JSON.parse(result).name;
         const userFName = JSON.parse(result).fname;
         const place = JSON.parse(result).place;
+        const photo = JSON.parse(result).photo;
 
         this.setState({
           userName: `${userName}/${userFName}`,
           remoteDay,
           name: JSON.parse(result).name,
           fname: JSON.parse(result).fname,
+          photo,
           place,
           historical,
           id,

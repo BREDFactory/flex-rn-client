@@ -1,5 +1,3 @@
-jest.useFakeTimers();
-
 import "react-native-permissions";
 import React from "react";
 import { ButtonGroup } from "react-native-elements";
