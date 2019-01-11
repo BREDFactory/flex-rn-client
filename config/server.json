@@ -1,3 +1,3 @@
 {
-  "address": process.env.DB_URL
+  "address": ""
 }

@@ -1,6 +1,8 @@
-# **flex-rn-client** [![Build Status](https://app.bitrise.io/app/8ba0832124e4cdf2/status.svg?token=HTfEgn2kTcAN_FI2qXEqeQ&branch=feature/refactoring)](https://app.bitrise.io/app/8ba0832124e4cdf2)
+
+[![Build Status](https://app.bitrise.io/app/8ba0832124e4cdf2/status.svg?token=HTfEgn2kTcAN_FI2qXEqeQ&branch=feature/refactoring)](https://app.bitrise.io/app/8ba0832124e4cdf2)
 [![Coverage Status](https://coveralls.io/repos/github/ayshiff/flex-rn-client/badge.svg?branch=master)](https://coveralls.io/github/ayshiff/flex-rn-client?branch=master)
 [![CircleCI](https://circleci.com/gh/ayshiff/flex-rn-client.svg?style=svg)](https://circleci.com/gh/ayshiff/flex-rn-client)
+![Flex-Office](assets/Presentation.jpg?raw=true) 
 
 Simple mobile client in React-Native for **flex-server** project
 
@@ -41,7 +43,6 @@ If you have already installed Xcode on your system, make sure it is version 9.4 
 
 You will also need to install the Xcode Command Line Tools. Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
 
-
 ## Configuration
 
 Make sure you have filled your API environment files by editing the ```.env```file :
@@ -81,11 +82,57 @@ For `server.json`:
 }
 ```
 
+(For android deployment use ```10.0.2.2``` for the host)
+
 And for `regex.json`:
 
 You also have to configure environment variables of the *flex server* project.
-
 `CONFIG_REGEX`, `PLACE_REGEX`, `WIFI_REGEX`
+
+## Run on a real iOS Device
+
+1. Go to your Apple Dev Center account : declare phone UDID, App Id, Profile, Certificate
+2. In Terminal, clone the project and run on the project root directory
+```
+yarn install
+```
+3. Go to ios folder and open Xcode project
+```
+open FlexOffice.xcodeproj
+```
+4. In Xcode, use dev certificate for targets (main and test)
+5. Modify App Delegate implementation : 
+```
+FlexOfficeDelegate.m
+--------------------
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  NSURL *jsCodeLocation;
+
+#ifdef DEBUG
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+#else
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
+  (...)
+  return YES;
+}
+
+```
+
+6. In Terminal, launch following command : 
+```
+react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios 
+```
+
+7. Build in Xcode
+8. Copy ```ios/main.jsbundle``` and paste into FlexOffice.app folder.
+
+Ex : 
+```
+/Users/<user>/Library/Developer/Xcode/DerivedData/FlexOffice-cpkjlqzwsfrxcheazdsfgbnyfzbv/Build/Products/Release-iphoneos/FlexOffice.app/
+```
+9. Run the app in Xcode
 
 ## Running your React Native application in the Simulator
 
@@ -128,7 +175,6 @@ In Xcode
 
 You should see a new Terminal window appear for Metro Bundler.
 
-
 ## Generating Signed APK
 
 For Android deployment: 
@@ -149,17 +195,16 @@ Inside `gradle.properties`.
 (This is a temporaly fix and it will be fixed in the most recents versions of react-native !)
 
 
+# ScreenShots
+
+![Flex-Office](assets/flexoffice.png?raw=true)
+
 # Project Structure
 
 ```
 .
 ├── App.js
 ├── Components
-│   ├── Home
-│   │   ├── HomeScreen.js
-│   │   ├── HomeScreenStyles.js
-│   │   └── components
-│   │       └── HomeButton.js
 │   ├── Leave
 │   │   ├── LeaveScreen.js
 │   │   ├── LeaveScreenStyles.js
@@ -178,33 +223,42 @@ Inside `gradle.properties`.
 │   │   │   ├── PlacesScreen.js
 │   │   │   └── components
 │   │   │       ├── FetchPlacesButton.js
-│   │   │       └── ZoneCard.js
+│   │   │       ├── ZoneCard.js
+│   │   │       └── styles
+│   │   │           └── FetchPlacesButtonStyle.js
 │   │   ├── ProfileScreen.js
 │   │   ├── ProfileScreenStyles.js
 │   │   ├── Users
 │   │   │   ├── UsersScreen.js
 │   │   │   └── components
 │   │   │       ├── FindPlacesCard.js
-│   │   │       └── ListPlaces.js
+│   │   │       ├── ListPlaces.js
+│   │   │       └── styles
+│   │   │           └── FindPlacesCardStyle.js
+│   │   ├── animation.json
 │   │   └── components
 │   │       ├── HeaderCard.js
 │   │       ├── ManualInsertionCard.js
-│   │       └── QRCodeCard.js
-│   └── Scan
-│       ├── ScanScreen.js
-│       └── ScanScreenStyles.js
+│   │       ├── QRCodeCard.js
+│   │       ├── QRCodeComponent.js
+│   │       └── styles
+│   │           ├── HeaderCardStyle.js
+│   │           ├── ManualInsertionCardStyle.js
+│   │           └── QRCodeCardStyle.js
+│   └── Settings
+│       ├── SettingsScreen.js
+│       ├── SettingsScreenStyles.js
+│       └── components
+│           ├── DeconnectionButton.js
+│           └── styles
+│               └── DeconnectionButtonStyle.js
 ├── Navigation
-│   └── NavigationApp.js
+│   ├── NavigationApp.js
+│   └── components
+│       ├── ProfileImage.js
+│       └── reducer.js
 ├── README.md
 ├── __tests__
-│   ├── Home
-│   │   └── Home_test.js
-│   ├── Leave
-│   │   └──Leave_test.js
-│   ├── Login
-│   │   └── Login_test.js
-│   └── Profile
-│       └── Profile_test.js
 ├── utils
 │   ├── LocationNotice.js
 │   ├── OfflineNotice.js
@@ -222,6 +276,25 @@ Inside `gradle.properties`.
 ├── ios
 ├── package-lock.json
 ├── package.json
+├── views
+│   ├── Leave
+│   │   ├── LeaveScreen.js
+│   │   ├── LeaveScreenStyles.js
+│   │   └── LeaveScreenType.js
+│   ├── Login
+│   │   ├── LoginScreen.js
+│   │   ├── LoginScreenStyles.js
+│   │   └── LoginScreenType.js
+│   ├── Places
+│   │   └── PlacesScreen.js
+│   ├── Profile
+│   │   ├── ProfileScreen.js
+│   │   └── ProfileScreenStyles.js
+│   ├── Settings
+│   │   ├── SettingsScreen.js
+│   │   └── SettingsScreenStyles.js
+│   └── Users
+│       └── UsersScreen.js
 └── yarn.lock
 ```
 

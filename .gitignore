@@ -4,6 +4,9 @@
 # Thumbnails
 ._*
 
+#Coverage
+coverage/
+
 # env
 .env
 

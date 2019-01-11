@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#bbb",
+        "borderTopWidth": 1,
+        "marginTop": 20,
+      },
+      Object {
+        "marginBottom": 20,
+      },
+    ]
+  }
+>
+  <View>
+    1
+  </View>
+  <View>
+    2
+  </View>
+  <View>
+    3
+  </View>
+  <View>
+    4
+  </View>
+  <View>
+    5
+  </View>
+</View>
+`;

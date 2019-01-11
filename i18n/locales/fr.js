@@ -20,27 +20,27 @@ export default {
     rer_zone: "Côté RER",
     south_zone: "Côté sud",
     forest_zone: "Côté forêt",
-    free_places: "Places libres",
+    free_places: "Rechercher",
     search_place: "Chercher une place...",
-    floor: "Étage",
+    floor: "Je recherche une place",
     zone: "Zone",
     find: "RECHERCHE"
   },
   users: {
     title: "Utilisateurs",
     users: "Utilisateurs",
-    search_user: "Chercher un utilisateur...",
+    search_user: "Recherche   ex: Prénom NOM",
     find: "RECHERCHE"
   },
   profile: {
-    title: "Scan",
+    title: "Ma place",
     manual_insertion: "Insertion manuelle",
     scan_qr_code: "Scanner le QR Code",
     scan: "Scanner",
-    send: "Envoyer",
+    send: "Réserver",
     place: "Place",
     format: "Mauvais format de place",
-    remote: "Télétravail"
+    remote: "Je suis en télétravail :"
   },
   navigation: {
     logOut: "Déconnexion"

@@ -31,15 +31,23 @@ allprojects {
 }
 
 subprojects {
-    afterEvaluate {project ->
-        if (project.hasProperty("android")) {
-            android {
-                compileSdkVersion 26
-                buildToolsVersion "26.1.0"
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "26.1.0"
             }
         }
     }
-}  
+    afterEvaluate { 
+         project -> if (project.hasProperty("android")) { 
+             android { 
+                compileSdkVersion 26 
+                buildToolsVersion "26.1.0"
+             } 
+         } 
+     }
+} 
 
 ext {
     buildToolsVersion = "26.0.3"

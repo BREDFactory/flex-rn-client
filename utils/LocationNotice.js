@@ -5,16 +5,10 @@ import {
   Dimensions,
   StyleSheet,
   Platform,
-  PermissionsAndroid,
-  AsyncStorage,
-  PushNotificationIOS,
-  geolocation
+  PermissionsAndroid
 } from "react-native";
-import Permissions from "react-native-permissions";
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
-import { NetworkInfo } from "react-native-network-info";
 import BackgroundTimer from "react-native-background-timer";
-import PushNotification from "react-native-push-notification";
 
 const { width } = Dimensions.get("window");
 
@@ -41,32 +35,12 @@ function MiniOfflineSign() {
 
 class OfflineNotice extends PureComponent {
   state = {
-    locationGranted: false,
-    // Used to know if the user is near or in the building
-    wifiLocation: false
+    positionGranted: false
   };
 
-  componentWillMount() {
-    this.requestLocation();
-  }
-
-  componentDidMount() {
-    //
-    Permissions.request("location").then(() => {
-      // Returns once the user has chosen to 'allow' or to 'not allow' access
-      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-      NetworkInfo.getBroadcast(address => {
-        console.log(address);
-      });
-    });
-    // BackgroundTimer.runBackgroundTimer(() => {
-    this.fetchWifiList();
-    // }, 5000);
-  }
-
   componentWillUpdate(nextProps, nextState) {
-    const { locationGranted } = this.state;
-    if (nextState.locationGranted === true && locationGranted === false) {
+    const { positionGranted } = this.state;
+    if (nextState.positionGranted === true && positionGranted === false) {
       this.requestLocationPermission();
     }
   }
@@ -75,46 +49,76 @@ class OfflineNotice extends PureComponent {
     BackgroundTimer.stopBackgroundTimer();
   }
 
+  componentWillMount = async () => {
+    await this.requestLocation();
+    await this.requestLocationPermission();
+
+    const { positionGranted } = this.state || false;
+
+    if (
+      positionGranted === PermissionsAndroid.RESULTS.GRANTED ||
+      Platform.OS === "ios"
+    ) {
+      navigator.geolocation.watchPosition(
+        position => {
+          this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+        },
+        error => console.warn({ error: error.message }),
+        {
+          enableHighAccuracy: false,
+          timeout: 5000,
+          maximumAge: 0,
+          distanceFilter: 0.1
+        }
+      );
+    }
+  };
+
+  requestLocationPermission = async () => {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: "Position Permission",
+        message: "We need to know if you are near the building."
+      }
+    );
+    this.setState({ positionGranted: granted });
+  };
+
   requestLocation = async () => {
     try {
       if (Platform.OS === "android")
-        LocationServicesDialogBox.checkLocationServicesIsEnabled({
+        await LocationServicesDialogBox.checkLocationServicesIsEnabled({
           message:
             "<h2>Use Location?</h2> This app wants to change your device settings:<br/><br/>Use location<br/><br/>",
           ok: "YES",
           cancel: "NO"
         }).then(() => {
-          this.setState({ locationGranted: true });
+          this.setState({ positionGranted: true });
         });
     } catch (err) {
       console.warn(err);
     }
   };
 
-  fetchWifiList = () => {};
-
-  requestLocationPermission = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
-      {
-        title: "Wifi networks",
-        message: "Merci d'activer votre localisation !"
-      }
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      this.fetchWifiList();
-    }
-  };
-
-  fetchWifiRegex = async () => {
-    const regex = await AsyncStorage.getItem("environment");
-    return regex.WIFI_REGEX;
-  };
+  // fetchWifiRegex = async () => {
+  //   const regex = await AsyncStorage.getItem("environment");
+  //   return regex.WIFI_REGEX;
+  // };
 
   render() {
-    const { wifiLocation } = this.state;
+    const { latitude, longitude } = this.state;
 
-    if (wifiLocation) {
+    /**
+     * process.ENV.left_longitude
+     * process.ENV.right_longitude
+     * process.ENV.left_latitude
+     * process.ENV.right_latitude
+     */
+    if (latitude > 48 && longitude > 2) {
       return <MiniOfflineSign />;
     }
     return null;

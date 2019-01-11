@@ -23,7 +23,7 @@ export const checkNavigation = (ctx, str) => {
       ) {
         navigate("Profile");
       } else {
-        navigate("Leave");
+        navigate("Profile");
       }
     }
   });
@@ -69,16 +69,21 @@ export const sendToServ = (ctx, json) => {
       .then(data => {
         if (ctx.state.place !== "") {
           let redirect = true;
-          if (data.body)
-            Alert.alert(`Place already used`, `Place used by : ${data.body}`);
-          json.map(
-            element =>
-              payload.id_place == element.id && element.using
-                ? (redirect = false)
-                : null
+          if (data.body) {
+            Alert.alert(
+              `Place déjà utilisée`,
+              `Place utilisée par : ${data.body}`
+            );
+            return;
+          }
+
+          json.map(element =>
+            payload.id_place == element.id && element.using
+              ? (redirect = false)
+              : null
           );
           if (redirect) {
-            goTo(ctx, "Leave");
+            ctx.setState({ placeTaken: true });
           }
         }
         AsyncStorage.setItem("USER", JSON.stringify(ctx.state));

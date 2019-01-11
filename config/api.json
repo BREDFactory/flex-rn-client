@@ -1,6 +1,6 @@
 {
-    "email": process.env.EMAIL,
-    "password": process.env.PASSWORD,
-    "token": process.env.TOKEN,
-    "_id": process.env._ID
+    "email": "",
+    "password": "",
+    "token": "",
+    "_id": ""
 }
