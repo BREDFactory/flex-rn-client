@@ -119,6 +119,11 @@ react-native bundle --entry-file index.js --platform ios --dev false --bundle-ou
 ```
 
 7. Build in Xcode
+
+You need to use Xcode Legacy Build to avoid some troubleshootings
+
+![Xcode Legacy Build System](screenshots/blob/master/Xcode_LegacyBuild.png?raw=true)
+
 8. Copy ```ios/main.jsbundle``` and paste into FlexOffice.app folder.
 
 Ex : 
