@@ -1,3 +1,6 @@
+# Security
+config/
+
 # OSX
 .DS_Store
 
