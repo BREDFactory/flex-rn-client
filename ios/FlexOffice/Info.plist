@@ -39,6 +39,8 @@
 	<string>YOUR_REASON_FOR_USING_USER_CAMERA_HERE</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>YOUR_REASON_FOR_USING_USER_PHOTOS_HERE</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -94,7 +96,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>YOUR_REASON_FOR_USING_USER_PHOTOS_HERE</string>
 </dict>
 </plist>

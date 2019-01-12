@@ -43,7 +43,7 @@ If you have already installed Xcode on your system, make sure it is version 9.4 
 
 You will also need to install the Xcode Command Line Tools. Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
 
-## Configuration
+## FlexOffice Server Configuration
 
 Make sure you have filled your API environment files by editing the ```.env```file :
 (Follow these steps to have your server working :
@@ -360,3 +360,16 @@ $ react-native link react-native
 ```
 
 RESOLUTION : cf. https://github.com/yarnpkg/yarn/issues/2206 : you may check whether your .yarnclean containing a line assets. If yes, delete that line and do ```rm -rf node_modules && yarn``` to see if this fixes your issue. This helped me.
+
+3. If during Step 6, you have :
+Unable to resolve module `./images/star.png` from `/Users/canatac/RNProjects/flex-rn-client/node_modules/react-native-elements/src/rating/Rating.js`: The module `./images/star.png` could not be found from `/Users/canatac/RNProjects/flex-rn-client/node_modules/react-native-elements/src/rating/Rating.js`. Indeed, none of these files exist:
+
+  * `star.png`
+  * `/Users/canatac/RNProjects/flex-rn-client/node_modules/react-native-elements/src/rating/images/star.png/index(.native||.ios.js|.native.js|.js|.ios.json|.native.json|.json)`
+
+```
+$ rm -rf node_modules
+$ rm .yarnclean
+$ yarn
+$ react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
+```

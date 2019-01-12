@@ -12,14 +12,10 @@
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* FlexOfficeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FlexOfficeTests.m */; };
 		027A053F7EB5408EB9FA667D /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA18F1C9DEC34589803E6F5C /* Ionicons.ttf */; };
 		0323D59D219DB0BC00D51DD7 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AF2AD4219DB0140023762D /* libRCTPushNotification.a */; };
 		032CE49021CBB2CD002C65B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032CE48F21CBB2CD002C65B5 /* LaunchScreen.storyboard */; };
-		0339CB2321E8D1350008E8F6 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0339CADE21E8D0180008E8F6 /* libBVLinearGradient.a */; };
 		03AA9E5B21AD4BA4002A107C /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AA9E5A21AD4BA4002A107C /* ExternalAccessory.framework */; };
-		03AF7B6021E4F8D100C77E4C /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AF7B5621E4F8BD00C77E4C /* Lottie.framework */; };
-		03AF7B6121E4F8D100C77E4C /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03AF7B5621E4F8BD00C77E4C /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C47CA34A2E045059FB3F51F /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C22B606FD90143919165F262 /* FontAwesome5_Solid.ttf */; };
 		0C851EA808054FC3B437E68C /* Raleway-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBF311DFA91A4B5A9E3B496E /* Raleway-SemiBoldItalic.ttf */; };
 		0D78ECC89B6C4ECC9DC94561 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D847DCAAC504104A0DCCACC /* libRNCamera.a */; };
@@ -31,7 +27,6 @@
 		13B07FBC1A68108700A75B9A /* FlexOfficeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* FlexOfficeDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1573696F20DB4DF4943B0104 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5070A6170C946D5A759E736 /* Raleway-Bold.ttf */; };
 		1A9A03AB47EF457EA017F1F3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 470B01EF51F845518F4C70A2 /* Zocial.ttf */; };
@@ -60,6 +55,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		83D8728CA94F4D23B69F8690 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		861C3BA31B9648718CBAF6DC /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D72143EB4A94B3992C51696 /* libReactNativePermissions.a */; };
+		879C1C1A21E90D8B00878366 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0339CADE21E8D0180008E8F6 /* libBVLinearGradient.a */; };
 		87FC192D21B6C3B0009F2180 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		9594288AD4CC4C368D3FFE07 /* libTcpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E0E340D6C974DC0BF897D26 /* libTcpSockets.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -112,13 +108,6 @@
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
 		};
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = FlexOffice;
-		};
 		03279D9421B6D0700094D096 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 634DB43AA7734F2FAA7C47F4 /* RCTImageResizer.xcodeproj */;
@@ -153,13 +142,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 64AA15081EF7F30100718508;
 			remoteInfo = "BVLinearGradient-tvOS";
-		};
-		0339CAE821E8D0180008E8F6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A93B55DD923F4D989F805F73 /* LottieReactNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
-			remoteInfo = LottieReactNative;
 		};
 		03AF2AAC219DABDE0023762D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -216,13 +198,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 84FE12EF1E4C1485009B157C;
 			remoteInfo = LottieLibraryIOS;
-		};
-		03AF7B5E21E4F8BD00C77E4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 11DB6A89F92F463592C6398F /* LottieReactNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
-			remoteInfo = LottieReactNative;
 		};
 		03B10E34219B0FEB00AF0893 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -511,6 +486,20 @@
 			remoteGlobalIDString = 6456441F1EB8DA9100672408;
 			remoteInfo = "RNFS-tvOS";
 		};
+		877B5C6321E906DE00DDDE73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A93B55DD923F4D989F805F73 /* LottieReactNative.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 11FA5C501C4A1296003AC2EE;
+			remoteInfo = LottieReactNative;
+		};
+		879C1BE021E90B1F00878366 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A93B55DD923F4D989F805F73 /* LottieReactNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = LottieReactNative;
+		};
 		87FC192021B59201009F2180 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7BDB02ED99F54DF09DCAF28B /* RNNetworkInfo.xcodeproj */;
@@ -548,27 +537,12 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0323A1E721DE789000CBFC54 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				03AF7B6121E4F8D100C77E4C /* Lottie.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* FlexOfficeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexOfficeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FlexOfficeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlexOfficeTests.m; sourceTree = "<group>"; };
 		032CE48F21CBB2CD002C65B5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -576,7 +550,6 @@
 		03AA9E5A21AD4BA4002A107C /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		03AF2AC2219DB0140023762D /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		0659B9AFFB3144EDA13AA390 /* Raleway-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Raleway-MediumItalic.ttf"; path = "../assets/fonts/Raleway/Raleway-MediumItalic.ttf"; sourceTree = "<group>"; };
-		11DB6A89F92F463592C6398F /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LottieReactNative.xcodeproj; path = "../node_modules/lottie-react-native/src/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FlexOffice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexOffice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -622,6 +595,34 @@
 		823D6468CB51483582FC2782 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8753A00852024FA98A7F686D /* Raleway-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Raleway-ExtraBoldItalic.ttf"; path = "../assets/fonts/Raleway/Raleway-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		879C1C1C21E9109E00878366 /* place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place.png; sourceTree = "<group>"; };
+		879C1C1D21E9109E00878366 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		879C1C1E21E9109E00878366 /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		879C1C1F21E9109E00878366 /* Presentation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Presentation.jpg; sourceTree = "<group>"; };
+		879C1C2021E9109E00878366 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		879C1C2121E9109E00878366 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
+		879C1C2221E9109E00878366 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		879C1C2321E9109E00878366 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		879C1C2621E9109E00878366 /* Raleway-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-BoldItalic.ttf"; sourceTree = "<group>"; };
+		879C1C2721E9109E00878366 /* Raleway-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-MediumItalic.ttf"; sourceTree = "<group>"; };
+		879C1C2821E9109E00878366 /* Raleway-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ThinItalic.ttf"; sourceTree = "<group>"; };
+		879C1C2921E9109E00878366 /* Raleway-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraLight.ttf"; sourceTree = "<group>"; };
+		879C1C2A21E9109E00878366 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		879C1C2B21E9109E00878366 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		879C1C2C21E9109E00878366 /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		879C1C2D21E9109E00878366 /* Raleway-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		879C1C2E21E9109E00878366 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		879C1C2F21E9109E00878366 /* Raleway-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		879C1C3021E9109E00878366 /* Raleway-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		879C1C3121E9109E00878366 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		879C1C3221E9109E00878366 /* Raleway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Black.ttf"; sourceTree = "<group>"; };
+		879C1C3321E9109E00878366 /* Raleway-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-BlackItalic.ttf"; sourceTree = "<group>"; };
+		879C1C3421E9109E00878366 /* Raleway-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-LightItalic.ttf"; sourceTree = "<group>"; };
+		879C1C3521E9109E00878366 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		879C1C3621E9109E00878366 /* Raleway-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Italic.ttf"; sourceTree = "<group>"; };
+		879C1C3721E9109E00878366 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		879C1C3821E9109E00878366 /* flexoffice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexoffice.png; sourceTree = "<group>"; };
+		879C1C3921E9109E00878366 /* scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan.png; sourceTree = "<group>"; };
 		8961701C06B945DBA7656285 /* UdpSockets.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = UdpSockets.xcodeproj; path = "../node_modules/react-native-udp/ios/UdpSockets.xcodeproj"; sourceTree = "<group>"; };
 		8A4F248BB7A64641AA931361 /* libRNOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNOS.a; sourceTree = "<group>"; };
 		8D8C4368B3104306A55AAE3C /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -655,19 +656,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0339CB2321E8D1350008E8F6 /* libBVLinearGradient.a in Frameworks */,
+				879C1C1A21E90D8B00878366 /* libBVLinearGradient.a in Frameworks */,
 				0323D59D219DB0BC00D51DD7 /* libRCTPushNotification.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -682,7 +675,6 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				03AF7B6021E4F8D100C77E4C /* Lottie.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2C183B2DAEB542659E0FF604 /* libRNRandomBytes.a in Frameworks */,
 				0D78ECC89B6C4ECC9DC94561 /* libRNCamera.a in Frameworks */,
@@ -797,7 +789,7 @@
 		0339CAD921E8D0180008E8F6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0339CAE921E8D0180008E8F6 /* libLottieReactNative.a */,
+				879C1BE121E90B1F00878366 /* libLottieReactNative.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -827,14 +819,6 @@
 				03AF7B5821E4F8BD00C77E4C /* Lottie.framework */,
 				03AF7B5A21E4F8BD00C77E4C /* Lottie.framework */,
 				03AF7B5C21E4F8BD00C77E4C /* libLottie.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		03AF7B4F21E4F8BD00C77E4C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				03AF7B5F21E4F8BD00C77E4C /* libLottieReactNative.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1053,7 +1037,6 @@
 				273D6091A5124ED1BC459BAD /* TcpSockets.xcodeproj */,
 				8961701C06B945DBA7656285 /* UdpSockets.xcodeproj */,
 				6001BCED7A954CD5936161D0 /* RNFS.xcodeproj */,
-				A93B55DD923F4D989F805F73 /* LottieReactNative.xcodeproj */,
 				5695473D81C8464F90A5F971 /* BVLinearGradient.xcodeproj */,
 			);
 			name = Libraries;
@@ -1071,6 +1054,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				879C1C1B21E9109E00878366 /* assets */,
 				13B07FAE1A68108700A75B9A /* FlexOffice */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FlexOfficeTests */,
@@ -1088,7 +1072,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* FlexOffice.app */,
-				00E356EE1AD99517003FC87E /* FlexOfficeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1100,6 +1083,58 @@
 				8760B1C321C11F9400E1E98E /* libRNFS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		879C1C1B21E9109E00878366 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				879C1C1C21E9109E00878366 /* place.png */,
+				879C1C1D21E9109E00878366 /* settings.png */,
+				879C1C1E21E9109E00878366 /* loading.json */,
+				879C1C1F21E9109E00878366 /* Presentation.jpg */,
+				879C1C2021E9109E00878366 /* logout.png */,
+				879C1C2121E9109E00878366 /* users.png */,
+				879C1C2221E9109E00878366 /* logo.png */,
+				879C1C2321E9109E00878366 /* profile.png */,
+				879C1C2421E9109E00878366 /* fonts */,
+				879C1C3821E9109E00878366 /* flexoffice.png */,
+				879C1C3921E9109E00878366 /* scan.png */,
+			);
+			name = assets;
+			path = ../assets;
+			sourceTree = "<group>";
+		};
+		879C1C2421E9109E00878366 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				879C1C2521E9109E00878366 /* Raleway */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		879C1C2521E9109E00878366 /* Raleway */ = {
+			isa = PBXGroup;
+			children = (
+				879C1C2621E9109E00878366 /* Raleway-BoldItalic.ttf */,
+				879C1C2721E9109E00878366 /* Raleway-MediumItalic.ttf */,
+				879C1C2821E9109E00878366 /* Raleway-ThinItalic.ttf */,
+				879C1C2921E9109E00878366 /* Raleway-ExtraLight.ttf */,
+				879C1C2A21E9109E00878366 /* Raleway-Medium.ttf */,
+				879C1C2B21E9109E00878366 /* Raleway-SemiBold.ttf */,
+				879C1C2C21E9109E00878366 /* Raleway-ExtraBold.ttf */,
+				879C1C2D21E9109E00878366 /* Raleway-ExtraBoldItalic.ttf */,
+				879C1C2E21E9109E00878366 /* Raleway-Regular.ttf */,
+				879C1C2F21E9109E00878366 /* Raleway-ExtraLightItalic.ttf */,
+				879C1C3021E9109E00878366 /* Raleway-SemiBoldItalic.ttf */,
+				879C1C3121E9109E00878366 /* Raleway-Light.ttf */,
+				879C1C3221E9109E00878366 /* Raleway-Black.ttf */,
+				879C1C3321E9109E00878366 /* Raleway-BlackItalic.ttf */,
+				879C1C3421E9109E00878366 /* Raleway-LightItalic.ttf */,
+				879C1C3521E9109E00878366 /* Raleway-Thin.ttf */,
+				879C1C3621E9109E00878366 /* Raleway-Italic.ttf */,
+				879C1C3721E9109E00878366 /* Raleway-Bold.ttf */,
+			);
+			path = Raleway;
 			sourceTree = "<group>";
 		};
 		87FC191921B59201009F2180 /* Products */ = {
@@ -1146,24 +1181,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* FlexOfficeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FlexOfficeTests" */;
-			buildPhases = (
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = FlexOfficeTests;
-			productName = FlexOfficeTests;
-			productReference = 00E356EE1AD99517003FC87E /* FlexOfficeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* FlexOffice */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FlexOffice" */;
@@ -1172,11 +1189,11 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				0323A1E721DE789000CBFC54 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				877B5C6421E906DE00DDDE73 /* PBXTargetDependency */,
 			);
 			name = FlexOffice;
 			productName = "Hello World";
@@ -1192,14 +1209,9 @@
 				LastUpgradeCheck = 610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = E449Q2SF5F;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 5U7R7KVHUP;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = E449Q2SF5F;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1238,10 +1250,6 @@
 				{
 					ProductGroup = 0339CAD921E8D0180008E8F6 /* Products */;
 					ProjectRef = A93B55DD923F4D989F805F73 /* LottieReactNative.xcodeproj */;
-				},
-				{
-					ProductGroup = 03AF7B4F21E4F8BD00C77E4C /* Products */;
-					ProjectRef = 11DB6A89F92F463592C6398F /* LottieReactNative.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1347,7 +1355,6 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* FlexOffice */,
-				00E356ED1AD99517003FC87E /* FlexOfficeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1423,13 +1430,6 @@
 			remoteRef = 0339CADF21E8D0180008E8F6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0339CAE921E8D0180008E8F6 /* libLottieReactNative.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLottieReactNative.a;
-			remoteRef = 0339CAE821E8D0180008E8F6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		03AF2AAD219DABDE0023762D /* libRNBackgroundTimer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1484,13 +1484,6 @@
 			fileType = archive.ar;
 			path = libLottie.a;
 			remoteRef = 03AF7B5B21E4F8BD00C77E4C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		03AF7B5F21E4F8BD00C77E4C /* libLottieReactNative.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLottieReactNative.a;
-			remoteRef = 03AF7B5E21E4F8BD00C77E4C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		03B10E35219B0FEB00AF0893 /* libReactNativePermissions.a */ = {
@@ -1780,6 +1773,13 @@
 			remoteRef = 8760B1C221C11F9400E1E98E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		879C1BE121E90B1F00878366 /* libLottieReactNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLottieReactNative.a;
+			remoteRef = 879C1BE021E90B1F00878366 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		87FC192121B59201009F2180 /* libRNNetworkInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1818,13 +1818,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1887,14 +1880,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* FlexOfficeTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1907,113 +1892,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+		877B5C6421E906DE00DDDE73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* FlexOffice */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+			name = LottieReactNative;
+			targetProxy = 877B5C6321E906DE00DDDE73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = E449Q2SF5F;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-randombytes",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-network-info/ios",
-					"$(SRCROOT)/../node_modules/react-native-os/ios",
-					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-udp/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-fs/**",
-					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
-					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
-				);
-				INFOPLIST_FILE = FlexOfficeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlexOffice.app/FlexOffice";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = E449Q2SF5F;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-randombytes",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
-					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
-					"$(SRCROOT)/../node_modules/react-native-network-info/ios",
-					"$(SRCROOT)/../node_modules/react-native-os/ios",
-					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-udp/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-fs/**",
-					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
-					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
-				);
-				INFOPLIST_FILE = FlexOfficeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlexOffice.app/FlexOffice";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlexOffice/FlexOffice.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 5U7R7KVHUP;
+				DEVELOPMENT_TEAM = E449Q2SF5F;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-randombytes",
@@ -2028,7 +1924,6 @@
 					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-udp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
-					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = FlexOffice/Info.plist;
@@ -2038,9 +1933,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.bredfactory.FlexOffice;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.bredfactory.flexoffice;
 				PRODUCT_NAME = FlexOffice;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = FlexOffice_Profile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2051,9 +1946,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlexOffice/FlexOffice.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5U7R7KVHUP;
+				DEVELOPMENT_TEAM = E449Q2SF5F;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-randombytes",
@@ -2068,7 +1963,6 @@
 					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-udp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
-					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = FlexOffice/Info.plist;
@@ -2078,9 +1972,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.bredfactory.FlexOffice;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.bredfactory.flexoffice;
 				PRODUCT_NAME = FlexOffice;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = FlexOffice_Profile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2164,15 +2058,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FlexOfficeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FlexOffice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

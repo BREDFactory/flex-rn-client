@@ -24,7 +24,6 @@ import ListPlaces from "@components/Users/ListPlaces";
 
 import profileDefaultPic from "../../assets/profile.png";
 // import { NavigationEvents } from "react-navigation";
-import LottieView from "lottie-react-native";
 
 type State = {
   users: Array<any> | string
