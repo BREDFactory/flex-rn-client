@@ -82,7 +82,35 @@ And for `regex.json`:
 You also have to configure environment variables of the *flex server* project.
 `CONFIG_REGEX`, `PLACE_REGEX`, `WIFI_REGEX`
 
-## Run on a real iOS Device
+## Running your React Native application in the Simulator
+
+Run ```react-native run-ios``` inside your React Native project folder:
+```
+cd flex-rn-client
+npm install
+react-native run-ios
+```
+
+## Running your React Native application on a real Device
+
+In the Apple Dev Center
+
+. Declare your app
+
+. Create a provisioning profile
+
+In Xcode
+
+. Use your provisioning profile
+
+. Change the FlexOffice Scheme Run Build Configuration from 'Debug' to 'Release'
+
+. In Xcode, Select File -> Project/Workspace Setting. You will see a Build System option to select the Legacy Build System as shown below
+
+![xcode build setting](https://i.stack.imgur.com/hdaJu.png)
+
+
+. Clear your project and "Derived Data" Build 
 
 1. Go to your Apple Dev Center account : declare phone UDID, App Id, Profile, Certificate
 2. In Terminal, clone the project and run on the project root directory
@@ -118,58 +146,11 @@ FlexOfficeDelegate.m
 react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios 
 ```
 
-7. Build in Xcode
 
-You need to use Xcode Legacy Build to avoid some troubleshootings
-
-![Xcode Legacy Build System](screenshots/blob/master/Xcode_LegacyBuild.png?raw=true)
-
-8. Copy ```ios/main.jsbundle``` and paste into FlexOffice.app folder.
-
-Ex : 
-```
-/Users/<user>/Library/Developer/Xcode/DerivedData/FlexOffice-cpkjlqzwsfrxcheazdsfgbnyfzbv/Build/Products/Release-iphoneos/FlexOffice.app/
-```
-9. Run the app in Xcode
-
-## Running your React Native application in the Simulator
-
-Run ```react-native run-ios``` inside your React Native project folder:
-```
-cd flex-rn-client
-npm install
-react-native run-ios
-```
-
-## Running your React Native application on a real Device
-
-In the Apple Dev Center
-
-. Declare your app
-
-. Create a provisioning profile
-
-In Xcode
-
-. Use your provisioning profile
-
-. Change the FlexOffice Scheme Run Build Configuration from 'Debug' to 'Release'
-
-. In Xcode, Select File -> Project/Workspace Setting. You will see a Build System option to select the Legacy Build System as shown below
-
-![xcode build setting](https://i.stack.imgur.com/hdaJu.png)
-
-
-. Clear your project and "Derived Data" Build 
-
-. In Terminal, got to ```ios``` subfolder and run :
-
-```node /<YOUR_FOLDER>/flex-rn-client/node_modules/react-native/local-cli/cli.js bundle --entry-file index.js --platform ios --dev false --reset-cache --bundle-output main.jsbundle --assets-dest /```
-
-. Then copy ```ios/main.jsbundle``` file to :
+7. Then copy ```ios/main.jsbundle``` file to :
 ```/Users/<USERNAME>/Library/Developer/Xcode/DerivedData/FlexOffice-XXX/Build/Products/Release-iphoneos/FlexOffice.app/```
 
-. Run your project :
+8. Run your project :
 
 You should see a new Terminal window appear for Metro Bundler.
 
