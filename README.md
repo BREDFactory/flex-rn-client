@@ -49,36 +49,24 @@ Make sure you have filled your API environment files by editing the ```.env```fi
 (Follow these steps to have your server working :
 [flex-rn-server](https://github.com/ayshiff/flex-server)) 
 
-`api.json`:
+In Flex Client, fill in your server address in `server.json` file :
 
 ```
 {
-  "email": process.env.EMAIL,
-  "password': process.env.PASSWORD,
-  "token': process.env.TOKEN,
-  "_id': process.env._ID
+  "address": "https://myapp.herokuapp.com/"
 }
 ```
 
-In ```.env```file, you should put your environment values.
+You'll add also the access token provided by Heroku :
 
-Example for a Heroku and mLab configuration :
-
-```
-DB_URL="https://mydb.herokuapp.com/api/"
-EMAIL="test@test.com"
-PASSWORD="admintest"
-TOKEN="molkujgdvxbcjynk,liu,jlkjhnéàç!è(§'evbfkn,kmlkjhkkjh"
-_ID="oiukhfgdbcjynukykuy"
-```
-
-Be sure that your ```.env``` file is included in ```.gitignore``` file !
-
-For `server.json`:
+fill in your server address in `api.json` file :
 
 ```
 {
-  "address": ""
+    "email": "",
+    "password": "",
+    "token": "1e98765x-4683-3fc7-0000-1234567890ac",
+    "_id": ""
 }
 ```
 
