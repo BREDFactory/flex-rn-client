@@ -1,6 +1,6 @@
 {
-    "email": "test2@test.com",
-    "password": "admintest",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViZDAzZmNiYTk4ZDdlMDAxNWYzNTQ0YyIsImlhdCI6MTU0MDM4MTc1OH0.gjuURUz6FM8mvPXjC5AMSXGzRdFrO_WhO4eBBMjDaRA",
-    "_id": "5bd03fcba98d7e0015f3544c"
+    "email": "",
+    "password": "",
+    "token": "",
+    "_id": ""
 }
