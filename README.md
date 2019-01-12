@@ -49,7 +49,12 @@ Make sure you have filled your API environment files by editing the ```.env```fi
 (Follow these steps to have your server working :
 [flex-rn-server](https://github.com/ayshiff/flex-server)) 
 
-In Flex Client, fill in your server address in `server.json` file :
+In Flex Client, be sure to have three files in the `config` directory :
+`server.json`
+`api.json`
+`regex.json`
+
+Fill in your server address in `server.json` file :
 
 ```
 {
