@@ -154,6 +154,13 @@ react-native bundle --entry-file index.js --platform ios --dev false --bundle-ou
 
 You should see a new Terminal window appear for Metro Bundler.
 
+9. Deployment :
+You have to generate the archive and launch this command :
+```xcodebuild -exportArchive -archivePath ${ARCHIVE_PATH} \```
+```-exportPath ${EXPORT_PATH} \```
+```-exportOptionsPlist ${ARCHIVE_PLIST_PATH}/Info.plist```
+```
+
 ## Generating Signed APK
 
 For Android deployment: 
