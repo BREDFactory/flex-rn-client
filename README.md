@@ -39,6 +39,12 @@ The easiest way to install Xcode is via the Mac App Store. Installing Xcode will
 
 If you have already installed Xcode on your system, make sure it is version 9.4 or newer.
 
+*Legacy Build System* :
+
+Select File -> Project/Workspace Setting. You will see a Build System option to select the Legacy Build System as shown below
+
+![xcode build setting](https://i.stack.imgur.com/hdaJu.png)
+
 #### Command Line Tools
 
 You will also need to install the Xcode Command Line Tools. Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
@@ -104,11 +110,6 @@ In Xcode
 . Use your provisioning profile
 
 . Change the FlexOffice Scheme Run Build Configuration from 'Debug' to 'Release'
-
-. In Xcode, Select File -> Project/Workspace Setting. You will see a Build System option to select the Legacy Build System as shown below
-
-![xcode build setting](https://i.stack.imgur.com/hdaJu.png)
-
 
 . Clear your project and "Derived Data" Build 
 
