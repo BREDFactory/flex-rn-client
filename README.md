@@ -8,6 +8,33 @@ Simple mobile client in React-Native for **flex-server** project
 
 # Steps to follow
 
+## Apple Developer Account
+
+Since you want your project running on iOS, you must have a MAc and and developer account to get the certificates to sign your code before deploying it.
+
+In the Apple Dev Center
+
+* Declare your app
+
+* Create two certificates :
+
+  * Development : *iOS App Development* type
+
+  * Production : *App Store and Ad Hoc* type
+
+* Declare your App Id
+
+* Declare all the phone UDID on which you may want to install for testing through AdHoc Distribution
+
+* Create three provisioning profiles :
+
+  * Dev Profile
+
+  * AdHoc Distribution Profile
+
+  * App Store Distribution Profile
+
+
 ## Installing dependencies
 
 You will need Node, Watchman, the React Native command line interface, and Xcode.
@@ -31,6 +58,7 @@ Watchman is a tool by Facebook for watching changes in the filesystem. It is hig
 Node comes with npm, which lets you install the React Native command line interface.
 
 Run the following command in a Terminal:
+
 ```npm install -g react-native-cli```
 
 ### Xcode
@@ -51,7 +79,7 @@ You will also need to install the Xcode Command Line Tools. Open Xcode, then cho
 
 ## FlexOffice Server Configuration
 
-Make sure you have filled your API environment files by editing the ```.env```file :
+Make sure you have filled your API environment files by editing the ```.env``` file :
 (Follow these steps to have your server working :
 [flex-rn-server](https://github.com/ayshiff/flex-server)) 
 
@@ -88,7 +116,7 @@ And for `regex.json`:
 You also have to configure environment variables of the *flex server* project.
 `CONFIG_REGEX`, `PLACE_REGEX`, `WIFI_REGEX`
 
-## Running your React Native application in the Simulator
+## Running your React Native iOS application in the Simulator
 
 Run ```react-native run-ios``` inside your React Native project folder:
 ```
@@ -99,31 +127,26 @@ react-native run-ios
 
 ## Running your React Native application on a real Device
 
-In the Apple Dev Center
 
-. Declare your app
 
-. Create a provisioning profile
-
-In Xcode
-
-. Use your provisioning profile
-
-. Change the FlexOffice Scheme Run Build Configuration from 'Debug' to 'Release'
-
-. Clear your project and "Derived Data" Build 
-
-1. Go to your Apple Dev Center account : declare phone UDID, App Id, Profile, Certificate
-2. In Terminal, clone the project and run on the project root directory
+1. If you've just cloned the project, in Terminal, run on the project root directory
 ```
 yarn install
 ```
-3. Go to ios folder and open Xcode project
+2. Go to ios folder and open Xcode project
 ```
 open FlexOffice.xcodeproj
 ```
-4. In Xcode, use dev certificate for targets (main and test)
-5. Modify App Delegate implementation : 
+3. In Xcode, use dev certificate for targets (main and test)
+
+* Use your provisioning profile
+
+* Change the FlexOffice Scheme Run Build Configuration from 'Debug' to 'Release'
+
+* Clear your project and "Derived Data" Build 
+
+
+4. Modify App Delegate implementation : 
 ```
 FlexOfficeDelegate.m
 --------------------
@@ -142,14 +165,21 @@ FlexOfficeDelegate.m
 
 ```
 
-6. In Terminal, launch following command : 
-```
-react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios 
-```
+5. In Xcode, select FlexOffice target and go to *Build Phases*
+Extend the *Bundle React Native code and images* and fill in the *NODE_BINARY* variable :
 
+To know which version of node binary you use, type in Terminal :
 
-7. Then copy ```ios/main.jsbundle``` file to :
-```/Users/<USERNAME>/Library/Developer/Xcode/DerivedData/FlexOffice-XXX/Build/Products/Release-iphoneos/FlexOffice.app/```
+```
+$ which node
+```
+And copy/paste the result to the NODE_BINARY variable.
+Ex:
+
+```
+export NODE_BINARY=/usr/local/opt/node@8/bin/node
+../node_modules/react-native/scripts/react-native-xcode.sh
+```
 
 8. Run your project :
 
@@ -326,7 +356,7 @@ The project also use [ESlint](https://eslint.org/) and [Prettier](https://pretti
 | Profile            | `name:string ,fname:string, id: string, place: string, search: Array<object>, debug: Array<any>, historical: Array<object>` | navigation | GET /places POST / | [x]           |
 | Scan               | `name:string ,fname:string, id: string, place: string, search: Array<object>, debug: Array<any>, historical: Array<object>` | navigation | GET /places        | []           |
 | Leave              | `name:string ,fname:string, id: string, place: string, search: Array<object>, debug: Array<any>, historical: Array<object>` | navigation | POST /             | [x]           |
-
+```
 
 # TROUBLESHOOTINGS
 1. iOS : When running from Xcode, the app crashes just after the launchscreen
@@ -360,3 +390,18 @@ $ rm .yarnclean
 $ yarn
 $ react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
 ```
+
+4. mainjs.bundle is not found
+
+There's probably a problem the correct node binary
+You can finish manually the last step of *Bundle React Native code and images*
+
+  * In Terminal, launch following command : 
+
+```
+react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios 
+```
+
+
+  * Then copy ```ios/main.jsbundle``` file to :
+```/Users/<USERNAME>/Library/Developer/Xcode/DerivedData/FlexOffice-XXX/Build/Products/Release-iphoneos/FlexOffice.app/```
