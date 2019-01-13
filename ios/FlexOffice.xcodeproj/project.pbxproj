@@ -500,6 +500,13 @@
 			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
 			remoteInfo = LottieReactNative;
 		};
+		879C1CF421EB6F4900878366 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
+			remoteInfo = React;
+		};
 		87FC192021B59201009F2180 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7BDB02ED99F54DF09DCAF28B /* RNNetworkInfo.xcodeproj */;
@@ -1193,6 +1200,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				879C1CF521EB6F4900878366 /* PBXTargetDependency */,
 				877B5C6421E906DE00DDDE73 /* PBXTargetDependency */,
 			);
 			name = FlexOffice;
@@ -1897,6 +1905,11 @@
 			name = LottieReactNative;
 			targetProxy = 877B5C6321E906DE00DDDE73 /* PBXContainerItemProxy */;
 		};
+		879C1CF521EB6F4900878366 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = React;
+			targetProxy = 879C1CF421EB6F4900878366 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1910,6 +1923,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = E449Q2SF5F;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-randombytes",
@@ -1949,6 +1963,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E449Q2SF5F;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-randombytes",
