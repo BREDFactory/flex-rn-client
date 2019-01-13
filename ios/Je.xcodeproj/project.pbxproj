@@ -1223,7 +1223,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FlexOffice" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Je" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1945,7 +1945,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlexOffice/FlexOffice.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E449Q2SF5F;
@@ -1974,7 +1974,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.bredfactory.flexoffice;
 				PRODUCT_NAME = FlexOffice;
-				PROVISIONING_PROFILE_SPECIFIER = FlexOffice_Profile;
+				PROVISIONING_PROFILE_SPECIFIER = BredFactory_Store;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2067,7 +2067,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FlexOffice" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Je" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
