@@ -1,5 +1,6 @@
 # Security
 config/
+archive/
 
 # OSX
 .DS_Store
@@ -43,6 +44,9 @@ xcuserdata
 DerivedData
 *.hmap
 *.ipa
+*.xcarchive
+*.pem
+input.xml
 *.xcuserstate
 project.xcworkspace
 
