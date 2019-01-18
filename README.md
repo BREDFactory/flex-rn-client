@@ -355,7 +355,6 @@ The project also use [ESlint](https://eslint.org/) and [Prettier](https://pretti
 | Profile            | `name:string ,fname:string, id: string, place: string, search: Array<object>, debug: Array<any>, historical: Array<object>` | navigation | GET /places POST / | [x]           |
 | Scan               | `name:string ,fname:string, id: string, place: string, search: Array<object>, debug: Array<any>, historical: Array<object>` | navigation | GET /places        | []           |
 | Leave              | `name:string ,fname:string, id: string, place: string, search: Array<object>, debug: Array<any>, historical: Array<object>` | navigation | POST /             | [x]           |
-```
 
 # TROUBLESHOOTINGS
 1. iOS : When running from Xcode, the app crashes just after the launchscreen
