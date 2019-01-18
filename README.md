@@ -190,7 +190,7 @@ You have to generate the archive and launch this command :
 ```xcodebuild -exportArchive -archivePath ${ARCHIVE_PATH} \```
 ```-exportPath ${EXPORT_PATH} \```
 ```-exportOptionsPlist ${ARCHIVE_PLIST_PATH}/Info.plist```
-```
+
 
 ## Generating Signed APK
 
@@ -217,7 +217,7 @@ Inside `gradle.properties`.
 ![Flex-Office](assets/flexoffice.png?raw=true)
 
 # Project Structure
-
+```
 .
 ├── App.js
 ├── Components
