@@ -218,7 +218,6 @@ Inside `gradle.properties`.
 
 # Project Structure
 
-```
 .
 ├── App.js
 ├── Components
