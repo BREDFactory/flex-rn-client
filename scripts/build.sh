@@ -34,7 +34,7 @@ source ~/.rvm/scripts/rvm
 rvm use system;
 #------------------------------------------------ E N V. V A R S
 
-FLEX_PROJECT_PATH=$(echo $(cd .. ; pwd))
+FLEX_PROJECT_PATH=$FLEX_HOME
 echo "FLEX_PROJECT_PATH : $FLEX_PROJECT_PATH"
 
 if [ -e $FLEX_PROJECT_PATH/archive ]

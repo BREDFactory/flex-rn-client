@@ -51,11 +51,11 @@ brew install watchman
 
 If you have already installed Node on your system, make sure it is Node 8.3 or newer.
 
-Watchman is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
+Watchman is a tool edited by Facebook for watching changes in the filesystem. It is highly recommended to install it for better performance.
 
 ### The React Native CLI
 
-Node comes with npm, which lets you install the React Native command line interface.
+Node comes with the package manager npm, which lets you install the React Native command line interface.
 
 Run the following command in a Terminal:
 
@@ -77,6 +77,26 @@ Select File -> Project/Workspace Setting. You will see a Build System option to 
 
 You will also need to install the Xcode Command Line Tools. Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
 
+## Download and install the project :
+
+```$ git clone https://github.com/BREDFactory/flex-rn-client.git```
+
+Set the FLEX_HOME environment variable
+
+```$ export FLEX_HOME=/YOUR/PROJECT/PATH```
+
+or run in the root folder 
+
+```$ export FLEX_HOME=${PWD}```
+
+Check it
+
+```
+$ echo $FLEX_HOME
+/YOUR/PROJECT/PATH
+```
+
+
 ## FlexOffice Server Configuration
 
 Make sure you have filled your API environment files by editing the ```.env``` file :
@@ -84,8 +104,11 @@ Make sure you have filled your API environment files by editing the ```.env``` f
 [flex-rn-server](https://github.com/ayshiff/flex-server)) 
 
 In Flex Client, be sure to have three files in the `config` directory :
+
 `server.json`
+
 `api.json`
+
 `regex.json`
 
 Fill in your server address in `server.json` file :
@@ -126,7 +149,6 @@ react-native run-ios
 ```
 
 ## Running your React Native application on a real Device
-
 
 
 1. If you've just cloned the project, in Terminal, run on the project root directory
@@ -187,9 +209,18 @@ You should see a new Terminal window appear for Metro Bundler.
 
 9. Deployment :
 You have to generate the archive and launch this command :
+
 ```xcodebuild -exportArchive -archivePath ${ARCHIVE_PATH} \```
+
 ```-exportPath ${EXPORT_PATH} \```
+
 ```-exportOptionsPlist ${ARCHIVE_PLIST_PATH}/Info.plist```
+
+We add a bash script which archive and create the .ipa in ```archive``` folder :
+
+If you have set the ```FLEX_HOME``` Environment variable (see *§Download and install the project*)
+
+You could run ./scripts/build.sh
 
 
 ## Generating Signed APK
