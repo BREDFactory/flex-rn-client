@@ -10,7 +10,7 @@ Simple mobile client in React-Native for **flex-server** project
 
 ## Apple Developer Account
 
-Since you want your project running on iOS, you must have a MAc and and developer account to get the certificates to sign your code before deploying it.
+Since you want your project running on iOS, you must have a Mac computer and and developer account to get the certificates to sign your code before deploying it.
 
 In the Apple Dev Center
 
