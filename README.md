@@ -10,7 +10,7 @@ Simple mobile client in React-Native for **flex-server** project
 
 ## Apple Developer Account
 
-Since you want your project running on iOS, you must have a Mac computer and and developer account to get the certificates to sign your code before deploying it.
+Since you want your project running on iOS, you must have a Mac computer and an Apple Developer account to get the certificates to sign your code before deploying it.
 
 In the Apple Dev Center
 
@@ -96,6 +96,10 @@ $ echo $FLEX_HOME
 /YOUR/PROJECT/PATH
 ```
 
+Make build script executable :
+```
+$ chmod +x ./scripts/build.sh
+```
 
 ## FlexOffice Server Configuration
 
@@ -203,11 +207,11 @@ export NODE_BINARY=/usr/local/opt/node@8/bin/node
 ../node_modules/react-native/scripts/react-native-xcode.sh
 ```
 
-8. Run your project :
+6. Run your project :
 
 You should see a new Terminal window appear for Metro Bundler.
 
-9. Deployment :
+7. Deployment :
 You have to generate the archive and launch this command :
 
 ```xcodebuild -exportArchive -archivePath ${ARCHIVE_PATH} \```
@@ -218,10 +222,13 @@ You have to generate the archive and launch this command :
 
 We add a bash script which archive and create the .ipa in ```archive``` folder :
 
-If you have set the ```FLEX_HOME``` Environment variable (see *§Download and install the project*)
+If you have set the ```FLEX_HOME``` Environment variable (see [Download and install the project](#download-and-install-the-project) )
 
-You could run ./scripts/build.sh
+You could run ./scripts/build.sh to automatically build, archive, export the archive.
 
+```
+$ ./scripts/build.sh
+```
 
 ## Generating Signed APK
 
