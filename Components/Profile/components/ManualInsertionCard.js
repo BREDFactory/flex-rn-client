@@ -23,7 +23,7 @@ const ManualInsertionCard = (props: {
   onChangeText: any => void,
   onPress: () => void
 }) => {
-  const { onChangeText, onPress } = props;
+  const { onSubmitEditing, onChangeText, onPress } = props;
   return (
     <View style={styles.view}>
       <FormInput
@@ -31,6 +31,7 @@ const ManualInsertionCard = (props: {
         style={styles.place}
         placeholder={I18n.t("profile.place")}
         onChangeText={onChangeText}
+        onSubmitEditing={onSubmitEditing}
       />
       <Button
         fontWeight="bold"

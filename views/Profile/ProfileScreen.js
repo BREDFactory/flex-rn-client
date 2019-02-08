@@ -148,6 +148,17 @@ class ProfileScreen extends React.Component<Props, State> {
       isWrongFormatPlace,
       placeTaken
     } = this.state;
+
+    insertPlace = async () => {
+      if (place !== "" && place.match(PLACE_REGEX) !== null) {
+        // getPlaces(this, sendToServ);
+        await getPlaces(this, sendToServ);
+        this.setState({
+          placeTaken: placeTaken || false
+        });
+      } else this.setState({ isWrongFormatPlace: true });
+    }
+
     return (
       <ScrollView style={styles.view}>
         <HeaderCard fname={fname} name={name} id={id} />
@@ -156,15 +167,8 @@ class ProfileScreen extends React.Component<Props, State> {
           <View>
             <ManualInsertionCard
               onChangeText={text => this.setState({ place: text })}
-              onPress={async () => {
-                if (place !== "" && place.match(PLACE_REGEX) !== null) {
-                  // getPlaces(this, sendToServ);
-                  await getPlaces(this, sendToServ);
-                  this.setState({
-                    placeTaken: placeTaken || false
-                  });
-                } else this.setState({ isWrongFormatPlace: true });
-              }}
+              onSubmitEditing={() => insertPlace()}
+              onPress={() => insertPlace()}
             />
             {isWrongFormatPlace ? (
               <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
