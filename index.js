@@ -24,7 +24,7 @@ import { name as appName } from "./app.json";
 // This line prevent weird warning from react-navigation from happening => need a fix !
 
 YellowBox.ignoreWarnings([
-  "Warning: _isMounted(...) is deprecated",
+  "Warning: isMounted(...) is deprecated",
   "Module RCTImageLoader"
 ]);
 
