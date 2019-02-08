@@ -192,6 +192,7 @@ class LoginScreen extends React.Component<Props, State> {
         <Image source={logo} style={{ height: 120, resizeMode: "contain" }} />
         <View style={styles.view_second}>
           <InputLogin
+            onSubmitEditing={() => this.logIn()}
             onChangeText={text => this.setState({ name: text })}
             onChangeText1={text => this.setState({ fname: text })}
             onChangeText2={text => this.setState({ id: text })}

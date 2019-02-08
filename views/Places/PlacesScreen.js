@@ -101,11 +101,11 @@ class PlacesScreen extends React.Component<Props, State> {
           .then(data => {
             if (this._isMounted) {
               this.setState({ historical: data[0].historical });
+              getPlaces(this, this.setPlaces);
             }
           });
       }
     });
-    getPlaces(this, this.setPlaces);
   }
 
   componentWillUnmount() {

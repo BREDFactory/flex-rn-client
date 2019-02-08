@@ -24,7 +24,7 @@ const InputLogin = (props: {
   onChangeText1: any => void,
   onChangeText2: any => void
 }) => {
-  const { onChangeText, onChangeText1, onChangeText2 } = props;
+  const { onSubmitEditing, onChangeText, onChangeText1, onChangeText2 } = props;
   return (
     <View>
       <FormInput
@@ -32,6 +32,7 @@ const InputLogin = (props: {
         style={styles.textInput}
         placeholder={I18n.t("login.name")}
         onChangeText={onChangeText}
+        onSubmitEditing={onSubmitEditing}
         inputStyle={{ fontFamily: "Raleway" }}
       />
 
@@ -40,6 +41,7 @@ const InputLogin = (props: {
         style={styles.textInput}
         placeholder={I18n.t("login.surname")}
         onChangeText={onChangeText1}
+        onSubmitEditing={onSubmitEditing}
         inputStyle={{ fontFamily: "Raleway" }}
       />
 
@@ -48,6 +50,7 @@ const InputLogin = (props: {
         style={styles.textInput}
         placeholder={I18n.t("login.id")}
         onChangeText={onChangeText2}
+        onSubmitEditing={onSubmitEditing}
         inputStyle={{ fontFamily: "Raleway" }}
       />
     </View>
