@@ -72,6 +72,7 @@ class ProfileScreen extends React.Component<Props, State> {
 
   constructor() {
     super();
+    this.placeInput = "";
     this.state = {
       name: "",
       fname: "",
@@ -129,10 +130,11 @@ class ProfileScreen extends React.Component<Props, State> {
     } = this.state;
 
     insertPlace = async () => {
-      if (place !== "" && place.match(regex.place_regex) !== null) {
+      if (this.placeInput !== "" && this.placeInput.match(regex.place_regex) !== null) {
         // getPlaces(this, sendToServ);
         await getPlaces(this, sendToServ);
         this.setState({
+          place: this.placeInput,
           placeTaken: placeTaken || false
         });
       } else this.setState({ isWrongFormatPlace: true });
@@ -145,7 +147,7 @@ class ProfileScreen extends React.Component<Props, State> {
           <QRCodeComponent onRead={this.onSuccess} />
           <View>
             <ManualInsertionCard
-              onChangeText={text => this.setState({ place: text })}
+              onChangeText={text => this.placeInput = text}
               onSubmitEditing={() => insertPlace()}
               onPress={() => insertPlace()}
             />
