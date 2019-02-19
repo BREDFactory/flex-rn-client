@@ -24,6 +24,7 @@ import { NavigationScreenProp, NavigationEvents } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import config from "../../config/api";
 import server from "../../config/server";
+import regex from "../../config/regex";
 import styles from "./ProfileScreenStyles";
 import { getPlaces, goTo, sendToServ, leavePlace } from "../../utils/utils";
 import I18n from "../../i18n/i18n";
@@ -87,8 +88,6 @@ class ProfileScreen extends React.Component<Props, State> {
   componentDidMount = () => {
     const { navigation } = this.props;
     this._isMounted = true;
-    // Fetch environment variables
-    this.fetchAppMode();
     AsyncStorage.getItem("USER", (err, result) => {
       if (err || result === null) goTo(this, "Login");
       else {
@@ -122,20 +121,12 @@ class ProfileScreen extends React.Component<Props, State> {
   }
 
   onSuccess = async e => {
-    const { PLACE_REGEX } = this.state;
-    if (e.data.match(PLACE_REGEX) !== null) {
+    if (e.data.match(regex.place_regex) !== null) {
       this.setState({ place: e.data });
       getPlaces(this, sendToServ);
     } else {
       this.setState({ isWrongFormatPlace: true });
     }
-  };
-
-  fetchAppMode = async () => {
-    const environment = await AsyncStorage.getItem("environment");
-    this.setState({
-      PLACE_REGEX: JSON.parse(environment).PLACE_REGEX
-    });
   };
 
   DefaultComponent = () => {
@@ -144,13 +135,12 @@ class ProfileScreen extends React.Component<Props, State> {
       name,
       id,
       place,
-      PLACE_REGEX,
       isWrongFormatPlace,
       placeTaken
     } = this.state;
 
     insertPlace = async () => {
-      if (place !== "" && place.match(PLACE_REGEX) !== null) {
+      if (place !== "" && place.match(regex.place_regex) !== null) {
         // getPlaces(this, sendToServ);
         await getPlaces(this, sendToServ);
         this.setState({
