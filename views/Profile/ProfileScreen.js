@@ -70,8 +70,6 @@ class ProfileScreen extends React.Component<Props, State> {
     };
   };
 
-  _isMounted = false;
-
   constructor() {
     super();
     this.state = {
@@ -87,17 +85,14 @@ class ProfileScreen extends React.Component<Props, State> {
 
   componentDidMount = () => {
     const { navigation } = this.props;
-    this._isMounted = true;
     AsyncStorage.getItem("USER", (err, result) => {
       if (err || result === null) goTo(this, "Login");
       else {
-        if (this._isMounted) {
-          this.setState(JSON.parse(result));
-          this.setState({
-            placeTaken: JSON.parse(result).place !== ""
-          });
-          navigation.setParams(JSON.parse(result));
-        }
+        this.setState(JSON.parse(result));
+        this.setState({
+          placeTaken: JSON.parse(result).place !== ""
+        });
+        navigation.setParams(JSON.parse(result));
         const userId = JSON.parse(result).id;
         fetch(`${server.address}users/${userId}`, {
           method: "GET",
@@ -108,17 +103,11 @@ class ProfileScreen extends React.Component<Props, State> {
         })
           .then(res => res.json()) // transform data to json
           .then(data => {
-            if (this._isMounted) {
-              this.setState({ historical: data[0].historical || [] });
-            }
+            this.setState({ historical: data[0].historical || [] });
           });
       }
     });
   };
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
 
   onSuccess = async e => {
     if (e.data.match(regex.place_regex) !== null) {
