@@ -127,57 +127,6 @@ class PlacesScreen extends React.Component<Props, State> {
     this.setState({ selectedZoneIndex });
   };
 
-  /** This function is used to attach the current user to a place  */
-  getUser = (ctx, element) => {
-    if (
-      ctx.state.name !== "" &&
-      ctx.state.fname !== "" &&
-      ctx.state.id !== "" &&
-      element.id !== ""
-    ) {
-      const { name, fname, id, historical, remoteDay, photo } = ctx.state;
-
-      ctx = ctx || window;
-
-      const payload = {
-        name,
-        fname,
-        id_user: id,
-        id_place: element.id,
-        historical,
-        remoteDay,
-        photo
-      };
-      fetch(server.address, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-          "x-access-token": config.token
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          const redirect = !(payload.id_place === element.id && element.using);
-          if (redirect) {
-            AsyncStorage.setItem(
-              "USER",
-              JSON.stringify({
-                name: payload.name,
-                fname: payload.fname,
-                id: payload.id_user,
-                place: payload.id_place,
-                debug: ctx.state.debug,
-                historical: ctx.state.historical,
-                remoteDay: ctx.state.remoteDay,
-                photo: ctx.state.photo
-              })
-            );
-          }
-        });
-    }
-  };
-
   handleList = () => {
     const { debug, selectedFloorIndex, selectedZoneIndex } = this.state;
 
@@ -323,7 +272,6 @@ class PlacesScreen extends React.Component<Props, State> {
                   <TouchableOpacity
                     activeOpacity={0.1}
                     key={place.item.id}
-                    // onPress={() => getPlaces(this, this.getUser, place)}
                   >
                     <Card
                       key={place.item.id}
