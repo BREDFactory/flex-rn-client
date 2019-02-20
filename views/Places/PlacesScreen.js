@@ -100,7 +100,7 @@ class PlacesScreen extends React.Component<Props, State> {
           .then(res => res.json()) // transform data to json
           .then(data => {
             if (this._isMounted) {
-              this.setState({ historical: data[0].historical });
+              this.setState({ historical: data.historical });
               getPlaces(this, this.setPlaces);
             }
           });
