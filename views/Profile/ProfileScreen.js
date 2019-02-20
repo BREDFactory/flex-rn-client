@@ -104,7 +104,7 @@ class ProfileScreen extends React.Component<Props, State> {
         })
           .then(res => res.json()) // transform data to json
           .then(data => {
-            this.setState({ historical: data[0].historical || [] });
+            this.setState({ historical: data.historical || [] });
           });
       }
     });
@@ -124,7 +124,6 @@ class ProfileScreen extends React.Component<Props, State> {
       fname,
       name,
       id,
-      place,
       isWrongFormatPlace,
       placeTaken
     } = this.state;
@@ -204,7 +203,7 @@ class ProfileScreen extends React.Component<Props, State> {
     })
       .then(res => res.json()) // transform data to json
       .then(data => {
-        ctx.setState({ historical: data[0].historical });
+        ctx.setState({ historical: data.historical });
       });
 
     const { name, fname, place, historical, remoteDay } = this.state;
