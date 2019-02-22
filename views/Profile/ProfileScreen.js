@@ -17,7 +17,7 @@ limitations under the License.
 /* eslint-disable */
 import React from "react";
 
-import { AsyncStorage, ScrollView, View, Text } from "react-native";
+import { AsyncStorage, ScrollView, View, Text, Alert } from "react-native";
 
 import LinearGradient from "react-native-linear-gradient";
 import { NavigationScreenProp, NavigationEvents } from "react-navigation";
@@ -125,17 +125,36 @@ class ProfileScreen extends React.Component<Props, State> {
       name,
       id,
       isWrongFormatPlace,
-      placeTaken
     } = this.state;
 
-    insertPlace = async () => {
+    insertPlace = () => {
       if (this.placeInput !== "" && this.placeInput.match(regex.place_regex) !== null) {
-        // getPlaces(this, sendToServ);
-        await getPlaces(this, sendToServ);
-        this.setState({
-          place: this.placeInput,
-          placeTaken: placeTaken || false
-        });
+        const payload = {
+          id_user: id,
+          id_place: this.placeInput
+        };
+
+        fetch(`${server.address}/take_place`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": config.token
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(res => {
+            if (res.status === 200) {
+              this.setState({
+                place: this.placeInput,
+                placeTaken: true
+              });
+            }
+            else if (res.status === 500) {
+              res.json().then(user => {
+                Alert.alert("Impossible", `Place déjà utilisée par : ${user.fname} ${user.name}`);
+              })
+            }
+          });
       } else this.setState({ isWrongFormatPlace: true });
     }
 
