@@ -94,7 +94,7 @@ class ProfileScreen extends React.Component<Props, State> {
       else {
         result = JSON.parse(result);
         if (result.placeTaken)
-          this.socket.emit('joinRoom', result.place);
+          this.socket.emit('checkPlace', result.place);
         this.setState(result);
         navigation.setParams(result);
         const userId = result.id;
