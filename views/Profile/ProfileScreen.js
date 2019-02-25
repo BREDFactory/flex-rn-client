@@ -93,9 +93,6 @@ class ProfileScreen extends React.Component<Props, State> {
       if (err || result === null) goTo(this, "Login");
       else {
         this.setState(JSON.parse(result));
-        this.setState({
-          placeTaken: JSON.parse(result).place !== ""
-        });
         navigation.setParams(JSON.parse(result));
         const userId = JSON.parse(result).id;
         fetch(`${server.address}users/${userId}`, {
