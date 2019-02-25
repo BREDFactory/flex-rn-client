@@ -92,9 +92,12 @@ class ProfileScreen extends React.Component<Props, State> {
     AsyncStorage.getItem("USER", (err, result) => {
       if (err || result === null) goTo(this, "Login");
       else {
-        this.setState(JSON.parse(result));
-        navigation.setParams(JSON.parse(result));
-        const userId = JSON.parse(result).id;
+        result = JSON.parse(result);
+        if (result.placeTaken)
+          this.socket.emit('joinRoom', result.place);
+        this.setState(result);
+        navigation.setParams(result);
+        const userId = result.id;
         fetch(`${server.address}users/${userId}`, {
           method: "GET",
           headers: {
