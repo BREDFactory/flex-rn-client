@@ -18,6 +18,7 @@ limitations under the License.
 import React from "react";
 
 import { AsyncStorage, ScrollView, View, Text, Alert } from "react-native";
+import socketIOClient from "socket.io-client";
 
 import LinearGradient from "react-native-linear-gradient";
 import { NavigationScreenProp, NavigationEvents } from "react-navigation";
@@ -73,6 +74,8 @@ class ProfileScreen extends React.Component<Props, State> {
   constructor() {
     super();
     this.placeInput = "";
+    this.socket = socketIOClient(server.sockets);
+    this.socket.on('leavePlace', () => this.leavePlace(this));
     this.state = {
       name: "",
       fname: "",
@@ -148,6 +151,8 @@ class ProfileScreen extends React.Component<Props, State> {
                 place: this.placeInput,
                 placeTaken: true
               });
+              this.socket.emit('joinRoom', this.placeInput);
+              AsyncStorage.setItem("USER", JSON.stringify(this.state))
             }
             else if (res.status === 500) {
               res.json().then(user => {
