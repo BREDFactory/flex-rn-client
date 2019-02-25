@@ -25,7 +25,8 @@ import { name as appName } from "./app.json";
 
 YellowBox.ignoreWarnings([
   "Warning: isMounted(...) is deprecated",
-  "Module RCTImageLoader"
+  "Module RCTImageLoader",
+  "Unrecognized WebSocket connection option"
 ]);
 
 AppRegistry.registerComponent(appName, () => App);
