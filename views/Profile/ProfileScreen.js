@@ -263,6 +263,7 @@ class ProfileScreen extends React.Component<Props, State> {
           debug: ""
         });
         AsyncStorage.setItem("USER", JSON.stringify(this.state));
+        this.socket.emit('leaveRoom', '31V');
       });
   }
 
