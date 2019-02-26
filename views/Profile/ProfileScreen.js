@@ -17,7 +17,7 @@ limitations under the License.
 /* eslint-disable */
 import React from "react";
 
-import { AsyncStorage, ScrollView, View, Text, Alert } from "react-native";
+import { AsyncStorage, ScrollView, View, Text, Alert, KeyboardAvoidingView, Platform } from "react-native";
 import socketIOClient from "socket.io-client";
 
 import { NavigationScreenProp } from "react-navigation";
@@ -161,22 +161,24 @@ class ProfileScreen extends React.Component<Props, State> {
     }
 
     return (
-      <ScrollView style={styles.view}>
-        <HeaderCard fname={fname} name={name} id={id} />
-        <View>
-          <QRCodeComponent onRead={this.onSuccess} />
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? "padding" : null} enabled>
+        <ScrollView style={styles.view}>
+          <HeaderCard fname={fname} name={name} id={id} />
           <View>
-            <ManualInsertionCard
-              onChangeText={text => this.placeInput = text}
-              onSubmitEditing={() => insertPlace()}
-              onPress={() => insertPlace()}
-            />
-            {isWrongFormatPlace ? (
-              <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
-            ) : null}
+            <QRCodeComponent onRead={this.onSuccess} />
+            <View>
+              <ManualInsertionCard
+                onChangeText={text => this.placeInput = text}
+                onSubmitEditing={() => insertPlace()}
+                onPress={() => insertPlace()}
+              />
+              {isWrongFormatPlace ? (
+                <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
+              ) : null}
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   };
 
