@@ -123,10 +123,6 @@ class LoginScreen extends React.Component<Props, State> {
     return regex.LOGIN_REGEX;
   };
 
-  logOut = () => {
-    AsyncStorage.removeItem("USER");
-  };
-
   /** This function handle the user login */
   logIn() {
     const { navigation } = this.props;
