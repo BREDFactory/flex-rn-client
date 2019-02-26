@@ -118,11 +118,6 @@ class LoginScreen extends React.Component<Props, State> {
     fetchData.call(this);
   }
 
-  fetchLoginRegex = async () => {
-    const regex = await AsyncStorage.getItem("environment");
-    return regex.LOGIN_REGEX;
-  };
-
   /** This function handle the user login */
   logIn() {
     const { navigation } = this.props;
