@@ -16,7 +16,7 @@ limitations under the License.
 // @flow
 
 import React from "react";
-import { AsyncStorage, View, Image } from "react-native";
+import { AsyncStorage, View, Animated, Keyboard } from "react-native";
 
 import { Text } from "react-native-elements";
 import { omit } from "ramda";
@@ -92,11 +92,50 @@ class LoginScreen extends React.Component<Props, State> {
       historical: [],
       photo: ""
     };
+    // Animation values for iOs (only) keyboard handling
+    this.keyboardHeight = new Animated.Value(0);
+    this.imageHeight = new Animated.Value(120);
   }
 
   componentWillMount() {
     checkNavigation(this);
+    
+    // Keyboard listeners for iOs only
+    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
   }
+
+  componentWillUnmount() {
+    this.keyboardWillShowSub.remove();
+    this.keyboardWillHideSub.remove();
+  }
+
+  // Keyboard event handlers for iOs only
+  keyboardWillShow = (event) => {
+    Animated.parallel([
+      Animated.timing(this.keyboardHeight, {
+        duration: event.duration,
+        toValue: event.endCoordinates.height,
+      }),
+      Animated.timing(this.imageHeight, {
+        duration: event.duration,
+        toValue: 40
+      }),
+    ]).start();
+  };
+
+  keyboardWillHide = (event) => {
+    Animated.parallel([
+      Animated.timing(this.keyboardHeight, {
+        duration: event.duration,
+        toValue: 0,
+      }),
+      Animated.timing(this.imageHeight, {
+        duration: event.duration,
+        toValue: 120,
+      }),
+    ]).start();
+  };
 
   /** This function handle the user login */
   logIn() {
@@ -159,8 +198,9 @@ class LoginScreen extends React.Component<Props, State> {
   render() {
     const { debugField } = this.state;
     return (
-      <View style={styles.view}>
-        <Image source={logo} style={{ height: 120, resizeMode: "contain" }} />
+      // Animation will work only on iOs
+      <Animated.View style={ [styles.view, { paddingBottom: this.keyboardHeight }] }>
+        <Animated.Image source={logo} style={{ height: this.imageHeight, resizeMode: "contain" }} />
         <View style={styles.view_second}>
           <InputLogin
             onSubmitEditing={() => this.logIn()}
@@ -171,7 +211,7 @@ class LoginScreen extends React.Component<Props, State> {
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }
