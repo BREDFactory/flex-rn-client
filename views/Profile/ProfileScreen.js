@@ -20,17 +20,14 @@ import React from "react";
 import { AsyncStorage, ScrollView, View, Text, Alert } from "react-native";
 import socketIOClient from "socket.io-client";
 
-import LinearGradient from "react-native-linear-gradient";
-import { NavigationScreenProp, NavigationEvents } from "react-navigation";
+import { NavigationScreenProp } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import config from "../../config/api";
 import server from "../../config/server";
 import regex from "../../config/regex";
 import styles from "./ProfileScreenStyles";
-import { getPlaces, goTo, sendToServ, leavePlace } from "../../utils/utils";
+import { getPlaces, goTo, sendToServ } from "../../utils/utils";
 import I18n from "../../i18n/i18n";
-
-import LottieView from "lottie-react-native";
 
 /**
  * List of components
