@@ -211,6 +211,7 @@ class LoginScreen extends React.Component<Props, State> {
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
         </View>
+        <Text style={styles.version}>1.0.0</Text>
       </Animated.View>
     );
   }
