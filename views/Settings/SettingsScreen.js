@@ -257,24 +257,24 @@ export class SettingsScreen extends Component<Props, State> {
           >
             <Image
               style={
-                photo === ""
+                photo
                   ? {
-                      width: 70,
-                      height: 70
-                    }
-                  : {
                       width: 70,
                       height: 70,
                       borderRadius: 35
                     }
-              }
-              resizeMode={photo === "" ? "contain" : "cover"}
-              source={
-                photo === ""
-                  ? require("../../assets/profile.png")
                   : {
-                      uri: photo
+                      width: 70,
+                      height: 70,
                     }
+              }
+              resizeMode={photo ? "cover" : "contain"}
+              source={
+                photo
+                  ? {
+                    uri: photo
+                  }
+                  : require("../../assets/profile.png")
               }
             />
           </PhotoUpload>
