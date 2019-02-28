@@ -174,7 +174,7 @@ export class SettingsScreen extends Component<Props, State> {
           .then(res => res.json()) // transform data to json
           .then(data => {
             this.setState({
-              historical: data[0].historical,
+              historical: data.historical,
               loadingSave: false
             });
           });
@@ -222,14 +222,14 @@ export class SettingsScreen extends Component<Props, State> {
       })
         .then(res => res.json())
         .then(data => {
-          this.props.fetchPhoto(data[0].photo);
+          this.props.fetchPhoto(data.photo);
           AsyncStorage.setItem(
             "USER",
             JSON.stringify(
               assoc(
                 "place",
-                data[0].id_place,
-                omit(["loadingSave"], assoc("photo", data[0].photo, this.state))
+                data.id_place,
+                omit(["loadingSave"], assoc("photo", data.photo, this.state))
               )
             )
           );
@@ -257,24 +257,24 @@ export class SettingsScreen extends Component<Props, State> {
           >
             <Image
               style={
-                photo === ""
+                photo
                   ? {
-                      width: 70,
-                      height: 70
-                    }
-                  : {
                       width: 70,
                       height: 70,
                       borderRadius: 35
                     }
-              }
-              resizeMode={photo === "" ? "contain" : "cover"}
-              source={
-                photo === ""
-                  ? require("../../assets/profile.png")
                   : {
-                      uri: photo
+                      width: 70,
+                      height: 70,
                     }
+              }
+              resizeMode={photo ? "cover" : "contain"}
+              source={
+                photo
+                  ? {
+                    uri: photo
+                  }
+                  : require("../../assets/profile.png")
               }
             />
           </PhotoUpload>

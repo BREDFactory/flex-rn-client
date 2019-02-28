@@ -17,13 +17,15 @@ limitations under the License.
 /* eslint-disable */
 import React from "react";
 
-import { AsyncStorage, ScrollView, View, Text } from "react-native";
+import { AsyncStorage, ScrollView, View, Text, Alert } from "react-native";
+import socketIOClient from "socket.io-client";
 
 import LinearGradient from "react-native-linear-gradient";
 import { NavigationScreenProp, NavigationEvents } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import config from "../../config/api";
 import server from "../../config/server";
+import regex from "../../config/regex";
 import styles from "./ProfileScreenStyles";
 import { getPlaces, goTo, sendToServ, leavePlace } from "../../utils/utils";
 import I18n from "../../i18n/i18n";
@@ -69,10 +71,11 @@ class ProfileScreen extends React.Component<Props, State> {
     };
   };
 
-  _isMounted = false;
-
   constructor() {
     super();
+    this.placeInput = "";
+    this.socket = socketIOClient(server.sockets);
+    this.socket.on('leavePlace', () => this.leavePlace(this));
     this.state = {
       name: "",
       fname: "",
@@ -86,20 +89,15 @@ class ProfileScreen extends React.Component<Props, State> {
 
   componentDidMount = () => {
     const { navigation } = this.props;
-    this._isMounted = true;
-    // Fetch environment variables
-    this.fetchAppMode();
     AsyncStorage.getItem("USER", (err, result) => {
       if (err || result === null) goTo(this, "Login");
       else {
-        if (this._isMounted) {
-          this.setState(JSON.parse(result));
-          this.setState({
-            placeTaken: JSON.parse(result).place !== ""
-          });
-          navigation.setParams(JSON.parse(result));
-        }
-        const userId = JSON.parse(result).id;
+        result = JSON.parse(result);
+        if (result.placeTaken)
+          this.socket.emit('checkPlace', result.place);
+        this.setState(result);
+        navigation.setParams(result);
+        const userId = result.id;
         fetch(`${server.address}users/${userId}`, {
           method: "GET",
           headers: {
@@ -109,21 +107,14 @@ class ProfileScreen extends React.Component<Props, State> {
         })
           .then(res => res.json()) // transform data to json
           .then(data => {
-            if (this._isMounted) {
-              this.setState({ historical: data[0].historical || [] });
-            }
+            this.setState({ historical: data.historical || [] });
           });
       }
     });
   };
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   onSuccess = async e => {
-    const { PLACE_REGEX } = this.state;
-    if (e.data.match(PLACE_REGEX) !== null) {
+    if (e.data.match(regex.place_regex) !== null) {
       this.setState({ place: e.data });
       getPlaces(this, sendToServ);
     } else {
@@ -131,31 +122,44 @@ class ProfileScreen extends React.Component<Props, State> {
     }
   };
 
-  fetchAppMode = async () => {
-    const environment = await AsyncStorage.getItem("environment");
-    this.setState({
-      PLACE_REGEX: JSON.parse(environment).PLACE_REGEX
-    });
-  };
-
   DefaultComponent = () => {
     const {
       fname,
       name,
       id,
-      place,
-      PLACE_REGEX,
       isWrongFormatPlace,
-      placeTaken
     } = this.state;
 
-    insertPlace = async () => {
-      if (place !== "" && place.match(PLACE_REGEX) !== null) {
-        // getPlaces(this, sendToServ);
-        await getPlaces(this, sendToServ);
-        this.setState({
-          placeTaken: placeTaken || false
-        });
+    insertPlace = () => {
+      if (this.placeInput !== "" && this.placeInput.match(regex.place_regex) !== null) {
+        const payload = {
+          id_user: id,
+          id_place: this.placeInput
+        };
+
+        fetch(`${server.address}/take_place`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": config.token
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(res => {
+            if (res.status === 200) {
+              this.setState({
+                place: this.placeInput,
+                placeTaken: true
+              });
+              this.socket.emit('joinRoom', this.placeInput);
+              AsyncStorage.setItem("USER", JSON.stringify(this.state))
+            }
+            else if (res.status === 500) {
+              res.json().then(user => {
+                Alert.alert("Impossible", `Place déjà utilisée par : ${user.fname} ${user.name}`);
+              })
+            }
+          });
       } else this.setState({ isWrongFormatPlace: true });
     }
 
@@ -166,7 +170,7 @@ class ProfileScreen extends React.Component<Props, State> {
           <QRCodeComponent onRead={this.onSuccess} />
           <View>
             <ManualInsertionCard
-              onChangeText={text => this.setState({ place: text })}
+              onChangeText={text => this.placeInput = text}
               onSubmitEditing={() => insertPlace()}
               onPress={() => insertPlace()}
             />
@@ -223,7 +227,7 @@ class ProfileScreen extends React.Component<Props, State> {
     })
       .then(res => res.json()) // transform data to json
       .then(data => {
-        ctx.setState({ historical: data[0].historical });
+        ctx.setState({ historical: data.historical });
       });
 
     const { name, fname, place, historical, remoteDay } = this.state;
@@ -259,6 +263,7 @@ class ProfileScreen extends React.Component<Props, State> {
           debug: ""
         });
         AsyncStorage.setItem("USER", JSON.stringify(this.state));
+        this.socket.emit('leaveRoom', '31V');
       });
   }
 
