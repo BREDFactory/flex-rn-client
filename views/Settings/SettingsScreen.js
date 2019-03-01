@@ -268,14 +268,6 @@ export class SettingsScreen extends Component<Props, State> {
                       height: 70,
                     }
               }
-              resizeMode={photo ? "cover" : "contain"}
-              source={
-                photo
-                  ? {
-                    uri: photo
-                  }
-                  : require("../../assets/profile.png")
-              }
               resizeMode={ photo ? "cover" : "contain" }
               source={ photo ? { uri: photo } : require("../../assets/profile.png") }
             />
