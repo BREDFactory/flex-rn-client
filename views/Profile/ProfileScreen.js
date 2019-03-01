@@ -17,20 +17,17 @@ limitations under the License.
 /* eslint-disable */
 import React from "react";
 
-import { AsyncStorage, ScrollView, View, Text, Alert } from "react-native";
+import { AsyncStorage, ScrollView, View, Text, Alert, KeyboardAvoidingView, Platform } from "react-native";
 import socketIOClient from "socket.io-client";
 
-import LinearGradient from "react-native-linear-gradient";
-import { NavigationScreenProp, NavigationEvents } from "react-navigation";
+import { NavigationScreenProp } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import config from "../../config/api";
 import server from "../../config/server";
 import regex from "../../config/regex";
 import styles from "./ProfileScreenStyles";
-import { getPlaces, goTo, sendToServ, leavePlace } from "../../utils/utils";
+import { getPlaces, goTo, sendToServ } from "../../utils/utils";
 import I18n from "../../i18n/i18n";
-
-import LottieView from "lottie-react-native";
 
 /**
  * List of components
@@ -164,22 +161,24 @@ class ProfileScreen extends React.Component<Props, State> {
     }
 
     return (
-      <ScrollView style={styles.view}>
-        <HeaderCard fname={fname} name={name} id={id} />
-        <View>
-          <QRCodeComponent onRead={this.onSuccess} />
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? "padding" : null} enabled>
+        <ScrollView style={styles.view}>
+          <HeaderCard fname={fname} name={name} id={id} />
           <View>
-            <ManualInsertionCard
-              onChangeText={text => this.placeInput = text}
-              onSubmitEditing={() => insertPlace()}
-              onPress={() => insertPlace()}
-            />
-            {isWrongFormatPlace ? (
-              <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
-            ) : null}
+            <QRCodeComponent onRead={this.onSuccess} />
+            <View>
+              <ManualInsertionCard
+                onChangeText={text => this.placeInput = text}
+                onSubmitEditing={() => insertPlace()}
+                onPress={() => insertPlace()}
+              />
+              {isWrongFormatPlace ? (
+                <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
+              ) : null}
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   };
 
