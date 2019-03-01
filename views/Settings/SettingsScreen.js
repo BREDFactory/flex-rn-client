@@ -276,6 +276,8 @@ export class SettingsScreen extends Component<Props, State> {
                   }
                   : require("../../assets/profile.png")
               }
+              resizeMode={ photo ? "cover" : "contain" }
+              source={ photo ? { uri: photo } : require("../../assets/profile.png") }
             />
           </PhotoUpload>
         </View>
