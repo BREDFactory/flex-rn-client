@@ -16,7 +16,7 @@ limitations under the License.
 // @flow
 
 import React from "react";
-import { AsyncStorage, View, Image } from "react-native";
+import { AsyncStorage, View, Image, KeyboardAvoidingView } from "react-native";
 
 import { Text } from "react-native-elements";
 import { omit } from "ramda";
@@ -24,6 +24,7 @@ import LinearGradient from "react-native-linear-gradient";
 import styles from "./LoginScreenStyles";
 import server from "../../config/server";
 import config from "../../config/api";
+import regex from "../../config/regex";
 import type { Props, State } from "./LoginScreenType";
 
 import logo from "../../assets/logo.png";
@@ -38,27 +39,6 @@ import { checkNavigation } from "../../utils/utils";
 import LoginButton from "@components/Login/LoginButton";
 // eslint-disable-next-line
 import InputLogin from "@components/Login/InputLogin";
-
-const fetchData = function fetchEnvironment() {
-  fetch(`${server.address}environment`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "x-access-token": config.token
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      const { LOGIN_REGEX, PLACE_REGEX } = data;
-      const environmentVariable = {
-        LOGIN_REGEX,
-        PLACE_REGEX
-      };
-      this.setState({ LOGIN_REGEX });
-      AsyncStorage.setItem("environment", JSON.stringify(environmentVariable));
-    });
-  checkNavigation(this);
-};
 
 class LoginScreen extends React.Component<Props, State> {
   static navigationOptions = {
@@ -115,28 +95,19 @@ class LoginScreen extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    fetchData.call(this);
+    checkNavigation(this);
   }
-
-  fetchLoginRegex = async () => {
-    const regex = await AsyncStorage.getItem("environment");
-    return regex.LOGIN_REGEX;
-  };
-
-  logOut = () => {
-    AsyncStorage.removeItem("USER");
-  };
 
   /** This function handle the user login */
   logIn() {
     const { navigation } = this.props;
-    const { name, fname, id, LOGIN_REGEX, historical } = this.state;
+    const { name, fname, id, historical } = this.state;
 
     if (
       name !== "" &&
       fname !== "" &&
       id !== "" &&
-      id.match(LOGIN_REGEX) !== null
+      id.match(regex.login_regex) !== null
     ) {
       const payload = {
         name,
@@ -188,7 +159,7 @@ class LoginScreen extends React.Component<Props, State> {
   render() {
     const { debugField } = this.state;
     return (
-      <View style={styles.view}>
+      <KeyboardAvoidingView style={styles.view} behavior="padding">
         <Image source={logo} style={{ height: 120, resizeMode: "contain" }} />
         <View style={styles.view_second}>
           <InputLogin
@@ -200,7 +171,8 @@ class LoginScreen extends React.Component<Props, State> {
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
         </View>
-      </View>
+        <Text style={styles.version}>1.0.0</Text>
+      </KeyboardAvoidingView>
     );
   }
 }

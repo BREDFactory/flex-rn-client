@@ -39,5 +39,10 @@ export default StyleSheet.create({
     textAlign: "center",
     color: "#5167A4",
     margin: 10
+  },
+  version: {
+    position: "absolute",
+    bottom: 0,
+    marginBottom: 5
   }
 });
