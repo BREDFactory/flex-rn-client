@@ -37,18 +37,11 @@ import HeaderCard from "@components/Profile/components/HeaderCard";
 import QRCodeComponent from "@components/Profile/components/QRCodeComponent";
 import LeaveButton from "@components/Leave/LeaveButton";
 
-type Historical = {
-  place_id: string,
-  begin: string,
-  end: string
-};
-
 type State = {
   name: string,
   fname: string,
   id: string,
   place: string,
-  historical: Array<Historical>,
   debug: Array<any> | string,
   isWrongFormatPlace: boolean,
   placeTaken: boolean
@@ -94,18 +87,6 @@ class ProfileScreen extends React.Component<Props, State> {
           this.socket.emit('checkPlace', result.place);
         this.setState(result);
         navigation.setParams(result);
-        const userId = result.id;
-        fetch(`${server.address}users/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "x-access-token": config.token
-          }
-        })
-          .then(res => res.json()) // transform data to json
-          .then(data => {
-            this.setState({ historical: data.historical || [] });
-          });
       }
     });
   };
