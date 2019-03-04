@@ -72,7 +72,7 @@ class ProfileScreen extends React.Component<Props, State> {
     super();
     this.placeInput = "";
     this.socket = socketIOClient(server.sockets);
-    this.socket.on('leavePlace', () => this.leavePlace(this));
+    this.socket.on('leavePlace', () => this.leavePlace());
     this.state = {
       name: "",
       fname: "",
@@ -198,7 +198,7 @@ class ProfileScreen extends React.Component<Props, State> {
           source={require("./animation.json")}
           progress={this.state.progress}
         /> */}
-        <LeaveButton place={place} onPress={() => this.leavePlace(this)} />
+        <LeaveButton place={place} onPress={() => this.leavePlace()} />
       </View>
     );
   };
@@ -210,33 +210,15 @@ class ProfileScreen extends React.Component<Props, State> {
     return <this.LeaveComponent />;
   };
 
-  async leavePlace(ctx) {
-    const { id } = this.state;
-    ctx = ctx || window;
-    await fetch(`${server.address}users/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "x-access-token": config.token
-      }
-    })
-      .then(res => res.json()) // transform data to json
-      .then(data => {
-        ctx.setState({ historical: data.historical });
-      });
-
-    const { name, fname, place, historical, remoteDay } = this.state;
+  leavePlace() {
+    const { id, place } = this.state;
 
     const payload: Payload = {
-      name,
-      fname,
       id_user: id,
-      id_place: place,
-      historical,
-      remoteDay
+      id_place: place
     };
 
-    await fetch(server.address, {
+    fetch(`${server.address}leave_place`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -245,20 +227,15 @@ class ProfileScreen extends React.Component<Props, State> {
       }
     })
       .then(res => {
-        if (res.ok) {
-          return res.json();
+        if (res.status === 200) {
+          this.setState({
+            placeTaken: false,
+            place: ""
+          });
+          AsyncStorage.setItem("USER", JSON.stringify(this.state));
+          this.socket.emit('leaveRoom', place);
         }
-        ctx.setState({ debug: "ERROR" });
-      })
-      .then(data => {
-        ctx.setState({
-          placeTaken: false,
-          isWrongFormatPlace: false,
-          place: "",
-          debug: ""
-        });
-        AsyncStorage.setItem("USER", JSON.stringify(this.state));
-        this.socket.emit('leaveRoom', '31V');
+        else if (res.status === 400) res.text().then(message => console.log(message));
       });
   }
 
