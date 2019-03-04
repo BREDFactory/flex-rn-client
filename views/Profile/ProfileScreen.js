@@ -127,11 +127,11 @@ class ProfileScreen extends React.Component<Props, State> {
       isWrongFormatPlace,
     } = this.state;
 
-    insertPlace = () => {
-      if (this.placeInput !== "" && this.placeInput.match(regex.place_regex) !== null) {
+    insertPlace = (placeText) => {
+      if (placeText !== "" && placeText.match(regex.place_regex) !== null) {
         const payload = {
           id_user: id,
-          id_place: this.placeInput
+          id_place: placeText
         };
 
         fetch(`${server.address}/take_place`, {
@@ -145,10 +145,10 @@ class ProfileScreen extends React.Component<Props, State> {
           .then(res => {
             if (res.status === 200) {
               this.setState({
-                place: this.placeInput,
+                place: placeText,
                 placeTaken: true
               });
-              this.socket.emit('joinRoom', this.placeInput);
+              this.socket.emit('joinRoom', placeText);
               AsyncStorage.setItem("USER", JSON.stringify(this.state))
             }
             else if (res.status === 500) {
@@ -169,8 +169,8 @@ class ProfileScreen extends React.Component<Props, State> {
             <View>
               <ManualInsertionCard
                 onChangeText={text => this.placeInput = text}
-                onSubmitEditing={() => insertPlace()}
-                onPress={() => insertPlace()}
+                onSubmitEditing={() => insertPlace(this.placeInput)}
+                onPress={() => insertPlace(this.placeInput)}
               />
               {isWrongFormatPlace ? (
                 <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
