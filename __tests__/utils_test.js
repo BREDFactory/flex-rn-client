@@ -18,7 +18,7 @@ jest.useFakeTimers();
 import React from "react";
 import enzyme, { shallow } from "enzyme";
 import ReactSixteenAdapter from "enzyme-adapter-react-16";
-import { checkNavigation, goTo, sendToServ } from "../utils/utils";
+import { checkNavigation, goTo } from "../utils/utils";
 
 class MockStorage {
   constructor(cache = {}) {
@@ -71,5 +71,4 @@ jest.setMock("AsyncStorage", AsyncStorage);
 it("renders correctly", () => {
   shallow(<checkNavigation ctx={ctx} str="Login" />);
   shallow(<goTo ctx={ctx} str="Login" />);
-  shallow(<sendToServ ctx={ctx} json="" />);
 });
