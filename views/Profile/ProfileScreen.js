@@ -110,15 +110,6 @@ class ProfileScreen extends React.Component<Props, State> {
     });
   };
 
-  onSuccess = async e => {
-    if (e.data.match(regex.place_regex) !== null) {
-      this.setState({ place: e.data });
-      getPlaces(this, sendToServ);
-    } else {
-      this.setState({ isWrongFormatPlace: true });
-    }
-  };
-
   DefaultComponent = () => {
     const {
       fname,
@@ -160,12 +151,17 @@ class ProfileScreen extends React.Component<Props, State> {
       } else this.setState({ isWrongFormatPlace: true });
     }
 
+    onSuccess = objectRead => {
+      const placeText = objectRead.data;
+      insertPlace(placeText);
+    };
+
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? "padding" : null} enabled>
         <ScrollView style={styles.view}>
           <HeaderCard fname={fname} name={name} id={id} />
           <View>
-            <QRCodeComponent onRead={this.onSuccess} />
+            <QRCodeComponent onRead={onSuccess} />
             <View>
               <ManualInsertionCard
                 onChangeText={text => this.placeInput = text}
