@@ -137,7 +137,8 @@ class ProfileScreen extends React.Component<Props, State> {
             if (res.status === 200) {
               this.setState({
                 place: placeText,
-                placeTaken: true
+                placeTaken: true,
+                isWrongFormatPlace: false
               });
               this.socket.emit('joinRoom', placeText);
               AsyncStorage.setItem("USER", JSON.stringify(this.state))
