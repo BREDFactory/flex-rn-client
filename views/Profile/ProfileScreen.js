@@ -26,7 +26,7 @@ import config from "../../config/api";
 import server from "../../config/server";
 import regex from "../../config/regex";
 import styles from "./ProfileScreenStyles";
-import { getPlaces, goTo, sendToServ } from "../../utils/utils";
+import { goTo } from "../../utils/utils";
 import I18n from "../../i18n/i18n";
 
 /**

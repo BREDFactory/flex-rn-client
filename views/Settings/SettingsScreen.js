@@ -33,7 +33,7 @@ import PhotoUpload from "react-native-photo-upload";
 import Modal from "react-native-modal";
 import config from "../../config/api";
 import server from "../../config/server";
-import { sendToServ, getPlaces, goTo } from "../../utils/utils";
+import { goTo } from "../../utils/utils";
 import picProfile from "../../assets/profile.png";
 import LottieView from "lottie-react-native";
 
@@ -208,8 +208,6 @@ export class SettingsScreen extends Component<Props, State> {
       .then(data => {
         console.log(data);
       });
-
-    // await getPlaces(this, sendToServ);
 
     // Wait until the photo is uploaded to Cloudinary and the link is provided to perform request
     setTimeout(async () => {
