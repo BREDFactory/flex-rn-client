@@ -144,7 +144,7 @@ class ProfileScreen extends React.Component<Props, State> {
               AsyncStorage.setItem("USER", JSON.stringify(this.state))
             }
             else if (res.status === 500) {
-              res.json().then(user => {
+              res.text().then(user => {
                 Alert.alert("Impossible", `Place déjà utilisée par : ${user.fname} ${user.name}`);
               })
             }
