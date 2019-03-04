@@ -73,7 +73,6 @@ class ProfileScreen extends React.Component<Props, State> {
       place: "",
       isWrongFormatPlace: false,
       placeTaken: false
-      // progress: new Animated.Value(0),
     };
   }
 
@@ -162,10 +161,6 @@ class ProfileScreen extends React.Component<Props, State> {
 
   LeaveComponent = () => {
     const { place } = this.state;
-    // Animated.timing(this.state.progress, {
-    //   toValue: 1,
-    //   duration: 7000
-    // }).start();
 
     return (
       <View
@@ -176,10 +171,6 @@ class ProfileScreen extends React.Component<Props, State> {
           alignItems: "center"
         }}
       >
-        {/* <LottieView
-          source={require("./animation.json")}
-          progress={this.state.progress}
-        /> */}
         <LeaveButton place={place} onPress={() => this.leavePlace()} />
       </View>
     );
