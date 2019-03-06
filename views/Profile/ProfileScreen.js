@@ -35,7 +35,7 @@ import I18n from "../../i18n/i18n";
 import ManualInsertionCard from "@components/Profile/components/ManualInsertionCard";
 import HeaderCard from "@components/Profile/components/HeaderCard";
 import QRCodeComponent from "@components/Profile/components/QRCodeComponent";
-import LeaveButton from "@components/Leave/LeaveButton";
+import LeaveButton from "@components/Profile/components/LeaveButton";
 
 type State = {
   name: string,

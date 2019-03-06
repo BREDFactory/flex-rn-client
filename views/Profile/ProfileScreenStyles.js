@@ -57,5 +57,10 @@ export default StyleSheet.create({
     color: "#2E89AD",
     margin: 10,
     fontFamily: "Raleway"
+  },
+  leave_button: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
