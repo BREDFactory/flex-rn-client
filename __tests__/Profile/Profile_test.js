@@ -23,7 +23,7 @@ import Adapter from "enzyme-adapter-react-16";
 import ProfileScreen from "../../views/Profile/ProfileScreen";
 import * as mockCamera from "../../__mocks__/react-native-camera";
 import ManualInsertionCard from "../../Components/Profile/components/ManualInsertionCard";
-import LeaveButton from "../../Components/Leave/LeaveButton";
+import LeaveButton from "../../Components/Profile/components/LeaveButton";
 import QRCodeComponent from "../../Components/Profile/components/QRCodeComponent";
 import HeaderCard from "../../Components/Profile/components/HeaderCard";
 
