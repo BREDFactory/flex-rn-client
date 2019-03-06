@@ -39,7 +39,6 @@ import UsersScreen from "../views/Users/UsersScreen";
 import OfflineNotice from "../utils/OfflineNotice";
 import logo from "../assets/logo.png";
 import ProfileImage from "./components/ProfileImage";
-// import LocationNotice from "../utils/LocationNotice";
 
 import reducer, { fetchPhoto } from "./components/reducer";
 
@@ -158,10 +157,8 @@ const NavigationApp = createStackNavigator({
           showIcon: true,
           inactiveTintColor: "#3662A0",
           activeTintColor: "#58C0D0",
-          backgroundColor: "white", // "#58C0D0"
-          // activeBackgroundColor: "white",
+          backgroundColor: "white", 
           style: {
-            // backgroundColor: "#2E89AD",
             backgroundColor: "white",
             height: 50
           },
@@ -176,13 +173,6 @@ const NavigationApp = createStackNavigator({
       header: headerBar(navigation)
     })
   },
-  // Leave: {
-  //   screen: LeaveScreen,
-  //   navigationOptions: ({ navigation }) => ({
-  //     /* Custom header */
-  //     header: headerBar(navigation, false, false)
-  //   })
-  // },
   SettingsScreen: {
     screen: SettingsScreen,
     navigationOptions: ({ navigation }) => ({
@@ -197,7 +187,6 @@ const NetInfoWrapper = () => (
     <View style={{ flex: 1 }}>
       <OfflineNotice />
       <NavigationApp />
-      {/* <LocationNotice /> */}
     </View>
   </Provider>
 );
