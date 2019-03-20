@@ -154,9 +154,9 @@ class LoginScreen extends React.Component<Props, State> {
         <View style={styles.view_second}>
           <InputLogin
             onSubmitEditing={() => this.logIn()}
-            onChangeText={text => this.name = text}
-            onChangeText1={text => this.fname = text}
-            onChangeText2={text => this.id = text}
+            onChangeText={text => this.name = this.capitalizeFirstLetter(text)}
+            onChangeText1={text => this.fname = this.capitalizeFirstLetter(text)}
+            onChangeText2={text => this.id = text.toUpperCase()}
           />
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
