@@ -93,6 +93,10 @@ class LoginScreen extends React.Component<Props, State> {
     checkNavigation(this);
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+
   /** This function handle the user login */
   logIn() {
     const { navigation } = this.props;
