@@ -81,17 +81,12 @@ class LoginScreen extends React.Component<Props, State> {
 
   constructor() {
     super();
+    this.name = "";
+    this.fname = "";
+    this.id = "";
     this.state = {
-      name: "",
-      fname: "",
-      id: "",
-      place: "",
-      debug: "",
-      debugField: "",
-      remoteDay: "",
-      historical: [],
-      photo: ""
-    };
+      debugField: ""
+    }
   }
 
   componentWillMount() {
@@ -101,20 +96,17 @@ class LoginScreen extends React.Component<Props, State> {
   /** This function handle the user login */
   logIn() {
     const { navigation } = this.props;
-    const { name, fname, id, historical } = this.state;
 
     if (
-      name !== "" &&
-      fname !== "" &&
-      id !== "" &&
-      id.match(regex.login_regex) !== null
+      this.name !== "" &&
+      this.fname !== "" &&
+      this.id !== "" &&
+      this.id.match(regex.login_regex) !== null
     ) {
       const payload = {
-        name,
-        fname,
-        id_user: id,
-        id_place: "",
-        historical
+        name: this.name,
+        fname: this.fname,
+        id_user: this.id
       };
 
       fetch(`${server.address}login_user`, {
@@ -126,32 +118,26 @@ class LoginScreen extends React.Component<Props, State> {
         }
       })
         .then(res => {
-          if (res.status === 200) return res.json();
-          return false;
-        })
-        .then(data => {
-          if (data !== false) {
-            if (data.user)
-              this.setState({
-                remoteDay: data.user.remoteDay,
-                photo: data.user.photo,
-                friend: data.user.friend,
-                place: data.user.id_place
-              });
-            else this.setState({ friend: [] });
-            AsyncStorage.setItem(
-              "USER",
-              JSON.stringify(omit(["debugField"], this.state))
-            );
-            navigation.navigate(
-              "Profile",
-              data.user ? { photo: data.user.photo } : {}
-            );
-          } else {
-            this.setState({ debugField: I18n.t("login.debug") });
+          if (res.status === 200) {
+            res.json().then(user => {
+              AsyncStorage.setItem("USER", JSON.stringify({
+                id: this.id,
+                name: this.name,
+                fname: this.fname,
+                historical: user.historical,
+                photo: user.photo,
+                remoteDay: user.remoteDay
+              }));
+              navigation.navigate(
+                "Profile",
+                { photo: user.photo }
+              );
+            });
           }
-        });
-    } else {
+          else this.setState({ debugField: I18n.t("login.debug") });
+        })
+    }
+    else {
       this.setState({ debugField: I18n.t("login.debug") });
     }
   }
@@ -164,9 +150,9 @@ class LoginScreen extends React.Component<Props, State> {
         <View style={styles.view_second}>
           <InputLogin
             onSubmitEditing={() => this.logIn()}
-            onChangeText={text => this.setState({ name: text })}
-            onChangeText1={text => this.setState({ fname: text })}
-            onChangeText2={text => this.setState({ id: text })}
+            onChangeText={text => this.name = text}
+            onChangeText1={text => this.fname = text}
+            onChangeText2={text => this.id = text}
           />
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
