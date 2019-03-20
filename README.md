@@ -314,7 +314,6 @@ Inside `gradle.properties`.
 ├── README.md
 ├── __tests__
 ├── utils
-│   ├── LocationNotice.js
 │   ├── OfflineNotice.js
 │   ├── services
 │   │   ├── index.js
