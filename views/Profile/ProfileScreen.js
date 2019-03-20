@@ -99,7 +99,7 @@ class ProfileScreen extends React.Component<Props, State> {
     } = this.state;
 
     insertPlace = (placeText) => {
-      if (placeText !== "" && placeText.match(regex.place_regex) !== null) {
+      if (placeText !== "" && placeText.match(regex.placeRegex) !== null) {
         const payload = {
           id_user: id,
           id_place: placeText
@@ -145,7 +145,7 @@ class ProfileScreen extends React.Component<Props, State> {
             <QRCodeComponent onRead={onSuccess} />
             <View>
               <ManualInsertionCard
-                onChangeText={text => this.placeInput = text}
+                onChangeText={text => this.placeInput = text.toUpperCase()}
                 onSubmitEditing={() => insertPlace(this.placeInput)}
                 onPress={() => insertPlace(this.placeInput)}
               />

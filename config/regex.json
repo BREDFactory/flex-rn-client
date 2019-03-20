@@ -1,5 +1,4 @@
 {
-    "config_regex": "",
-    "place_regex": "",
-    "wifi_regex": ""
+    "idRegex": "",
+    "placeRegex": ""
 }
