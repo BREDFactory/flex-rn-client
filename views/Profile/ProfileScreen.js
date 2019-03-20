@@ -145,7 +145,7 @@ class ProfileScreen extends React.Component<Props, State> {
             <QRCodeComponent onRead={onSuccess} />
             <View>
               <ManualInsertionCard
-                onChangeText={text => this.placeInput = text}
+                onChangeText={text => this.placeInput = text.toUpperCase()}
                 onSubmitEditing={() => insertPlace(this.placeInput)}
                 onPress={() => insertPlace(this.placeInput)}
               />
