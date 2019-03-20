@@ -104,7 +104,7 @@ class LoginScreen extends React.Component<Props, State> {
       this.name !== "" &&
       this.fname !== "" &&
       this.id !== "" &&
-      this.id.match(regex.login_regex) !== null
+      this.id.match(regex.idRegex) !== null
     ) {
       const payload = {
         name: this.name,
