@@ -137,7 +137,10 @@ class LoginScreen extends React.Component<Props, State> {
               );
             });
           }
-          else this.setState({ debugField: I18n.t("login.debug") });
+          else if (res.status === 400) {
+            this.setState({ debugField: I18n.t("login.debug") });
+            res.text().then(message => console.log(message));
+          }
         })
     }
     else {
