@@ -19,7 +19,6 @@ import React from "react";
 import { AsyncStorage, View, Image, KeyboardAvoidingView } from "react-native";
 
 import { Text } from "react-native-elements";
-import { omit } from "ramda";
 import LinearGradient from "react-native-linear-gradient";
 import styles from "./LoginScreenStyles";
 import server from "../../config/server";
