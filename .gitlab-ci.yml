@@ -1,0 +1,67 @@
+image:
+  node:latest
+
+stages:
+  - build
+  - test
+  - build_apk
+  - deploy
+
+variables:
+    ANDROID_SDK_TOOLS: "4333796"
+
+cache:
+  paths:
+  - node_modules/
+  - app-release.apk
+
+build:
+  stage: build
+  script:
+    - npm install
+    - echo "Build Successfull"
+
+test:
+  stage: test
+  script:
+    - npm test
+    - echo "Test Successfull"
+
+build_apk:
+  stage: build_apk
+  image: openjdk:8-jdk
+  only:
+      - master
+  artifacts:
+    name: apk
+    paths:
+      - app-release.apk
+  script:
+        - . ./deployment_scripts/init_environment.sh
+        - apt-get update
+        - curl -sL https://deb.nodesource.com/setup_10.x | bash
+        - apt-get install -y nodejs
+        - wget --quiet --output-document=/tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
+        - unzip /tmp/sdk-tools-linux.zip -d .android
+        - export ANDROID_HOME=$PWD/.android
+        - export PATH=$PATH:$PWD/.android/platform-tools/
+        - ./deployment_scripts/fill_configs.sh config
+        - cd android/app
+        - ../../deployment_scripts/generate_signature.sh $SIGNATURE_PASSWORD
+        - ../../deployment_scripts/fill_gradle_properties.sh $SIGNATURE_PASSWORD
+        - "export VERSION_CODE=$(($VERSION_CODE + $CI_PIPELINE_IID)) && echo $VERSION_CODE"
+        - "export VERSION_NAME=$(($VERSION_NAME + $CI_PIPELINE_IID)) && echo $VERSION_NAME"
+        - cd ..
+        - ../deployment_scripts/accept_licenses.sh
+        - ./gradlew --stop
+        - ./gradlew assembleRelease --stacktrace
+        - cp app/build/outputs/apk/release/app-release.apk ..
+        - echo "APK Build Successfull"
+
+deploy:
+  stage: deploy
+  only:
+      - master
+  script:
+    - node ./deployment_scripts/deploy_apk.js app-release.apk
+    - echo "Deployment Successfull"

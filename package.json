@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
+    "test": "jest --forceExit",
     "lint": "eslint Components",
     "pretty": "prettier --semi false --print-width 100 --single-quote--trailing-comma all --write \"Components/**/*.js\"",
     "flow": "flow",

@@ -34,6 +34,7 @@ jest.mock("react-native-camera", () => mockCamera);
 const navigation = { navigate: jest.fn(), popToTop: jest.fn() };
 
 it("renders correctly", () => {
+  fetch = jest.fn(() => new Promise(resolve => resolve()));
   const wrapper = shallow(<ProfileScreen navigation={navigation} />);
 
   wrapper.setState({ placeTaken: "3-R-RER29" });
@@ -82,7 +83,7 @@ it("renders correctly", () => {
     .find(ManualInsertionCard)
     .first()
     .props()
-    .onChangeText();
+    .onChangeText("");
 
   wrapper
     .dive()
@@ -90,7 +91,7 @@ it("renders correctly", () => {
     .find(QRCodeComponent)
     .first()
     .props()
-    .onRead();
+    .onRead({ data: "abc"});
 
   expect(
     wrapper
