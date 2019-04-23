@@ -16,7 +16,7 @@ limitations under the License.
 // @flow
 
 import React from "react";
-import { AsyncStorage, View, Image, KeyboardAvoidingView } from "react-native";
+import { AsyncStorage, View, Image, KeyboardAvoidingView, Platform } from "react-native";
 
 import { Text } from "react-native-elements";
 import LinearGradient from "react-native-linear-gradient";
@@ -43,8 +43,14 @@ class LoginScreen extends React.Component<Props, State> {
   static navigationOptions = {
     header: (
       <View
-        style={{
-          paddingTop: 20 /* only for IOS to give StatusBar Space */,
+        style={
+          Platform.OS === "ios"
+            ? {
+            paddingTop: 20 /* only for IOS to give StatusBar Space */,
+            backgroundColor: "white",
+            height: 80
+          }
+        : {
           backgroundColor: "white",
           height: 80
         }}
