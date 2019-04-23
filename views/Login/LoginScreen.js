@@ -152,7 +152,7 @@ class LoginScreen extends React.Component<Props, State> {
     const { debugField } = this.state;
     return (
       <KeyboardAvoidingView style={styles.view} behavior="padding">
-        <Image source={logo} style={{ height: 120, resizeMode: "contain" }} />
+        <Image source={logo} style={{ height: "20%", resizeMode: "contain" }} />
         <View style={styles.view_second}>
           <InputLogin
             onSubmitEditing={() => this.logIn()}

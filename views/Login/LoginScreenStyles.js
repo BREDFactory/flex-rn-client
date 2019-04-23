@@ -24,7 +24,7 @@ export default StyleSheet.create({
     backgroundColor: "white"
   },
   view_second: {
-    width: 250,
+    width: "60%",
     marginTop: 50,
     marginBottom: 30
   },
