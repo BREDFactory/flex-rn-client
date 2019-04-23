@@ -157,9 +157,9 @@ class LoginScreen extends React.Component<Props, State> {
   render() {
     const { debugField } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.view} behavior="padding">
+      <View style={styles.view}>
         <Image source={logo} style={{ height: "20%", resizeMode: "contain" }} />
-        <View style={styles.view_second}>
+        <KeyboardAvoidingView style={styles.view_second} behavior="padding">
           <InputLogin
             onSubmitEditing={() => this.logIn()}
             onChangeText={text => this.name = this.capitalizeFirstLetter(text)}
@@ -168,9 +168,9 @@ class LoginScreen extends React.Component<Props, State> {
           />
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
-        </View>
+        </KeyboardAvoidingView>
         <Text style={styles.version}>1.0.0</Text>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
