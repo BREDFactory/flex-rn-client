@@ -37,7 +37,6 @@ build_apk:
     paths:
       - app-release.apk
   script:
-        - . ./deployment_scripts/init_environment.sh
         - apt-get update
         - curl -sL https://deb.nodesource.com/setup_10.x | bash
         - apt-get install -y nodejs
@@ -50,7 +49,6 @@ build_apk:
         - ../../deployment_scripts/generate_signature.sh $SIGNATURE_PASSWORD
         - ../../deployment_scripts/fill_gradle_properties.sh $SIGNATURE_PASSWORD
         - "export VERSION_CODE=$(($VERSION_CODE + $CI_PIPELINE_IID)) && echo $VERSION_CODE"
-        - "export VERSION_NAME=$(($VERSION_NAME + $CI_PIPELINE_IID)) && echo $VERSION_NAME"
         - cd ..
         - ../deployment_scripts/accept_licenses.sh
         - ./gradlew --stop
