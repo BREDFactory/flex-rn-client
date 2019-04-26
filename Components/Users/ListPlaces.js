@@ -13,13 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import { List } from "react-native-elements";
+import { View } from "react-native";
 import React from "react";
 
 const ListPlaces = (props: { handleList: any, prop1: any => null }) => {
   const { handleList, prop1 } = props;
   return (
-    <List containerStyle={{ marginBottom: 20 }}>{handleList.map(prop1)}</List>
+    <View style={{ marginBottom: 20 }}>{handleList.map(prop1)}</View>
   );
 };
 
