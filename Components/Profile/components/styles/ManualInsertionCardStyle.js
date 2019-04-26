@@ -22,11 +22,5 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     margin: 15
-  },
-  send: {
-    width: 100
-  },
-  place: {
-    width: 50
   }
 });
