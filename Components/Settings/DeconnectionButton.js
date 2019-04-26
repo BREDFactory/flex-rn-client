@@ -24,8 +24,8 @@ const DeconnectionButton = (props: { onPress: () => any }) => {
     style={styles.view}
   >
     <Button
+      type="clear"
       title="ME DÉCONNECTER"
-      color="#2E89AD"
       icon={{
         name: 'power-off',
         type: 'font-awesome',
@@ -44,7 +44,7 @@ const DeconnectionButton = (props: { onPress: () => any }) => {
         height: 45,
         marginTop: 10,
         borderRadius: 5,
-        borderWidth: 0.5,
+        borderWidth: 1,
         borderColor: '#2E89AD'
       }}
       containerStyle={{ marginTop: 20 }}
