@@ -13,8 +13,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import { Button, FormInput } from "react-native-elements";
-import { View } from "react-native";
+import { Button, Input } from "react-native-elements";
+import { View, TouchableNativeFeedback } from "react-native";
 import React from "react";
 import I18n from "../../../i18n/i18n";
 import styles from "./styles/ManualInsertionCardStyle";
@@ -26,17 +26,22 @@ const ManualInsertionCard = (props: {
   const { onSubmitEditing, onChangeText, onPress } = props;
   return (
     <View style={styles.view}>
-      <FormInput
-        inputStyle={{ width: 100, fontFamily: "Raleway" }}
-        style={styles.place}
+      <Input
+        containerStyle={{ width: 100 }}
+        inputStyle={{ fontFamily: "Raleway", fontSize: 16, paddingBottom: 2, paddingLeft: 0 }}
         placeholder={I18n.t("profile.place")}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmitEditing}
       />
       <Button
-        fontWeight="bold"
-        fontFamily="Raleway"
-        buttonStyle={{
+        type="clear"
+        titleStyle={{
+          fontWeight: "bold",
+          fontFamily: "Raleway",
+          color: "#2E89AD"
+        }}
+        containerStyle={{
+          width: 100,
           elevation: 2,
           borderRadius: 15,
           backgroundColor: "#fff",
@@ -45,8 +50,8 @@ const ManualInsertionCard = (props: {
           shadowColor: "#3662A0",
           shadowOffset: { height: 1, width: 0 }
         }}
-        color="#2E89AD"
-        style={styles.send}
+        background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
+        style={{ borderRadius: 15 }}
         title={I18n.t("profile.send")}
         onPress={onPress}
       />
