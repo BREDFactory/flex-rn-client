@@ -22,7 +22,7 @@ const HeaderCard = (props: { fname: string, name: string, id: string }) => {
   const { fname, name, id } = props;
   return (
     <View style={styles.view_second}>
-      <Text h4 style={styles.text_first}>
+      <Text h4 h4Style={styles.text_first}>
         {fname} {name} [{id}]
       </Text>
     </View>
