@@ -25,14 +25,6 @@ export default StyleSheet.create({
   },
   view_second: {
     width: "60%",
-    marginTop: 50,
-    marginBottom: 30
-  },
-  textInput: {
-    borderRadius: 4,
-    borderWidth: 0.5
-  },
-  button_container: {
     marginTop: 50
   },
   debug: {
