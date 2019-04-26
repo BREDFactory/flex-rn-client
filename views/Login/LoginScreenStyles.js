@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   view_second: {
     width: "60%",
-    marginTop: 50
+    marginTop: "10%"
   },
   debug: {
     textAlign: "center",
