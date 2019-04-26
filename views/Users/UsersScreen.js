@@ -16,7 +16,7 @@ limitations under the License.
 // @flow
 /* eslint-disable */
 import React from "react";
-import { FormInput, ListItem, Card } from "react-native-elements";
+import { Input, ListItem, Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import {
@@ -287,7 +287,7 @@ class UsersScreen extends React.Component<Props, State> {
               marginBottom: 10
             }}
           >
-            <FormInput
+            <Input
               onChangeText={search => this._handleSearch(search)}
               style={{
                 backgroundColor: "white"
@@ -319,7 +319,7 @@ class UsersScreen extends React.Component<Props, State> {
           {/* <FindPlacesCard users={() => this.getUsers()} /> */}
           {!loading ? (
             <View>
-              <View style={{ marginBottom: -22 }}>
+              <View>
                 {arrayOfFriends.map(friend => {
                   if (friend)
                     return (
@@ -332,20 +332,21 @@ class UsersScreen extends React.Component<Props, State> {
                           key={friend.id}
                           title={`${friend.name} / ${friend.fname}`}
                           subtitle={friend.id_place}
-                          fontFamily="Raleway"
+                          containerStyle={{ margin: 0, padding: 5 }}
+                          titleStyle={{ fontFamily: "Raleway" }}
                           rightIcon={{
                             name: "star",
                             color: "#2E89AD"
                           }}
-                          avatar={
-                            friend.photo !== ""
-                              ? { uri: friend.photo }
-                              : profileDefaultPic
-                          }
-                          avatarStyle={{
-                            backgroundColor: "white",
-                            resizeMode: "contain"
+                          leftAvatar={{
+                            source: friend.photo ? { uri: friend.photo } : profileDefaultPic,
+                            imageProps: {
+                              resizeMode: "contain",
+                              backgroundColor: "white"
+                            },
+                            rounded: false
                           }}
+                          bottomDivider={true}
                         />
                       </TouchableOpacity>
                     );
@@ -365,22 +366,22 @@ class UsersScreen extends React.Component<Props, State> {
                         {/* <Card containerStyle={{ borderRadius: 10 }}> */}
                         <ListItem
                           title={`${item.name} / ${item.fname}`}
-                          containerStyle={{ margin: 0, padding: 0 }}
                           subtitle={item.id_place}
-                          fontFamily="Raleway"
+                          containerStyle={{ margin: 0, padding: 5 }}
+                          titleStyle={{ fontFamily: "Raleway" }}
                           rightIcon={{
                             name: "star-border",
                             color: "#2E89AD"
                           }}
-                          avatar={
-                            item.photo !== ""
-                              ? { uri: item.photo }
-                              : profileDefaultPic
-                          }
-                          avatarStyle={{
-                            backgroundColor: "white",
-                            resizeMode: "contain"
+                          leftAvatar={{
+                            source: item.photo ? { uri: item.photo } : profileDefaultPic,
+                            imageProps: {
+                              resizeMode: "contain",
+                              backgroundColor: "white"
+                            },
+                            rounded: false
                           }}
+                          bottomDivider={true}
                         />
                         {/* </Card> */}
                       </TouchableOpacity>
