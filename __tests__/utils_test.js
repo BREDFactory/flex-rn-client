@@ -18,7 +18,7 @@ jest.useFakeTimers();
 import React from "react";
 import enzyme, { shallow } from "enzyme";
 import ReactSixteenAdapter from "enzyme-adapter-react-16";
-import { checkNavigation, goTo } from "../utils/utils";
+import { checkNavigation, goTo, getPlaces } from "../utils/utils";
 
 class MockStorage {
   constructor(cache = {}) {
@@ -68,7 +68,34 @@ const ctx = { props: { navigation: { navigate: jest.mock() } } };
 
 jest.setMock("AsyncStorage", AsyncStorage);
 
-it("renders correctly", () => {
-  shallow(<checkNavigation ctx={ctx} str="Login" />);
-  shallow(<goTo ctx={ctx} str="Login" />);
+describe("Testing utils", () => {
+  it("renders correctly", () => {
+    shallow(<checkNavigation ctx={ctx} str="Login" />);
+    shallow(<goTo ctx={ctx} str="Login" />);
+  });
+
+  function last(arr) {
+    return arr[arr.length - 1];
+  };
+
+  it("gets the places", done => {
+    const data = ["data"];
+    fetch = jest.fn(() => new Promise(resolve => resolve({ json: jest.fn(() => new Promise(resolve => resolve(data))) })));
+    const setState = jest.fn();
+    const mock = (ctx, x) => {
+      expect(x).toEqual(data);
+      expect(last(setState.mock.calls)[0]).toEqual({loading: false});
+      done();
+    };
+    getPlaces({setState}, mock, null, true);
+    expect(last(setState.mock.calls)[0]).toEqual({ loading: true });
+    const element = ["element"];
+    const mock2 = (ctx, x) => {
+      expect(x).toEqual(element);
+      expect(last(setState.mock.calls)[0]).toEqual({loading: false});
+      done();
+    };
+    getPlaces({setState}, mock2, element, true);
+    expect(last(setState.mock.calls)[0]).toEqual({ loading: true });
+  });
 });
