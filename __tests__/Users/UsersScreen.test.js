@@ -16,7 +16,7 @@ limitations under the License.
 jest.useFakeTimers();
 
 import { ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
-import { FormInput, ListItem } from "react-native-elements";
+import { Input, ListItem } from "react-native-elements";
 import React from "react";
 import { expect } from "chai";
 import enzyme, { shallow } from "enzyme";
@@ -78,7 +78,7 @@ it("renders correctly", () => {
   }
 
   wrapper
-    .find(FormInput)
+    .find(Input)
     .first()
     .props()
     .onChangeText("test");
