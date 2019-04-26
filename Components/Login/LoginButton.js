@@ -13,30 +13,37 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import { View } from "react-native";
+import { View, TouchableNativeFeedback } from "react-native";
 import { Button } from "react-native-elements";
 import React from "react";
-import styles from "../../views/Login/LoginScreenStyles";
 import I18n from "../../i18n/i18n";
 
 const LoginButton = (props: { onPress: () => void }) => {
   const { onPress } = props;
   return (
-    <View style={styles.button_container}>
+    <View>
       <Button
-        style={styles.button_login}
-        fontWeight="bold"
-        fontFamily="Raleway"
-        borderRadius={15}
-        buttonStyle={{
+        type="clear"
+        containerStyle={{ 
+          borderRadius: 15,
           borderWidth: 1,
-          borderColor: "#2E89AD"
+          borderColor: "#2E89AD",
+          marginTop: 30,
+          marginLeft: 15,
+          marginRight: 15
         }}
-        backgroundColor="#fff"
-        color="#2E89AD"
+        buttonStyle={{
+          padding: 10
+        }}
+        titleStyle={{
+          fontWeight: "bold",
+          fontFamily: "Raleway",
+          color: "#2E89AD"
+        }}
+        background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
+        style={{ borderRadius: 15 }}
         title={I18n.t("login.title").toUpperCase()}
         onPress={onPress}
-        containerStyle={{ marginTop: 20 }}
       />
     </View>
   );
