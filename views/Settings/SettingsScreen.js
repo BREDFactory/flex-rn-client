@@ -282,6 +282,9 @@ export class SettingsScreen extends Component<Props, State> {
               color: "#2E89AD",
               fontWeight: "bold"
             }}
+            selectedButtonStyle={{
+              backgroundColor: "white"
+            }}
             textStyle={{ fontFamily: "Raleway", fontSize: 13 }}
             onPress={async event => {
               await this.updateIndex(event);

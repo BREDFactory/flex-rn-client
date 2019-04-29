@@ -16,7 +16,7 @@ limitations under the License.
 // @flow
 
 import React from "react";
-import { AsyncStorage, View, Image, KeyboardAvoidingView } from "react-native";
+import { AsyncStorage, View, Image, KeyboardAvoidingView, Platform } from "react-native";
 
 import { Text } from "react-native-elements";
 import LinearGradient from "react-native-linear-gradient";
@@ -43,8 +43,14 @@ class LoginScreen extends React.Component<Props, State> {
   static navigationOptions = {
     header: (
       <View
-        style={{
-          paddingTop: 20 /* only for IOS to give StatusBar Space */,
+        style={
+          Platform.OS === "ios"
+            ? {
+            paddingTop: 20 /* only for IOS to give StatusBar Space */,
+            backgroundColor: "white",
+            height: 80
+          }
+        : {
           backgroundColor: "white",
           height: 80
         }}
@@ -151,9 +157,9 @@ class LoginScreen extends React.Component<Props, State> {
   render() {
     const { debugField } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.view} behavior="padding">
-        <Image source={logo} style={{ height: 120, resizeMode: "contain" }} />
-        <View style={styles.view_second}>
+      <View style={styles.view}>
+        <Image source={logo} style={{ height: "20%", resizeMode: "contain" }} />
+        <KeyboardAvoidingView style={styles.view_second} behavior="padding">
           <InputLogin
             onSubmitEditing={() => this.logIn()}
             onChangeText={text => this.name = this.capitalizeFirstLetter(text)}
@@ -162,9 +168,9 @@ class LoginScreen extends React.Component<Props, State> {
           />
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
-        </View>
+        </KeyboardAvoidingView>
         <Text style={styles.version}>1.0.0</Text>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }

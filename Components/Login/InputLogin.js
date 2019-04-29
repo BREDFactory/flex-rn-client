@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import { View } from "react-native";
-import { FormInput } from "react-native-elements";
+import { Input } from "react-native-elements";
 import React from "react";
 import styles from "../../views/Login/LoginScreenStyles";
 import I18n from "../../i18n/i18n";
@@ -27,31 +27,31 @@ const InputLogin = (props: {
   const { onSubmitEditing, onChangeText, onChangeText1, onChangeText2 } = props;
   return (
     <View>
-      <FormInput
-        containerStyle={{ marginTop: 10 }}
-        style={styles.textInput}
+      <Input
+        containerStyle={{ marginTop: 10, paddingLeft: 15, paddingRight: 15 }}
+        inputContainerStyle= {{ height: 40 }}
         placeholder={I18n.t("login.name")}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmitEditing}
-        inputStyle={{ fontFamily: "Raleway" }}
+        inputStyle={{ fontFamily: "Raleway", fontSize: 16, paddingBottom: 2, paddingLeft: 0 }}
       />
 
-      <FormInput
-        containerStyle={{ marginTop: 10 }}
-        style={styles.textInput}
+      <Input
+        containerStyle={{ marginTop: 10, paddingLeft: 15, paddingRight: 15 }}
+        inputContainerStyle= {{ height: 40 }}
         placeholder={I18n.t("login.surname")}
         onChangeText={onChangeText1}
         onSubmitEditing={onSubmitEditing}
-        inputStyle={{ fontFamily: "Raleway" }}
+        inputStyle={{ fontFamily: "Raleway", fontSize: 16, paddingBottom: 2, paddingLeft: 0 }}
       />
 
-      <FormInput
-        containerStyle={{ marginTop: 10 }}
-        style={styles.textInput}
+      <Input
+        containerStyle={{ marginTop: 10, paddingLeft: 15, paddingRight: 15 }}
+        inputContainerStyle= {{ height: 40 }}
         placeholder={I18n.t("login.id")}
         onChangeText={onChangeText2}
         onSubmitEditing={onSubmitEditing}
-        inputStyle={{ fontFamily: "Raleway" }}
+        inputStyle={{ fontFamily: "Raleway", fontSize: 16, paddingBottom: 2, paddingLeft: 0 }}
       />
     </View>
   );

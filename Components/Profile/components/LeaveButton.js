@@ -15,7 +15,7 @@ limitations under the License.
 */
 import React from "react";
 import { Button } from "react-native-elements";
-import { View } from "react-native";
+import { View, TouchableNativeFeedback, Platform } from "react-native";
 import styles from "../../../views/Profile/ProfileScreenStyles";
 import I18n from "../../../i18n/i18n";
 
@@ -24,14 +24,20 @@ const LeaveButton = (props: { place: any, onPress: () => void }) => {
   return (
     <View style={styles.leave_button}>
       <Button
-        style={styles.button}
-        fontWeight="bold"
-        fontFamily="Raleway"
-        containerStyle={{ elevation: 1 }}
-        buttonStyle={{
+        type="clear"
+        titleStyle={{
+          fontWeight: "bold",
+          fontFamily: "Raleway",
+          color: "#468BB6"
+        }}
+        background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
+        style={{ borderRadius: 100 }}
+        buttonStyle={{ 
+          elevation: 0,
           width: 180,
           height: 180,
           borderWidth: 1,
+          borderRadius: 100,
           borderColor: "#3662A0",
           backgroundColor: "#fff",
           shadowOpacity: 0.4,
@@ -39,10 +45,6 @@ const LeaveButton = (props: { place: any, onPress: () => void }) => {
           shadowColor: "#3662A0",
           shadowOffset: { height: 1, width: 0 }
         }}
-        borderRadius={100}
-        color="#468BB6"
-        backgroundColor="#fff"
-        textStyle={{ textAlign: "center" }}
         title={`${I18n.t("leave.leave_place")}\n${place}`}
         onPress={onPress}
       />

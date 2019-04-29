@@ -193,6 +193,7 @@ class PlacesScreen extends React.Component<Props, State> {
               borderRadius: 5
             }}
             selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
+            selectedButtonStyle={{ backgroundColor: "white" }}
             textStyle={{ color: "black", fontFamily: "Raleway" }}
             buttons={FloorIndex}
           />
@@ -217,6 +218,7 @@ class PlacesScreen extends React.Component<Props, State> {
                 borderRadius: 5
               }}
               selectedIndex={selectedZoneIndex}
+              selectedButtonStyle={{ backgroundColor: "white" }}
               buttonStyle={{
                 backgroundColor: "white",
                 borderColor: "#2E89AD"
@@ -259,8 +261,7 @@ class PlacesScreen extends React.Component<Props, State> {
               contentContainerStyle={{
                 flex: 1,
                 justifyContent: "center",
-                alignItems: "center",
-                width: 300
+                alignItems: "center"
               }}
               style={{
                 marginBottom: 20

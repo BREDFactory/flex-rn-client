@@ -139,7 +139,7 @@ class ProfileScreen extends React.Component<Props, State> {
 
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? "padding" : null} enabled>
-        <ScrollView style={styles.view}>
+        <ScrollView style={styles.view} keyboardShouldPersistTaps="handled">
           <HeaderCard fname={fname} name={name} id={id} />
           <View>
             <QRCodeComponent onRead={onSuccess} />
