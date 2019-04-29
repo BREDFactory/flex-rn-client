@@ -43,8 +43,7 @@ type State = {
   id: string,
   place: string,
   debug: Array<any> | string,
-  isWrongFormatPlace: boolean,
-  placeTaken: boolean
+  isWrongFormatPlace: boolean
 };
 
 type Props = {
@@ -71,8 +70,7 @@ class ProfileScreen extends React.Component<Props, State> {
       fname: "",
       id: "",
       place: "",
-      isWrongFormatPlace: false,
-      placeTaken: false
+      isWrongFormatPlace: false
     };
   }
 
@@ -117,7 +115,6 @@ class ProfileScreen extends React.Component<Props, State> {
             if (res.status === 200) {
               this.setState({
                 place: placeText,
-                placeTaken: true,
                 isWrongFormatPlace: false
               });
               this.socket.emit('joinRoom', placeText);
@@ -202,7 +199,6 @@ class ProfileScreen extends React.Component<Props, State> {
       .then(res => {
         if (res.status === 200) {
           this.setState({
-            placeTaken: false,
             place: ""
           });
           AsyncStorage.setItem("USER", JSON.stringify(this.state));
@@ -213,9 +209,9 @@ class ProfileScreen extends React.Component<Props, State> {
   }
 
   render() {
-    const { placeTaken } = this.state;
+    const { place } = this.state;
 
-    return <this.Content place={placeTaken} />;
+    return <this.Content place={place} />;
   }
 }
 
