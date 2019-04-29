@@ -82,8 +82,8 @@ class ProfileScreen extends React.Component<Props, State> {
       if (err || result === null) goTo(this, "Login");
       else {
         result = JSON.parse(result);
-        if (result.placeTaken)
-          this.socket.emit('checkPlace', result.place);
+        if (result.place || result.pool)
+          this.socket.emit('checkPlace', result.id, result.place, config._id);
         this.setState(result);
         navigation.setParams(result);
       }
