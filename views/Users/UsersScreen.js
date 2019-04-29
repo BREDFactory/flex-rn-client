@@ -292,7 +292,8 @@ class UsersScreen extends React.Component<Props, State> {
               style={{
                 backgroundColor: "white"
               }}
-              containerStyle={{ marginTop: 20, marginBottom: 20, width: 220 }}
+              containerStyle={{ marginTop: 20, marginBottom: 20, flex: 4, marginRight: 10 }}
+              inputStyle={{ fontFamily: "Raleway", fontSize: 16, paddingBottom: 2, paddingLeft: 0 }}
               placeholder={I18n.t("users.search_user")}
             />
             <TouchableOpacity
@@ -306,9 +307,8 @@ class UsersScreen extends React.Component<Props, State> {
                 shadowColor: "#3662A0",
                 shadowOffset: { height: 1, width: 0 },
                 borderRadius: 17.5,
-                width: 35,
-                height: 35,
                 flex: 1,
+                height: 35,
                 alignItems: "center",
                 justifyContent: "center"
               }}
