@@ -103,7 +103,7 @@ class ProfileScreen extends React.Component<Props, State> {
           id_place: placeText
         };
 
-        fetch(`${server.address}/take_place`, {
+        fetch(`${server.address}take_place`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
