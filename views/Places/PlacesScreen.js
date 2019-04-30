@@ -181,6 +181,7 @@ class PlacesScreen extends React.Component<Props, State> {
             shadowOffset: { height: 1, width: 0 }
           }}
         >
+          {/* Floor selector */}
           <ButtonGroup
             onPress={this.updateFloorIndex}
             selectedIndex={selectedFloorIndex}
@@ -205,7 +206,7 @@ class PlacesScreen extends React.Component<Props, State> {
               justifyContent: "space-around"
             }}
           >
-            {/* Zone button group */}
+            {/* Zone selector */}
             <ButtonGroup
               onPress={this.updateZoneIndex}
               containerStyle={{
@@ -228,7 +229,6 @@ class PlacesScreen extends React.Component<Props, State> {
               buttons={ZoneIndex}
             />
           </View>
-          {/* <GradientBtn /> */}
         </View>
         <View
           style={{
@@ -242,17 +242,6 @@ class PlacesScreen extends React.Component<Props, State> {
             onPress={() => getPlaces(this, this.setPlaces, null, true)}
           />
         </View>
-        {/* <Text
-          h4
-          style={{
-            textAlign: "center",
-            fontSize: 16,
-            fontWeight: "bold",
-            fontFamily: "Raleway"
-          }}
-        >
-          Places disponibles
-        </Text> */}
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
           {debug !== "" && debug && !loading ? (
             <FlatList
@@ -267,7 +256,6 @@ class PlacesScreen extends React.Component<Props, State> {
                 marginBottom: 20
               }}
               numColumns={2}
-              // columnWrapperStyle={{ width: 200 }}
               renderItem={place =>
                 place.item ? (
                   <TouchableOpacity
@@ -283,7 +271,6 @@ class PlacesScreen extends React.Component<Props, State> {
                         height: 80
                       }}
                       dividerStyle={{ display: "none" }}
-                      // rightIcon={<Icon name="plus" size={20} color="#2E89AD" />}
                     >
                       <Icon
                         styl={{ textAlign: "center" }}
@@ -305,11 +292,6 @@ class PlacesScreen extends React.Component<Props, State> {
               }
             />
           ) : (
-            // <ActivityIndicator
-            //   style={{ marginTop: 20 }}
-            //   size="large"
-            //   color="#2E89AD"
-            // />
             <View
               style={{
                 backgroundColor: "white",
