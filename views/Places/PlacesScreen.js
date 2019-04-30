@@ -40,7 +40,6 @@ import I18n from "../../i18n/i18n";
  */
 import FetchPlacesButton from "@components/Places/FetchPlacesButton";
 
-const ZoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
 const ZoneCodes = ["V", "B", "R"];
 
 type State = {
@@ -128,7 +127,8 @@ class PlacesScreen extends React.Component<Props, State> {
       selectedZoneIndex
     } = this.state;
 
-    const FloorIndex = ["3ème étage", "4ème étage"];
+    const floorIndex = ["3ème étage", "4ème étage"];
+    const zoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
 
     return (
       <ScrollView style={styles.view}>
@@ -160,7 +160,7 @@ class PlacesScreen extends React.Component<Props, State> {
             selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
             selectedButtonStyle={{ backgroundColor: "white" }}
             textStyle={{ color: "black", fontFamily: "Raleway" }}
-            buttons={FloorIndex}
+            buttons={floorIndex}
           />
           
           {/* Zone selector */}
@@ -178,7 +178,7 @@ class PlacesScreen extends React.Component<Props, State> {
             }}
             selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
             textStyle={{ color: "black", fontFamily: "Raleway" }}
-            buttons={ZoneIndex}
+            buttons={zoneIndex}
           />
         </View>
         <View
