@@ -42,12 +42,6 @@ import FetchPlacesButton from "@components/Places/FetchPlacesButton";
 
 const ZoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
 
-type Historical = {
-  place_id: string,
-  begin: string,
-  end: string
-};
-
 type State = {
   name: string,
   fname: string,
