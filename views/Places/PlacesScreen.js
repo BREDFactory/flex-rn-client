@@ -198,16 +198,12 @@ class PlacesScreen extends React.Component<Props, State> {
             textStyle={{ color: "black", fontFamily: "Raleway" }}
             buttons={FloorIndex}
           />
+          
           {/* Zone selector */}
           <ButtonGroup
             onPress={this.updateZoneIndex}
             containerStyle={{
               height: 30,
-              width: 300,
-              shadowOpacity: 0.4,
-              shadowRadius: 2,
-              shadowColor: "#3662A0",
-              shadowOffset: { height: 1, width: 0 },
               borderRadius: 5
             }}
             selectedIndex={selectedZoneIndex}
