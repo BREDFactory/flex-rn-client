@@ -110,7 +110,7 @@ class PlacesScreen extends React.Component<Props, State> {
     this.setState({ selectedZoneIndex });
   };
 
-  handleList = () => {
+  filterPlaces = () => {
     const { places, selectedFloorIndex, selectedZoneIndex } = this.state;
 
     const floor = selectedFloorIndex === 0 ? 3 : 4;
@@ -215,7 +215,7 @@ class PlacesScreen extends React.Component<Props, State> {
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
           {places && !loading ? (
             <FlatList
-              data={this.handleList()}
+              data={this.filterPlaces()}
               keyExtractor={(item, index) => index.toString()}
               contentContainerStyle={{
                 flex: 1,
