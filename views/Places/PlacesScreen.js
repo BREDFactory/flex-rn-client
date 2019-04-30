@@ -85,25 +85,10 @@ class PlacesScreen extends React.Component<Props, State> {
   componentDidMount() {
     this._isMounted = true;
     AsyncStorage.getItem("USER", (err, result) => {
-      if (err || result === null) {
-        goTo(this, "Login");
-      } else {
-        if (this._isMounted) this.setState(JSON.parse(result));
-        const userId = JSON.parse(result).id;
-        fetch(`${server.address}users/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "x-access-token": config.token
-          }
-        })
-          .then(res => res.json()) // transform data to json
-          .then(data => {
-            if (this._isMounted) {
-              this.setState({ historical: data.historical });
-              getPlaces(this, this.setPlaces);
-            }
-          });
+      if (err || !result) goTo(this, "Login");
+      else if (this._isMounted) {
+        this.setState(JSON.parse(result));
+        getPlaces(this, this.setPlaces);
       }
     });
   }
