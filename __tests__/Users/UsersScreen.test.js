@@ -38,8 +38,7 @@ enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
 const navigation = { navigate: jest.fn(), popToTop: jest.fn() };
 
-it("renders correctly", () => {
-  const wrapper = shallow(<UsersScreen navigation={navigation} />);
+it("renders correctly", async () => {
 
   const users = [
     {
@@ -55,6 +54,7 @@ it("renders correctly", () => {
       photo: ""
     }
   ];
+  const wrapper = shallow(<UsersScreen navigation={navigation} />);
   wrapper.setState({ arrayOfFriends: users, loading: false });
 
   wrapper.getUsers = jest.fn();
@@ -108,11 +108,24 @@ it("renders correctly", () => {
   fetch = jest.fn(() => new Promise(resolve => resolve({ json: jest.fn(() => new Promise(resolve => resolve(friend))) })));
   AsyncStorage.setItem = jest.fn();
 
-  wrapper
-    .find(TouchableOpacity)
-    .at(1)
-    .props()
-    .onPress();
+  // const users2 = [{
+  //     name: "Test3",
+  //     fname: "Test3",
+  //     id_place: "TestID3",
+  //     photo: ""
+  // }];
+  // await wrapper.setState({ users: users2, search: "" });
+  // await wrapper.setState({ loading: false, search: "" });
+  // console.log(wrapper.debug());
+  // console.log(wrapper.state().loading);
+  // console.log(wrapper.state().users);
+  // wrapper
+  //   .find(TouchableOpacity)
+  //   .at(1)
+  //   .props()
+  //   .onPress();
 
-  expect(fetch.mock.calls).to.have.length(1);
+  // expect(fetch.mock.calls).to.have.length(2);
+  // expect(AsyncStorage.setItem.mock.calls).to.have.length(1);
+  // expect(AsyncStorage.setItem.mock.calls).to.equal("USER");
 });

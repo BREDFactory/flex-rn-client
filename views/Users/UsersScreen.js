@@ -274,6 +274,7 @@ class UsersScreen extends React.Component<Props, State> {
   render() {
     const { users, loading, userName, arrayOfFriends } = this.state;
 
+    console.log("oko");
     return (
       <ScrollView style={styles.view}>
         {/* <NavigationEvents onWillFocus={payload => this.getAsyncStorageUser()} /> */}

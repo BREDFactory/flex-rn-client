@@ -30,7 +30,7 @@ import DeconnectionButton from "../../Components/Settings/DeconnectionButton";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const navigation = { navigate: jest.fn(), popToTop: jest.fn() };
+const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn() };
 
 it("renders correctly", () => {
   const wrapper = shallow(
