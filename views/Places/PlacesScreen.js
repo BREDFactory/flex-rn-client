@@ -103,13 +103,6 @@ class PlacesScreen extends React.Component<Props, State> {
       });
   }
 
-  setPlaces = async (ctx: State, json) => {
-    const result = json.filter(
-      element => element !== null && element.using === false
-    );
-    ctx.setState({ debug: result });
-  };
-
   updateFloorIndex = selectedFloorIndex => {
     this.setState({ selectedFloorIndex });
   };
