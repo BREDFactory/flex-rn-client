@@ -15,7 +15,7 @@ limitations under the License.
 */
 jest.useFakeTimers();
 
-import { ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
+import { ScrollView, TouchableOpacity, ActivityIndicator, AsyncStorage } from "react-native";
 import { Input, ListItem } from "react-native-elements";
 import React from "react";
 import { expect } from "chai";
@@ -86,12 +86,6 @@ it("renders correctly", () => {
   wrapper.setState({ users, arrayOfFriends: users, loading: false });
   expect(wrapper.state().loading).to.equal(false);
 
-  // wrapper
-  //   .find(TouchableOpacity)
-  //   .first()
-  //   .props()
-  //   .onPress();
-
   expect(wrapper.find(ListItem)).to.have.length(2);
 
   // wrapper
@@ -109,4 +103,16 @@ it("renders correctly", () => {
 
   expect(wrapper.find(ScrollView)).to.have.length(1);
   expect(wrapper.find(TouchableOpacity)).to.have.length(3);
+
+  const friend = { user: { friend: "" } };
+  fetch = jest.fn(() => new Promise(resolve => resolve({ json: jest.fn(() => new Promise(resolve => resolve(friend))) })));
+  AsyncStorage.setItem = jest.fn();
+
+  wrapper
+    .find(TouchableOpacity)
+    .at(1)
+    .props()
+    .onPress();
+
+  expect(fetch.mock.calls).to.have.length(1);
 });

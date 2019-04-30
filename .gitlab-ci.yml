@@ -24,7 +24,7 @@ build:
 test:
   stage: test
   script:
-    - npm test
+    - npm test -- --forceExit
     - echo "Test Successfull"
 
 build_apk:
