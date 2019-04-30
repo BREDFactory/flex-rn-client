@@ -31,6 +31,7 @@ import devToolsEnhancer from "remote-redux-devtools";
 import { createStackNavigator, createBottomTabNavigator } from "react-navigation";
 import LinearGradient from "react-native-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
+import SplashScreen from "../views/Splash/SplashScreen";
 import LoginScreen from "../views/Login/LoginScreen";
 import ProfileScreen from "../views/Profile/ProfileScreen";
 import SettingsScreen from "../views/Settings/SettingsScreen";
@@ -134,6 +135,12 @@ export const headerBar = (navigation, goBack = false, rightElement = true) => (
 );
 
 const NavigationApp = createStackNavigator({
+  Splash: {
+    screen: SplashScreen,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
   Login: { screen: LoginScreen },
   Profile: {
     screen: createBottomTabNavigator(
