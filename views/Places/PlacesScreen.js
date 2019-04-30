@@ -198,37 +198,28 @@ class PlacesScreen extends React.Component<Props, State> {
             textStyle={{ color: "black", fontFamily: "Raleway" }}
             buttons={FloorIndex}
           />
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-around"
+          {/* Zone selector */}
+          <ButtonGroup
+            onPress={this.updateZoneIndex}
+            containerStyle={{
+              height: 30,
+              width: 300,
+              shadowOpacity: 0.4,
+              shadowRadius: 2,
+              shadowColor: "#3662A0",
+              shadowOffset: { height: 1, width: 0 },
+              borderRadius: 5
             }}
-          >
-            {/* Zone selector */}
-            <ButtonGroup
-              onPress={this.updateZoneIndex}
-              containerStyle={{
-                height: 30,
-                width: 300,
-                shadowOpacity: 0.4,
-                shadowRadius: 2,
-                shadowColor: "#3662A0",
-                shadowOffset: { height: 1, width: 0 },
-                borderRadius: 5
-              }}
-              selectedIndex={selectedZoneIndex}
-              selectedButtonStyle={{ backgroundColor: "white" }}
-              buttonStyle={{
-                backgroundColor: "white",
-                borderColor: "#2E89AD"
-              }}
-              selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
-              textStyle={{ color: "black", fontFamily: "Raleway" }}
-              buttons={ZoneIndex}
-            />
-          </View>
+            selectedIndex={selectedZoneIndex}
+            selectedButtonStyle={{ backgroundColor: "white" }}
+            buttonStyle={{
+              backgroundColor: "white",
+              borderColor: "#2E89AD"
+            }}
+            selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
+            textStyle={{ color: "black", fontFamily: "Raleway" }}
+            buttons={ZoneIndex}
+          />
         </View>
         <View
           style={{
