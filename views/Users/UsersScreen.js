@@ -129,7 +129,6 @@ class UsersScreen extends React.Component<Props, State> {
         photo: item.photo
       };
 
-      console.error("rija");
       fetch(`${server.address}add_friend`, {
         method: "POST",
         body: JSON.stringify(payload),
@@ -143,7 +142,6 @@ class UsersScreen extends React.Component<Props, State> {
           this.setState({
             friend: append(item, friend.user.friend)
           });
-          console.error("bulja");
           AsyncStorage.setItem("USER", JSON.stringify(this.state));
           this.setState({ friendLoading: false });
         });
