@@ -38,6 +38,7 @@ import I18n from "../../i18n/i18n";
  * List of components
  */
 import FetchPlacesButton from "@components/Places/FetchPlacesButton";
+import PlacesSelector from "@components/Places/PlacesSelector";
 
 const ZoneCodes = ["V", "B", "R"];
 
@@ -145,39 +146,17 @@ class PlacesScreen extends React.Component<Props, State> {
           }}
         >
           {/* Floor selector */}
-          <ButtonGroup
-            onPress={this.updateFloorIndex}
-            selectedIndex={selectedFloorIndex}
-            buttonStyle={{
-              backgroundColor: "white",
-              borderColor: "#2E89AD"
-            }}
-            containerStyle={{
-              height: 30,
-              borderRadius: 5
-            }}
-            selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
-            selectedButtonStyle={{ backgroundColor: "white" }}
-            textStyle={{ color: "black", fontFamily: "Raleway" }}
-            buttons={floorIndex}
+          <PlacesSelector
+            buttons={ floorIndex }
+            onPress={ this.updateFloorIndex }
+            selectedIndex={ selectedFloorIndex }
           />
           
           {/* Zone selector */}
-          <ButtonGroup
-            onPress={this.updateZoneIndex}
-            containerStyle={{
-              height: 30,
-              borderRadius: 5
-            }}
-            selectedIndex={selectedZoneIndex}
-            selectedButtonStyle={{ backgroundColor: "white" }}
-            buttonStyle={{
-              backgroundColor: "white",
-              borderColor: "#2E89AD"
-            }}
-            selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
-            textStyle={{ color: "black", fontFamily: "Raleway" }}
-            buttons={zoneIndex}
+          <PlacesSelector
+            buttons={ zoneIndex }
+            onPress={ this.updateZoneIndex }
+            selectedIndex={ selectedZoneIndex }
           />
         </View>
         <FetchPlacesButton
