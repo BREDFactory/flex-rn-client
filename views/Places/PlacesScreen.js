@@ -69,8 +69,6 @@ class PlacesScreen extends React.Component<Props, State> {
     )
   };
 
-  _isMounted = false;
-
   constructor() {
     super();
     this.state = {
@@ -83,18 +81,13 @@ class PlacesScreen extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this._isMounted = true;
     AsyncStorage.getItem("USER", (err, result) => {
       if (err || !result) goTo(this, "Login");
-      else if (this._isMounted) {
+      else {
         this.setState(JSON.parse(result));
         getPlaces(this, this.setPlaces);
       }
     });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   setPlaces = async (ctx: State, json) => {
