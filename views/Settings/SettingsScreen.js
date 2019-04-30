@@ -36,6 +36,7 @@ import server from "../../config/server";
 import { goTo } from "../../utils/utils";
 import picProfile from "../../assets/profile.png";
 import LottieView from "lottie-react-native";
+import { NavigationActions, StackActions } from "react-navigation";
 
 import styles from "./SettingsScreenStyles";
 
@@ -304,8 +305,11 @@ export class SettingsScreen extends Component<Props, State> {
             const { navigation } = this.props;
             this.props.logOut("");
             AsyncStorage.removeItem("USER");
-            navigation.popToTop();
-            navigation.navigate("Login");
+            const resetAction = StackActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: "Login" })]
+            });
+            navigation.dispatch(resetAction);
           }}
         />
       </ScrollView>
