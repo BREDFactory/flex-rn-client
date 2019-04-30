@@ -30,7 +30,6 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import config from "../../config/api";
 import server from "../../config/server";
-import styles from "../Profile/ProfileScreenStyles";
 import { goTo } from "../../utils/utils";
 
 import I18n from "../../i18n/i18n";
@@ -131,7 +130,7 @@ class PlacesScreen extends React.Component<Props, State> {
     const zoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
 
     return (
-      <ScrollView style={styles.view}>
+      <ScrollView style={{ backgroundColor: "white" }}>
         <View
           style={{
             elevation: 2,
@@ -181,18 +180,9 @@ class PlacesScreen extends React.Component<Props, State> {
             buttons={zoneIndex}
           />
         </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "space-around",
-            alignItems: "center",
-            flexDirection: "row"
-          }}
-        >
-          <FetchPlacesButton
-            onPress={() => this.getPlaces()}
-          />
-        </View>
+        <FetchPlacesButton
+          onPress={() => this.getPlaces()}
+        />
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
           {places && !loading ? (
             <FlatList
@@ -243,20 +233,11 @@ class PlacesScreen extends React.Component<Props, State> {
               }
             />
           ) : (
-            <View
-              style={{
-                backgroundColor: "white",
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <ActivityIndicator
-                style={{ marginTop: 20 }}
-                size="large"
-                color="#2E89AD"
-              />
-            </View>
+            <ActivityIndicator
+              style={{ marginTop: 20 }}
+              size="large"
+              color="#2E89AD"
+            />
           )}
         </View>
       </ScrollView>
