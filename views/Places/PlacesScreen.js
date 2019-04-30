@@ -48,7 +48,7 @@ type State = {
   id: string,
   place: string,
   historical: Array<Historical>,
-  debug: Array<any> | string
+  places: Array<any> | string
 };
 
 type Props = {
@@ -67,7 +67,7 @@ class PlacesScreen extends React.Component<Props, State> {
     super();
     this.state = {
       id: "",
-      debug: "",
+      places: "",
       selectedFloorIndex: 0,
       loading: false,
       selectedZoneIndex: 0
@@ -97,7 +97,7 @@ class PlacesScreen extends React.Component<Props, State> {
       .then(data => {
         const result = data.filter(place => place.using === false);
         this.setState({
-          debug: result,
+          places: result,
           loading: false
         });
       });
@@ -112,13 +112,13 @@ class PlacesScreen extends React.Component<Props, State> {
   };
 
   handleList = () => {
-    const { debug, selectedFloorIndex, selectedZoneIndex } = this.state;
+    const { places, selectedFloorIndex, selectedZoneIndex } = this.state;
 
     const floor = selectedFloorIndex === 0 ? 3 : 4;
 
     const newT: string | Array<object> =
-      debug !== ""
-        ? debug.filter(e => {
+      places !== ""
+        ? places.filter(e => {
             let finalResult = true;
 
             // Check the current selected floor
@@ -136,13 +136,13 @@ class PlacesScreen extends React.Component<Props, State> {
             }
             return finalResult;
           })
-        : debug;
+        : places;
     return newT;
   };
 
   render() {
     const {
-      debug,
+      places,
       selectedFloorIndex,
       loading,
       selectedZoneIndex
@@ -214,7 +214,7 @@ class PlacesScreen extends React.Component<Props, State> {
           />
         </View>
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
-          {debug !== "" && debug && !loading ? (
+          {places !== "" && places && !loading ? (
             <FlatList
               data={this.handleList()}
               keyExtractor={(item, index) => index.toString()}
