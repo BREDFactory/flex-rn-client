@@ -26,21 +26,9 @@ export const checkNavigation = (ctx, str) => {
   } = ctx.props;
 
   AsyncStorage.getItem("USER", (err, result) => {
-    if (err || result == null) {
-      navigate("Login");
-    } else {
-      const jsonres = JSON.parse(result);
-      if (str) navigate(str);
-      else if (
-        !jsonres.place ||
-        jsonres.place === null ||
-        jsonres.place === ""
-      ) {
-        navigate("Profile");
-      } else {
-        navigate("Profile");
-      }
-    }
+    if (err || !result) navigate("Login");
+    else if (str) navigate(str);
+    else navigate("Profile");
   });
 };
 
