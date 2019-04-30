@@ -31,7 +31,7 @@ import { NavigationScreenProp } from "react-navigation";
 import config from "../../config/api";
 import server from "../../config/server";
 import styles from "../Profile/ProfileScreenStyles";
-import { getPlaces, goTo } from "../../utils/utils";
+import { goTo } from "../../utils/utils";
 
 import I18n from "../../i18n/i18n";
 
@@ -79,9 +79,28 @@ class PlacesScreen extends React.Component<Props, State> {
       if (err || !result) goTo(this, "Login");
       else {
         this.setState(JSON.parse(result));
-        getPlaces(this, this.setPlaces);
+        this.getPlaces();
       }
     });
+  }
+
+  getPlaces = () => {
+    this.setState({ loading: true });
+    fetch(`${server.address}places/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "x-access-token": config.token
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        const result = data.filter(place => place.using === false);
+        this.setState({
+          debug: result,
+          loading: false
+        });
+      });
   }
 
   setPlaces = async (ctx: State, json) => {
@@ -198,7 +217,7 @@ class PlacesScreen extends React.Component<Props, State> {
           }}
         >
           <FetchPlacesButton
-            onPress={() => getPlaces(this, this.setPlaces, null, true)}
+            onPress={() => this.getPlaces()}
           />
         </View>
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
