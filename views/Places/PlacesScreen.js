@@ -41,6 +41,7 @@ import I18n from "../../i18n/i18n";
 import FetchPlacesButton from "@components/Places/FetchPlacesButton";
 
 const ZoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
+const ZoneCodes = ["V", "B", "R"];
 
 type State = {
   name: string,
@@ -113,30 +114,10 @@ class PlacesScreen extends React.Component<Props, State> {
   filterPlaces = () => {
     const { places, selectedFloorIndex, selectedZoneIndex } = this.state;
 
-    const floor = selectedFloorIndex === 0 ? 3 : 4;
+    const floor = selectedFloorIndex === 0 ? "3" : "4";
+    const zoneCode = ZoneCodes[selectedZoneIndex];
 
-    const newT: Array<Object> =
-      places ? 
-        places.filter(e => {
-          let finalResult = true;
-
-          // Check the current selected floor
-          if (e.id[0] != floor) finalResult = false;
-
-          switch (ZoneIndex[selectedZoneIndex]) {
-            case "Zone rouge":
-              if (e.id[2] !== "R") finalResult = false;
-              break;
-            case "Zone verte":
-              if (e.id[2] !== "V") finalResult = false;
-              break;
-            case "Zone bleue":
-              if (e.id[2] !== "B") finalResult = false;
-          }
-          return finalResult;
-        })
-      : places;
-    return newT;
+    return places.filter(place => place.id[0] === floor && place.id[2] === zoneCode);
   };
 
   render() {
