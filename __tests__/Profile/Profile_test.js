@@ -37,7 +37,7 @@ it("renders correctly", () => {
   fetch = jest.fn(() => new Promise(resolve => resolve()));
   const wrapper = shallow(<ProfileScreen navigation={navigation} />);
 
-  wrapper.setState({ placeTaken: "3-R-RER29" });
+  wrapper.setState({ placeTaken: "3-R-RER29", place: true });
 
   const onPressEvent = jest.fn();
 
@@ -52,6 +52,8 @@ it("renders correctly", () => {
     .first()
     .props()
     .onPress();
+
+  wrapper.setState({ place: false });
 
   // expect(
   //   wrapper

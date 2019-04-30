@@ -3,17 +3,9 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#bbb",
-        "borderTopWidth": 1,
-        "marginTop": 20,
-      },
-      Object {
-        "marginBottom": 20,
-      },
-    ]
+    Object {
+      "marginBottom": 20,
+    }
   }
 >
   <View>

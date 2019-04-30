@@ -175,8 +175,10 @@ class ProfileScreen extends React.Component<Props, State> {
 
   Content = ({ place }) => {
     if (!place) {
+      console.error("a")
       return <this.DefaultComponent />;
     }
+    console.error("b")
     return <this.LeaveComponent />;
   };
 

@@ -12,17 +12,9 @@ exports[`renders correctly 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "marginLeft": 15,
-          "marginRight": 15,
-        },
-        undefined,
-        undefined,
-        Object {
-          "borderRadius": 15,
-        },
-      ]
+      Object {
+        "borderRadius": 3,
+      }
     }
   >
     <View
@@ -37,44 +29,22 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "marginTop": 20,
+          "opacity": 1,
         }
       }
     >
       <View
-        pointerEvents="box-only"
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#9E9E9E",
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "padding": 19,
-            },
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            Object {
-              "backgroundColor": "#fff",
-            },
-            Object {
-              "borderRadius": 15,
-            },
-            Object {
-              "padding": 12,
-            },
-            undefined,
-            undefined,
-            undefined,
-            Object {
-              "borderColor": "#2E89AD",
-              "borderWidth": 0.5,
-            },
-            undefined,
-            undefined,
-          ]
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2089dc",
+            "borderColor": "#2E89AD",
+            "borderRadius": 3,
+            "borderWidth": 0.5,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "padding": 8,
+          }
         }
       >
         <Text
@@ -82,70 +52,16 @@ exports[`renders correctly 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Array [
-              Object {},
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              Array [
-                Object {
-                  "color": "white",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2E89AD",
-                },
-                Object {
-                  "fontSize": 17.5,
-                },
-                undefined,
-                undefined,
-                Object {
-                  "fontWeight": "bold",
-                },
-                Object {
-                  "fontFamily": "Raleway",
-                },
-                undefined,
-              ],
-            ]
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingBottom": 1,
+              "paddingTop": 2,
+              "textAlign": "center",
+            }
           }
         >
           [missing "en.users.users" translation]
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "color": "#2E89AD",
-                "fontSize": 18,
-              },
-              Array [
-                Object {
-                  "marginLeft": 10,
-                },
-                undefined,
-              ],
-              Object {
-                "fontFamily": "Material Icons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {},
-            ]
-          }
-          type="font-awesome5"
-        >
-          
         </Text>
       </View>
     </View>
