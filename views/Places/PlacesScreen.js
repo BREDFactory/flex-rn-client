@@ -47,8 +47,7 @@ type State = {
   fname: string,
   id: string,
   place: string,
-  historical: Array<Historical>,
-  places: Array<any> | string
+  places: Array<Object>
 };
 
 type Props = {
@@ -67,7 +66,7 @@ class PlacesScreen extends React.Component<Props, State> {
     super();
     this.state = {
       id: "",
-      places: "",
+      places: [],
       selectedFloorIndex: 0,
       loading: false,
       selectedZoneIndex: 0
@@ -116,27 +115,27 @@ class PlacesScreen extends React.Component<Props, State> {
 
     const floor = selectedFloorIndex === 0 ? 3 : 4;
 
-    const newT: string | Array<object> =
-      places !== ""
-        ? places.filter(e => {
-            let finalResult = true;
+    const newT: Array<Object> =
+      places ? 
+        places.filter(e => {
+          let finalResult = true;
 
-            // Check the current selected floor
-            if (e.id[0] != floor) finalResult = false;
+          // Check the current selected floor
+          if (e.id[0] != floor) finalResult = false;
 
-            switch (ZoneIndex[selectedZoneIndex]) {
-              case "Zone rouge":
-                if (e.id[2] !== "R") finalResult = false;
-                break;
-              case "Zone verte":
-                if (e.id[2] !== "V") finalResult = false;
-                break;
-              case "Zone bleue":
-                if (e.id[2] !== "B") finalResult = false;
-            }
-            return finalResult;
-          })
-        : places;
+          switch (ZoneIndex[selectedZoneIndex]) {
+            case "Zone rouge":
+              if (e.id[2] !== "R") finalResult = false;
+              break;
+            case "Zone verte":
+              if (e.id[2] !== "V") finalResult = false;
+              break;
+            case "Zone bleue":
+              if (e.id[2] !== "B") finalResult = false;
+          }
+          return finalResult;
+        })
+      : places;
     return newT;
   };
 
@@ -214,7 +213,7 @@ class PlacesScreen extends React.Component<Props, State> {
           />
         </View>
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
-          {places !== "" && places && !loading ? (
+          {places && !loading ? (
             <FlatList
               data={this.handleList()}
               keyExtractor={(item, index) => index.toString()}
