@@ -24,7 +24,8 @@ export default {
     search_place: "Search place...",
     floor: "Floor",
     zone: "Zone",
-    find: "FIND"
+    find: "FIND",
+    refresh: "Refresh"
   },
   users: {
     title: "Users",

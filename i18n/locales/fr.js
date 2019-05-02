@@ -24,7 +24,8 @@ export default {
     search_place: "Chercher une place...",
     floor: "Je recherche une place",
     zone: "Zone",
-    find: "RECHERCHE"
+    find: "RECHERCHE",
+    refresh: "Actualiser"
   },
   users: {
     title: "Utilisateurs",
