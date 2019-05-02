@@ -27,6 +27,7 @@ import {
   ModalComponent
 } from "../../views/Settings/SettingsScreen";
 import DeconnectionButton from "../../Components/Settings/DeconnectionButton";
+import reducer, { fetchPhoto, logOut } from "../../Navigation/components/reducer";
 
 jest.useFakeTimers();
 
@@ -36,7 +37,7 @@ const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn
 
 it("renders correctly", async () => {
   const wrapper = shallow(
-    <SettingsScreen navigation={navigation} logOut={jest.fn()} />
+    <SettingsScreen navigation={navigation} fetchPhoto={fetchPhoto} logOut={logOut} />
   );
 
   wrapper.saveRemote = jest.fn();
@@ -47,11 +48,16 @@ it("renders correctly", async () => {
 
   // Simulate onPress event on ManualInsertionCard component
 
+  AsyncStorage.removeItem = jest.fn();
+
   wrapper
     .find(DeconnectionButton)
     .first()
     .props()
     .onPress();
+
+  expect(AsyncStorage.removeItem.mock.calls).to.have.length(1);
+  expect(AsyncStorage.removeItem.mock.calls[0][0]).to.equal("USER");
 
   // wrapper
   //   .find(ModalComponent)
@@ -101,7 +107,7 @@ it("renders correctly", async () => {
     }
   })
   AsyncStorage.setItem = jest.fn();
-  wrapper.setProps({ fetchPhoto: jest.fn() });
+  // wrapper.setProps({ fetchPhoto: jest.fn() });
 
   await wrapper
     .instance()
@@ -113,3 +119,10 @@ it("renders correctly", async () => {
   expect(AsyncStorage.setItem.mock.calls).to.have.length(2);
   expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
 });
+
+it('abc', () => {
+  const payload = { photo: "test" };
+  expect(reducer({ photo: "test" }, { type: "flex-office/photo/FETCH", payload })).to.deep.equal({ photo: "test" });
+  expect(reducer({ photo: "test" }, { type: "flex-office/user/LOGOUT", payload })).to.deep.equal({ photo: "test" });
+  expect(reducer({ photo: "test" }, { type: "test", payload })).to.deep.equal({ photo: "test" });
+})

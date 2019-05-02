@@ -64,7 +64,7 @@ enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
 const storageCache = {};
 const AsyncStorage = new MockStorage(storageCache);
-const ctx = { props: { navigation: { navigate: jest.mock() } } };
+const ctx = { props: { navigation: { navigate: jest.fn() } } };
 
 jest.setMock("AsyncStorage", AsyncStorage);
 
@@ -72,6 +72,13 @@ describe("Testing utils", () => {
   it("renders correctly", () => {
     shallow(<checkNavigation ctx={ctx} str="Login" />);
     shallow(<goTo ctx={ctx} str="Login" />);
+
+    AsyncStorage.getItem = jest.fn((x, f) => f(null, "test"));
+    checkNavigation(ctx, "test");
+    checkNavigation(ctx);
+    expect(AsyncStorage.getItem.mock.calls.length).toBe(2);
+    expect(AsyncStorage.getItem.mock.calls[0][0]).toBe("USER");
+    expect(AsyncStorage.getItem.mock.calls[1][0]).toBe("USER");
   });
 
   function last(arr) {
