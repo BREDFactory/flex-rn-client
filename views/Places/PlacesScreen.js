@@ -16,7 +16,7 @@ limitations under the License.
 // @flow
 /* eslint-disable */
 import React from "react";
-import { ButtonGroup, Card } from "react-native-elements";
+import { Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import {
