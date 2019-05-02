@@ -232,6 +232,8 @@ export class SettingsScreen extends Component<Props, State> {
               )
             )
           );
+          console.log("sta");
+          console.log(AsyncStorage.setItem.mock.calls.length);
 
           this.setState({ loadingSave: false });
         });

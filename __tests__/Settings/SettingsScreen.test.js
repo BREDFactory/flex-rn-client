@@ -19,7 +19,7 @@ import { ButtonGroup } from "react-native-elements";
 import PhotoUpload from "react-native-photo-upload";
 import { expect } from "chai";
 import Enzyme, { shallow } from "enzyme";
-import { ScrollView } from "react-native";
+import { ScrollView, AsyncStorage } from "react-native";
 import "react-native-qrcode-scanner";
 import Adapter from "enzyme-adapter-react-16";
 import {
@@ -28,11 +28,13 @@ import {
 } from "../../views/Settings/SettingsScreen";
 import DeconnectionButton from "../../Components/Settings/DeconnectionButton";
 
+jest.useFakeTimers();
+
 Enzyme.configure({ adapter: new Adapter() });
 
 const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn() };
 
-it("renders correctly", () => {
+it("renders correctly", async () => {
   const wrapper = shallow(
     <SettingsScreen navigation={navigation} logOut={jest.fn()} />
   );
@@ -68,11 +70,46 @@ it("renders correctly", () => {
     .props()
     .onPhotoSelect();
 
+
   wrapper
     .find(PhotoUpload)
     .first()
     .props()
-    .onPhotoSelect();
+    .onPhotoSelect("test");
+
 
   expect(wrapper.find(ScrollView)).to.have.length(1);
+
+  const data = {
+    photo: "photo",
+    id_place: "id_place"
+  };
+  fetch = jest.fn(function(url) {
+    if (url.indexOf("users") != -1) {
+      return {
+        then: (resolve => {
+          return resolve({
+          json: jest.fn(() => {
+            return {
+            then: (resolve => {
+              return resolve(data)})
+          }})
+        })})
+      };
+    } else {
+      return new Promise(resolve => resolve({ json: jest.fn(() => new Promise(resolve => resolve(data))) }));
+    }
+  })
+  AsyncStorage.setItem = jest.fn();
+  wrapper.setProps({ fetchPhoto: jest.fn() });
+
+  await wrapper
+    .instance()
+    .saveRemote()
+
+  jest.runAllTimers();
+
+  expect(fetch.mock.calls).to.have.length(4);
+  expect(AsyncStorage.setItem.mock.calls).to.have.length(2);
+  expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
 });
