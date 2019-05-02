@@ -108,24 +108,24 @@ it("renders correctly", async () => {
   fetch = jest.fn(() => new Promise(resolve => resolve({ json: jest.fn(() => new Promise(resolve => resolve(friend))) })));
   AsyncStorage.setItem = jest.fn();
 
-  // const users2 = [{
-  //     name: "Test3",
-  //     fname: "Test3",
-  //     id_place: "TestID3",
-  //     photo: ""
-  // }];
-  // await wrapper.setState({ users: users2, search: "" });
-  // await wrapper.setState({ loading: false, search: "" });
-  // console.log(wrapper.debug());
-  // console.log(wrapper.state().loading);
-  // console.log(wrapper.state().users);
-  // wrapper
-  //   .find(TouchableOpacity)
-  //   .at(1)
-  //   .props()
-  //   .onPress();
+  const users2 = [{
+      name: "Test3",
+      fname: "Test3",
+      id_place: "TestID3",
+      photo: ""
+  }];
+  await wrapper.setState({ users: users2, search: "" });
+  await wrapper.setState({ loading: false, search: "" });
+  await wrapper
+    .find(ListPlaces)
+    .first()
+    .dive()
+    .find(TouchableOpacity)
+    .first()
+    .props()
+    .onPress();
 
-  // expect(fetch.mock.calls).to.have.length(2);
-  // expect(AsyncStorage.setItem.mock.calls).to.have.length(1);
-  // expect(AsyncStorage.setItem.mock.calls).to.equal("USER");
+  expect(fetch.mock.calls).to.have.length(2);
+  expect(AsyncStorage.setItem.mock.calls).to.have.length(1);
+  expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
 });

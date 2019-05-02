@@ -129,7 +129,7 @@ class UsersScreen extends React.Component<Props, State> {
         photo: item.photo
       };
 
-      fetch(`${server.address}add_friend`, {
+      return fetch(`${server.address}add_friend`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {
@@ -274,7 +274,6 @@ class UsersScreen extends React.Component<Props, State> {
   render() {
     const { users, loading, userName, arrayOfFriends } = this.state;
 
-    console.log("oko");
     return (
       <ScrollView style={styles.view}>
         {/* <NavigationEvents onWillFocus={payload => this.getAsyncStorageUser()} /> */}
