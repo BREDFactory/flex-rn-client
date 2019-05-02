@@ -17,6 +17,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   view: {
+    marginTop: 10,
     marginLeft: 50,
     marginRight: 50,
     flex: 1,
@@ -31,11 +32,9 @@ export default StyleSheet.create({
     shadowColor: "#3662A0",
     shadowOffset: { height: 1, width: 0 },
     borderRadius: 17.5,
-    width: 230,
-    height: 40,
-    flex: 1,
+    padding: 10,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around"
+    justifyContent: "center"
   }
 });
