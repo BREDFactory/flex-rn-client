@@ -40,6 +40,7 @@ import I18n from "../../i18n/i18n";
  */
 import FetchPlacesButton from "@components/Places/FetchPlacesButton";
 import PlacesSelector from "@components/Places/PlacesSelector";
+import PlacesList from "../../Components/Places/PlacesList";
 
 type State = {
   name: string,
@@ -128,7 +129,6 @@ class PlacesScreen extends React.Component<Props, State> {
 
   render() {
     const {
-      places,
       selectedFloorIndex,
       loading,
       selectedZoneIndex,
@@ -191,56 +191,8 @@ class PlacesScreen extends React.Component<Props, State> {
           />
         </View>
         <View style={{ marginLeft: 35, marginRight: 35 }}>
-          {places && !loading ? (
-            <FlatList
-              data={this.filterPlaces()}
-              keyExtractor={(item, index) => index.toString()}
-              contentContainerStyle={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-              style={{
-                marginBottom: 20
-              }}
-              numColumns={2}
-              renderItem={place =>
-                place.item ? (
-                  <TouchableOpacity
-                    activeOpacity={0.1}
-                    key={place.item.id}
-                  >
-                    <Card
-                      title={place.item.id}
-                      containerStyle={{
-                        borderRadius: 10
-                      }}
-                      wrapperStyle={{
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center"
-                      }}
-                      titleStyle={{ marginBottom: 0, marginRight: 10, fontFamily: "Raleway" }}
-                      dividerStyle={{ display: "none" }}
-                    >
-                      <Icon
-                        name="circle"
-                        size={15}
-                        color={
-                          place.item.id[2] === "V"
-                            ? "green"
-                            : place.item.id[2] === "B"
-                            ? "blue"
-                            : "red"
-                        }
-                      />
-                    </Card>
-                  </TouchableOpacity>
-                ) : (
-                  "There is no free place for the moment !"
-                )
-              }
-            />
+          {!loading ? (
+            <PlacesList places={this.filterPlaces()} />
           ) : (
             <ActivityIndicator
               style={{ marginTop: 20 }}
