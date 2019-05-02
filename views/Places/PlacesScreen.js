@@ -196,17 +196,19 @@ class PlacesScreen extends React.Component<Props, State> {
                     key={place.item.id}
                   >
                     <Card
-                      key={place.item.id}
                       title={place.item.id}
-                      fontFamily="Raleway"
                       containerStyle={{
-                        borderRadius: 10,
-                        height: 80
+                        borderRadius: 10
                       }}
+                      wrapperStyle={{
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}
+                      titleStyle={{ marginBottom: 0, marginRight: 10, fontFamily: "Raleway" }}
                       dividerStyle={{ display: "none" }}
                     >
                       <Icon
-                        styl={{ textAlign: "center" }}
                         name="circle"
                         size={15}
                         color={
