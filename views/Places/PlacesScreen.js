@@ -40,8 +40,6 @@ import I18n from "../../i18n/i18n";
 import FetchPlacesButton from "@components/Places/FetchPlacesButton";
 import PlacesSelector from "@components/Places/PlacesSelector";
 
-const ZoneCodes = ["V", "B", "R"];
-
 type State = {
   name: string,
   fname: string,
@@ -112,6 +110,7 @@ class PlacesScreen extends React.Component<Props, State> {
 
   filterPlaces = () => {
     const { places, selectedFloorIndex, selectedZoneIndex } = this.state;
+    const ZoneCodes = ["V", "B", "R"];
 
     const floor = selectedFloorIndex === 0 ? "3" : "4";
     const zoneCode = ZoneCodes[selectedZoneIndex];
