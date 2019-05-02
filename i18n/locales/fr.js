@@ -25,7 +25,8 @@ export default {
     floor: "Je recherche une place",
     zone: "Zone",
     find: "RECHERCHE",
-    refresh: "Actualiser"
+    refresh: "Actualiser",
+    empty_result: "Désolé, aucune place n'est disponible avec les critères sélectionnés pour le moment."
   },
   users: {
     title: "Utilisateurs",
