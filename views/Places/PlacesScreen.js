@@ -16,17 +16,14 @@ limitations under the License.
 // @flow
 /* eslint-disable */
 import React from "react";
-import { Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import {
   ActivityIndicator,
   AsyncStorage,
   ScrollView,
-  TouchableOpacity,
   View,
   Text,
-  FlatList
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import config from "../../config/api";
