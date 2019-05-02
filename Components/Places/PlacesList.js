@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import React from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
 import PlaceItem from "./PlaceItem";
 import EmptyResult from "./EmptyResult";
 
