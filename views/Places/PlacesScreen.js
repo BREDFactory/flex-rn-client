@@ -25,6 +25,7 @@ import {
   ScrollView,
   TouchableOpacity,
   View,
+  Text,
   FlatList
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
@@ -151,6 +152,19 @@ class PlacesScreen extends React.Component<Props, State> {
           shadowColor: "#3662A0",
           shadowOffset: { height: 1, width: 0 }
         }}>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 18,
+              fontFamily: "Raleway",
+              color: "black",
+              fontWeight: "bold",
+              marginBottom: 10
+            }}
+          >
+            {I18n.t("places.free_places")}
+          </Text>
+
           {/* Floor selector */}
           <PlacesSelector
             buttons={ floorIndex }
@@ -171,6 +185,7 @@ class PlacesScreen extends React.Component<Props, State> {
             onPress={ this.updateSideIndex }
             selectedIndex={ selectedSideIndex }
           />
+
           <FetchPlacesButton
             onPress={() => this.getPlaces()}
           />
