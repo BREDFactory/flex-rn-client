@@ -140,19 +140,17 @@ class PlacesScreen extends React.Component<Props, State> {
 
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
-        <View
-          style={{
-            elevation: 2,
-            padding: 25,
-            borderRadius: 10,
-            backgroundColor: "white",
-            margin: 20,
-            shadowOpacity: 0.4,
-            shadowRadius: 2,
-            shadowColor: "#3662A0",
-            shadowOffset: { height: 1, width: 0 }
-          }}
-        >
+        <View style={{
+          elevation: 2,
+          padding: 15,
+          margin: 20,
+          marginBottom: 0,
+          borderRadius: 10,
+          shadowOpacity: 0.4,
+          shadowRadius: 2,
+          shadowColor: "#3662A0",
+          shadowOffset: { height: 1, width: 0 }
+        }}>
           {/* Floor selector */}
           <PlacesSelector
             buttons={ floorIndex }
