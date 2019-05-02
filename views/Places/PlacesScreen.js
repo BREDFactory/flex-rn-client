@@ -41,11 +41,11 @@ import PlacesSelector from "@components/Places/PlacesSelector";
 import PlacesList from "../../Components/Places/PlacesList";
 
 type State = {
-  name: string,
-  fname: string,
-  id: string,
-  place: string,
-  places: Array<Object>
+  places: Array<Object>,
+  loading: boolean,
+  selectedFloorIndex: number,
+  selectedZoneIndex: number,
+  selectedSideIndex: number
 };
 
 type Props = {
@@ -63,9 +63,8 @@ class PlacesScreen extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      id: "",
       places: [],
-      loading: false,
+      loading: true,
       selectedFloorIndex: 0,
       selectedZoneIndex: 0,
       selectedSideIndex: 0
@@ -127,8 +126,8 @@ class PlacesScreen extends React.Component<Props, State> {
 
   render() {
     const {
-      selectedFloorIndex,
       loading,
+      selectedFloorIndex,
       selectedZoneIndex,
       selectedSideIndex
     } = this.state;
