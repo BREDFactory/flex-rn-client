@@ -171,7 +171,11 @@ class PlacesScreen extends React.Component<Props, State> {
             onPress={ this.updateSideIndex }
             selectedIndex={ selectedSideIndex }
           />
-        <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
+          <FetchPlacesButton
+            onPress={() => this.getPlaces()}
+          />
+        </View>
+        <View style={{ marginLeft: 35, marginRight: 35 }}>
           {places && !loading ? (
             <FlatList
               data={this.filterPlaces()}
