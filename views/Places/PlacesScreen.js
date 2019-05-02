@@ -65,9 +65,10 @@ class PlacesScreen extends React.Component<Props, State> {
     this.state = {
       id: "",
       places: [],
-      selectedFloorIndex: 0,
       loading: false,
-      selectedZoneIndex: 0
+      selectedFloorIndex: 0,
+      selectedZoneIndex: 0,
+      selectedSideIndex: 0
     };
   }
 
@@ -108,14 +109,20 @@ class PlacesScreen extends React.Component<Props, State> {
     this.setState({ selectedZoneIndex });
   };
 
+  updateSideIndex = selectedSideIndex => {
+    this.setState({ selectedSideIndex });
+  };
+
   filterPlaces = () => {
-    const { places, selectedFloorIndex, selectedZoneIndex } = this.state;
+    const { places, selectedFloorIndex, selectedZoneIndex, selectedSideIndex } = this.state;
     const ZoneCodes = ["V", "B", "R"];
+    const sideIndex = ["RER", "BOIS", "MILIEU"];
 
     const floor = selectedFloorIndex === 0 ? "3" : "4";
     const zoneCode = ZoneCodes[selectedZoneIndex];
+    const side = sideIndex[selectedSideIndex];
 
-    return places.filter(place => place.id[0] === floor && place.id[2] === zoneCode);
+    return places.filter(place => place.id[0] === floor && place.id[2] === zoneCode && place.id.slice(4, -2) === side);
   };
 
   render() {
@@ -123,11 +130,13 @@ class PlacesScreen extends React.Component<Props, State> {
       places,
       selectedFloorIndex,
       loading,
-      selectedZoneIndex
+      selectedZoneIndex,
+      selectedSideIndex
     } = this.state;
 
     const floorIndex = ["3ème étage", "4ème étage"];
     const zoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
+    const sideIndex = ["RER", "Bois", "Milieu"];
 
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
@@ -157,10 +166,13 @@ class PlacesScreen extends React.Component<Props, State> {
             onPress={ this.updateZoneIndex }
             selectedIndex={ selectedZoneIndex }
           />
-        </View>
-        <FetchPlacesButton
-          onPress={() => this.getPlaces()}
-        />
+
+          {/* Side selector */}
+          <PlacesSelector
+            buttons={ sideIndex }
+            onPress={ this.updateSideIndex }
+            selectedIndex={ selectedSideIndex }
+          />
         <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
           {places && !loading ? (
             <FlatList
