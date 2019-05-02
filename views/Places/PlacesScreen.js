@@ -31,6 +31,7 @@ import server from "../../config/server";
 import { goTo } from "../../utils/utils";
 
 import I18n from "../../i18n/i18n";
+import styles from "./PlacesScreenStyle";
 
 /**
  * List of components
@@ -138,29 +139,9 @@ class PlacesScreen extends React.Component<Props, State> {
 
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
-        <View style={{
-          elevation: 2,
-          padding: 15,
-          margin: 20,
-          marginBottom: 0,
-          borderRadius: 10,
-          shadowOpacity: 0.4,
-          shadowRadius: 2,
-          shadowColor: "#3662A0",
-          shadowOffset: { height: 1, width: 0 }
-        }}>
-          <Text
-            style={{
-              textAlign: "center",
-              fontSize: 18,
-              fontFamily: "Raleway",
-              color: "black",
-              fontWeight: "bold",
-              marginBottom: 10
-            }}
-          >
-            {I18n.t("places.free_places")}
-          </Text>
+        <View style={ styles.selectorContainer }>
+          
+          <Text style={ styles.label }>{I18n.t("places.free_places")}</Text>
 
           {/* Floor selector */}
           <PlacesSelector
