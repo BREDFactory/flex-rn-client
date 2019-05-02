@@ -64,3 +64,23 @@ it("should render loading component", () => {
 
   expect(wrapper.find(ActivityIndicator)).to.have.length(1);
 });
+
+function removeItem(arr, i) {
+  arr.splice(i, 1)
+  return arr
+}
+
+it ("should handle list", async () => {
+  const wrapper = shallow(<PlacesScreen navigation={navigation} />);
+  await wrapper.setState({ debug: "" });
+
+  expect(wrapper.instance().handleList()).to.equal("");
+
+  const debug = [
+    { id: "4-R-RER10" },
+    { id: "4-V-RER10" },
+    { id: "3-B-RER10" }
+  ];
+  await wrapper.setState({ debug: debug, selectedFloorIndex: 1, selectedZoneIndex: 0 });
+  expect(wrapper.instance().handleList()).to.deep.equal([debug[1]]);
+})
