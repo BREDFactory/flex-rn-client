@@ -17,7 +17,7 @@ import "react-native-permissions";
 import React from "react";
 import { expect } from "chai";
 import Enzyme, { shallow } from "enzyme";
-import { ScrollView, Text, ActivityIndicator } from "react-native";
+import { ScrollView, Text, ActivityIndicator, AsyncStorage } from "react-native";
 import "react-native-qrcode-scanner";
 import Adapter from "enzyme-adapter-react-16";
 import ProfileScreen from "../../views/Profile/ProfileScreen";
@@ -35,7 +35,7 @@ const navigation = { navigate: jest.fn(), popToTop: jest.fn() };
 
 it("renders correctly", () => {
   fetch = jest.fn(() => new Promise(resolve => resolve()));
-  const wrapper = shallow(<ProfileScreen navigation={navigation} />);
+  let wrapper = shallow(<ProfileScreen navigation={navigation} />);
 
   wrapper.setState({ placeTaken: "3-R-RER29", place: true });
 
@@ -45,6 +45,9 @@ it("renders correctly", () => {
 
   // Simulate onPress event on ManualInsertionCard component
 
+  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 200 }) } });
+  AsyncStorage.setItem = jest.fn();
+
   wrapper
     .dive()
     .dive()
@@ -52,6 +55,28 @@ it("renders correctly", () => {
     .first()
     .props()
     .onPress();
+
+  expect(AsyncStorage.setItem.mock.calls).to.have.length(1);
+  expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
+
+  wrapper = shallow(<ProfileScreen navigation={navigation} />);
+
+  wrapper.setState({ placeTaken: "3-R-RER29", place: true });
+
+  const text = jest.fn(() => { return { then: () => undefined } });
+  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 400, text }) } });
+
+  wrapper
+    .dive()
+    .dive()
+    .find(LeaveButton)
+    .first()
+    .props()
+    .onPress();
+
+  expect(text.mock.calls).to.have.length(1);
+
+  fetch = jest.fn(() => new Promise(resolve => resolve()));
 
   wrapper.setState({ place: false });
 
@@ -86,6 +111,22 @@ it("renders correctly", () => {
     .first()
     .props()
     .onChangeText("");
+
+  wrapper
+    .dive()
+    .dive()
+    .find(ManualInsertionCard)
+    .first()
+    .props()
+    .onSubmitEditing();
+
+  wrapper
+    .dive()
+    .dive()
+    .find(ManualInsertionCard)
+    .first()
+    .props()
+    .onPress();
 
   wrapper
     .dive()

@@ -204,7 +204,9 @@ class ProfileScreen extends React.Component<Props, State> {
           AsyncStorage.setItem("USER", JSON.stringify(this.state));
           this.socket.emit('leaveRoom', place);
         }
-        else if (res.status === 400) res.text().then(message => console.log(message));
+        else if (res.status === 400) {
+          res.text().then(message => console.log(message));
+        }
       });
   }
 

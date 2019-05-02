@@ -83,4 +83,8 @@ it ("should handle list", async () => {
   ];
   await wrapper.setState({ debug: debug, selectedFloorIndex: 1, selectedZoneIndex: 0 });
   expect(wrapper.instance().handleList()).to.deep.equal([debug[1]]);
+  await wrapper.setState({ debug: debug, selectedFloorIndex: 0, selectedZoneIndex: 1 });
+  expect(wrapper.instance().handleList()).to.deep.equal([debug[2]]);
+  await wrapper.setState({ debug: debug, selectedFloorIndex: 1, selectedZoneIndex: 2 });
+  expect(wrapper.instance().handleList()).to.deep.equal([debug[0]]);
 })
