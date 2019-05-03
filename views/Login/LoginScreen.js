@@ -129,7 +129,6 @@ class LoginScreen extends React.Component<Props, State> {
         .then(res => {
           if (res.status === 200) {
             res.json().then(user => {
-              console.log(user);
               AsyncStorage.setItem("USER", JSON.stringify({
                 id: this.id,
                 name: this.name,
