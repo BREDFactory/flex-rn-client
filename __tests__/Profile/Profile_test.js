@@ -31,10 +31,12 @@ Enzyme.configure({ adapter: new Adapter() });
 
 jest.mock("react-native-camera", () => mockCamera);
 
-const navigation = { navigate: jest.fn(), popToTop: jest.fn() };
+const navigation = { navigate: jest.fn(), popToTop: jest.fn(), setParams: jest.fn(), addListener: jest.fn() };
 
-it("renders correctly", () => {
-  fetch = jest.fn(() => new Promise(resolve => resolve()));
+it("renders correctly", async () => {
+  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 200 }) } });
+  AsyncStorage.setItem = jest.fn();
+  AsyncStorage.getItem = jest.fn((_, f) => f(null, "{ \"place\": \"test\" }"));
   let wrapper = shallow(<ProfileScreen navigation={navigation} />);
 
   wrapper.setState({ placeTaken: "3-R-RER29", place: true });
@@ -44,9 +46,6 @@ it("renders correctly", () => {
   onPressEvent.mockReturnValue("Link on press invoked");
 
   // Simulate onPress event on ManualInsertionCard component
-
-  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 200 }) } });
-  AsyncStorage.setItem = jest.fn();
 
   wrapper
     .dive()
@@ -62,19 +61,6 @@ it("renders correctly", () => {
   wrapper = shallow(<ProfileScreen navigation={navigation} />);
 
   wrapper.setState({ placeTaken: "3-R-RER29", place: true });
-
-  const text = jest.fn(() => { return { then: () => undefined } });
-  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 400, text }) } });
-
-  wrapper
-    .dive()
-    .dive()
-    .find(LeaveButton)
-    .first()
-    .props()
-    .onPress();
-
-  expect(text.mock.calls).to.have.length(1);
 
   fetch = jest.fn(() => new Promise(resolve => resolve()));
 
@@ -112,6 +98,8 @@ it("renders correctly", () => {
     .props()
     .onChangeText("");
 
+  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 200 }) } });
+
   wrapper
     .dive()
     .dive()
@@ -127,6 +115,33 @@ it("renders correctly", () => {
     .first()
     .props()
     .onPress();
+
+  wrapper
+    .dive()
+    .dive()
+    .find(QRCodeComponent)
+    .first()
+    .props()
+    .onRead({ data: "abc"});
+
+  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 400, text }) } });
+
+  const text = jest.fn(() => { return { then: () => undefined } });
+
+  wrapper
+    .dive()
+    .dive()
+    .find(LeaveButton)
+    .first()
+    .props()
+    .onPress();
+
+  expect(text.mock.calls).to.have.length(1);
+
+  const json = jest.fn(() => { return { then: f => f({ fname: "a a", name: "a" })}})
+  fetch = jest.fn(() => { return { then: resolve => resolve({ status: 500, json }) } });
+
+  await wrapper.setState({ place: "", isWrongFormatPlace: true });
 
   wrapper
     .dive()

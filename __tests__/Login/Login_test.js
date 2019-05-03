@@ -26,7 +26,7 @@ import InputLogin from "../../Components/Login/InputLogin";
 
 enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
-const navigation = { navigate: jest.fn(), popToTop: jest.fn() };
+const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn() };
 
 it("renders correctly", () => {
   const wrapper = shallow(<LoginScreen navigation={navigation} />);

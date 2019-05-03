@@ -52,10 +52,30 @@ it("renders correctly", async () => {
       fname: "Test2",
       id_place: "TestID2",
       photo: ""
-    }
+    },
+    {
+      name: "Abjaiov",
+      fname: "fjeqwiop",
+      id_place: "fjqweipoj",
+      photo: ""
+    },
+    {
+      name: "Wjfieqwpo",
+      fname: "vifjqpowe",
+      id_place: "jfipeqwnic",
+      photo: ""
+    },
+    {
+      name: "Test",
+      fname: "Test B",
+      id_place: "TestIDB",
+      photo: ""
+    },
   ];
+  AsyncStorage.getItem = jest.fn((_, f) => f(null, JSON.stringify(users[0])));
+  fetch = jest.fn(() => { return { then: f => f({ json: () => { return { then: f => f(users) } } }) } });
   const wrapper = shallow(<UsersScreen navigation={navigation} />);
-  wrapper.setState({ arrayOfFriends: users, loading: false });
+  wrapper.setState({ users, arrayOfFriends: users, loading: false });
 
   wrapper.getUsers = jest.fn();
 
@@ -65,11 +85,15 @@ it("renders correctly", async () => {
 
   // Simulate onPress event on TouchableOpacity component
 
+  await wrapper.setState({friend: users});
+
   wrapper
     .find(TouchableOpacity)
     .at(0)
     .props()
     .onPress();
+
+  await wrapper.setState({friend: []});
 
   wrapper.componentDidMount = jest.fn();
 
@@ -86,7 +110,7 @@ it("renders correctly", async () => {
   wrapper.setState({ users, arrayOfFriends: users, loading: false });
   expect(wrapper.state().loading).to.equal(false);
 
-  expect(wrapper.find(ListItem)).to.have.length(2);
+  expect(wrapper.find(ListItem)).to.have.length(5);
 
   // wrapper
   //   .find(ListPlaces)
@@ -102,10 +126,10 @@ it("renders correctly", async () => {
   expect(wrapper.find(ListPlaces).exists()).to.equal(true);
 
   expect(wrapper.find(ScrollView)).to.have.length(1);
-  expect(wrapper.find(TouchableOpacity)).to.have.length(3);
+  expect(wrapper.find(TouchableOpacity)).to.have.length(6);
 
   const friend = { user: { friend: "" } };
-  fetch = jest.fn(() => new Promise(resolve => resolve({ json: jest.fn(() => new Promise(resolve => resolve(friend))) })));
+  fetch = jest.fn(() => { return { then: f => f({ json: () => { return { then: f => f(friend) } } }) } });
   AsyncStorage.setItem = jest.fn();
 
   const users2 = [{
@@ -125,7 +149,19 @@ it("renders correctly", async () => {
     .props()
     .onPress();
 
-  expect(fetch.mock.calls).to.have.length(2);
+  expect(fetch.mock.calls).to.have.length(1);
   expect(AsyncStorage.setItem.mock.calls).to.have.length(1);
   expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
+
+  wrapper
+    .find(TouchableOpacity)
+    .at(1)
+    .props()
+    .onPress();
+
+  expect(fetch.mock.calls).to.have.length(2);
+  expect(AsyncStorage.setItem.mock.calls).to.have.length(2);
+  expect(AsyncStorage.setItem.mock.calls[1][0]).to.equal("USER");
+
+  wrapper.unmount();
 });

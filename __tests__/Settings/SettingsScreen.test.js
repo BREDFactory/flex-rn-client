@@ -33,9 +33,11 @@ jest.useFakeTimers();
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn() };
+const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn(), setParams: jest.fn() };
 
 it("renders correctly", async () => {
+  AsyncStorage.getItem = jest.fn((_, f) => f(null, "{ \"test\": \"test\"}"));
+  fetch = jest.fn(() => { return { then: f => f({ json: () => { return { then: f => f({ test: "test"}) } } }) } });
   const wrapper = shallow(
     <SettingsScreen navigation={navigation} fetchPhoto={fetchPhoto} logOut={logOut} />
   );
@@ -115,8 +117,8 @@ it("renders correctly", async () => {
 
   jest.runAllTimers();
 
-  expect(fetch.mock.calls).to.have.length(4);
-  expect(AsyncStorage.setItem.mock.calls).to.have.length(2);
+  expect(fetch.mock.calls).to.have.length(5);
+  expect(AsyncStorage.setItem.mock.calls).to.have.length(3);
   expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
 });
 
