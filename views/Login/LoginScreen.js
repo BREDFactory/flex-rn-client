@@ -165,9 +165,9 @@ class LoginScreen extends React.Component<Props, State> {
         <KeyboardAvoidingView style={styles.view_second} behavior="padding">
           <InputLogin
             onSubmitEditing={() => this.logIn()}
-            onChangeText={text => this.name = this.capitalizeFirstLetter(text)}
-            onChangeText1={text => this.fname = this.capitalizeFirstLetter(text)}
-            onChangeText2={text => this.id = text.toUpperCase()}
+            onChangeText={text => this.name = this.capitalizeFirstLetter(text).trim()}
+            onChangeText1={text => this.fname = this.capitalizeFirstLetter(text).trim()}
+            onChangeText2={text => this.id = text.toUpperCase().trim()}
           />
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
