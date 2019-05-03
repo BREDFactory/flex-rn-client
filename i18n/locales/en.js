@@ -24,7 +24,9 @@ export default {
     search_place: "Search place...",
     floor: "Floor",
     zone: "Zone",
-    find: "FIND"
+    find: "FIND",
+    refresh: "Refresh",
+    empty_result: "Sorry, there are currently no places available with the selected options."
   },
   users: {
     title: "Users",

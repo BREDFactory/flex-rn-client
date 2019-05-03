@@ -16,45 +16,36 @@ limitations under the License.
 // @flow
 /* eslint-disable */
 import React from "react";
-import { ButtonGroup, Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import {
   ActivityIndicator,
   AsyncStorage,
   ScrollView,
-  TouchableOpacity,
   View,
-  FlatList
+  Text,
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import config from "../../config/api";
 import server from "../../config/server";
-import styles from "../Profile/ProfileScreenStyles";
-import { getPlaces, goTo } from "../../utils/utils";
+import { goTo } from "../../utils/utils";
 
 import I18n from "../../i18n/i18n";
+import styles from "./PlacesScreenStyle";
 
 /**
  * List of components
  */
 import FetchPlacesButton from "@components/Places/FetchPlacesButton";
-
-const ZoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
-
-type Historical = {
-  place_id: string,
-  begin: string,
-  end: string
-};
+import PlacesSelector from "@components/Places/PlacesSelector";
+import PlacesList from "../../Components/Places/PlacesList";
 
 type State = {
-  name: string,
-  fname: string,
-  id: string,
-  place: string,
-  historical: Array<Historical>,
-  debug: Array<any> | string
+  places: Array<Object>,
+  loading: boolean,
+  selectedFloorIndex: number,
+  selectedZoneIndex: number,
+  selectedSideIndex: number
 };
 
 type Props = {
@@ -69,55 +60,45 @@ class PlacesScreen extends React.Component<Props, State> {
     )
   };
 
-  _isMounted = false;
-
   constructor() {
     super();
     this.state = {
-      id: "",
-      debug: "",
+      places: [],
+      loading: true,
       selectedFloorIndex: 0,
-      loading: false,
-      selectedZoneIndex: 0
+      selectedZoneIndex: 0,
+      selectedSideIndex: 0
     };
   }
 
   componentDidMount() {
-    this._isMounted = true;
     AsyncStorage.getItem("USER", (err, result) => {
-      if (err || result === null) {
-        goTo(this, "Login");
-      } else {
-        if (this._isMounted) this.setState(JSON.parse(result));
-        const userId = JSON.parse(result).id;
-        fetch(`${server.address}users/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "x-access-token": config.token
-          }
-        })
-          .then(res => res.json()) // transform data to json
-          .then(data => {
-            if (this._isMounted) {
-              this.setState({ historical: data.historical });
-              getPlaces(this, this.setPlaces);
-            }
-          });
+      if (err || !result) goTo(this, "Login");
+      else {
+        this.setState(JSON.parse(result));
+        this.getPlaces();
       }
     });
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
+  getPlaces = () => {
+    this.setState({ loading: true });
+    fetch(`${server.address}places/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "x-access-token": config.token
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        const result = data.filter(place => place.using === false);
+        this.setState({
+          places: result,
+          loading: false
+        });
+      });
   }
-
-  setPlaces = async (ctx: State, json) => {
-    const result = json.filter(
-      element => element !== null && element.using === false
-    );
-    ctx.setState({ debug: result });
-  };
 
   updateFloorIndex = selectedFloorIndex => {
     this.setState({ selectedFloorIndex });
@@ -127,203 +108,74 @@ class PlacesScreen extends React.Component<Props, State> {
     this.setState({ selectedZoneIndex });
   };
 
-  handleList = () => {
-    const { debug, selectedFloorIndex, selectedZoneIndex } = this.state;
+  updateSideIndex = selectedSideIndex => {
+    this.setState({ selectedSideIndex });
+  };
 
-    const floor = selectedFloorIndex === 0 ? 3 : 4;
+  filterPlaces = () => {
+    const { places, selectedFloorIndex, selectedZoneIndex, selectedSideIndex } = this.state;
+    const ZoneCodes = ["V", "B", "R"];
+    const sideIndex = ["RER", "BOIS", "MILIEU"];
 
-    const newT: string | Array<object> =
-      debug !== ""
-        ? debug.filter(e => {
-            let finalResult = true;
+    const floor = selectedFloorIndex === 0 ? "3" : "4";
+    const zoneCode = ZoneCodes[selectedZoneIndex];
+    const side = sideIndex[selectedSideIndex];
 
-            // Check the current selected floor
-            if (e.id[0] != floor) finalResult = false;
-
-            switch (ZoneIndex[selectedZoneIndex]) {
-              case "Zone rouge":
-                if (e.id[2] !== "R") finalResult = false;
-                break;
-              case "Zone verte":
-                if (e.id[2] !== "V") finalResult = false;
-                break;
-              case "Zone bleue":
-                if (e.id[2] !== "B") finalResult = false;
-            }
-            return finalResult;
-          })
-        : debug;
-    return newT;
+    return places.filter(place => place.id[0] === floor && place.id[2] === zoneCode && place.id.slice(4, -2) === side);
   };
 
   render() {
     const {
-      debug,
-      selectedFloorIndex,
       loading,
-      selectedZoneIndex
+      selectedFloorIndex,
+      selectedZoneIndex,
+      selectedSideIndex
     } = this.state;
 
-    const FloorIndex = ["3ème étage", "4ème étage"];
+    const floorIndex = ["3ème étage", "4ème étage"];
+    const zoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
+    const sideIndex = ["RER", "Bois", "Milieu"];
 
     return (
-      <ScrollView style={styles.view}>
-        <View
-          style={{
-            elevation: 2,
-            padding: 25,
-            borderRadius: 10,
-            backgroundColor: "white",
-            margin: 20,
-            shadowOpacity: 0.4,
-            shadowRadius: 2,
-            shadowColor: "#3662A0",
-            shadowOffset: { height: 1, width: 0 }
-          }}
-        >
-          <ButtonGroup
-            onPress={this.updateFloorIndex}
-            selectedIndex={selectedFloorIndex}
-            buttonStyle={{
-              backgroundColor: "white",
-              borderColor: "#2E89AD"
-            }}
-            containerStyle={{
-              height: 30,
-              borderRadius: 5
-            }}
-            selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
-            selectedButtonStyle={{ backgroundColor: "white" }}
-            textStyle={{ color: "black", fontFamily: "Raleway" }}
-            buttons={FloorIndex}
+      <ScrollView style={{ backgroundColor: "white" }}>
+        <View style={ styles.selectorContainer }>
+          
+          <Text style={ styles.label }>{I18n.t("places.free_places")}</Text>
+
+          {/* Floor selector */}
+          <PlacesSelector
+            buttons={ floorIndex }
+            onPress={ this.updateFloorIndex }
+            selectedIndex={ selectedFloorIndex }
           />
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-around"
-            }}
-          >
-            {/* Zone button group */}
-            <ButtonGroup
-              onPress={this.updateZoneIndex}
-              containerStyle={{
-                height: 30,
-                width: 300,
-                shadowOpacity: 0.4,
-                shadowRadius: 2,
-                shadowColor: "#3662A0",
-                shadowOffset: { height: 1, width: 0 },
-                borderRadius: 5
-              }}
-              selectedIndex={selectedZoneIndex}
-              selectedButtonStyle={{ backgroundColor: "white" }}
-              buttonStyle={{
-                backgroundColor: "white",
-                borderColor: "#2E89AD"
-              }}
-              selectedTextStyle={{ color: "#2E89AD", fontWeight: "bold" }}
-              textStyle={{ color: "black", fontFamily: "Raleway" }}
-              buttons={ZoneIndex}
-            />
-          </View>
-          {/* <GradientBtn /> */}
-        </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "space-around",
-            alignItems: "center",
-            flexDirection: "row"
-          }}
-        >
+          
+          {/* Zone selector */}
+          <PlacesSelector
+            buttons={ zoneIndex }
+            onPress={ this.updateZoneIndex }
+            selectedIndex={ selectedZoneIndex }
+          />
+
+          {/* Side selector */}
+          <PlacesSelector
+            buttons={ sideIndex }
+            onPress={ this.updateSideIndex }
+            selectedIndex={ selectedSideIndex }
+          />
+
           <FetchPlacesButton
-            onPress={() => getPlaces(this, this.setPlaces, null, true)}
+            onPress={() => this.getPlaces()}
           />
         </View>
-        {/* <Text
-          h4
-          style={{
-            textAlign: "center",
-            fontSize: 16,
-            fontWeight: "bold",
-            fontFamily: "Raleway"
-          }}
-        >
-          Places disponibles
-        </Text> */}
-        <View style={{ marginTop: 5, marginLeft: 35, marginRight: 35 }}>
-          {debug !== "" && debug && !loading ? (
-            <FlatList
-              data={this.handleList()}
-              keyExtractor={(item, index) => index.toString()}
-              contentContainerStyle={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-              style={{
-                marginBottom: 20
-              }}
-              numColumns={2}
-              // columnWrapperStyle={{ width: 200 }}
-              renderItem={place =>
-                place.item ? (
-                  <TouchableOpacity
-                    activeOpacity={0.1}
-                    key={place.item.id}
-                  >
-                    <Card
-                      key={place.item.id}
-                      title={place.item.id}
-                      fontFamily="Raleway"
-                      containerStyle={{
-                        borderRadius: 10,
-                        height: 80
-                      }}
-                      dividerStyle={{ display: "none" }}
-                      // rightIcon={<Icon name="plus" size={20} color="#2E89AD" />}
-                    >
-                      <Icon
-                        styl={{ textAlign: "center" }}
-                        name="circle"
-                        size={15}
-                        color={
-                          place.item.id[2] === "V"
-                            ? "green"
-                            : place.item.id[2] === "B"
-                            ? "blue"
-                            : "red"
-                        }
-                      />
-                    </Card>
-                  </TouchableOpacity>
-                ) : (
-                  "There is no free place for the moment !"
-                )
-              }
-            />
+        <View style={{ marginLeft: 35, marginRight: 35 }}>
+          {!loading ? (
+            <PlacesList places={this.filterPlaces()} />
           ) : (
-            // <ActivityIndicator
-            //   style={{ marginTop: 20 }}
-            //   size="large"
-            //   color="#2E89AD"
-            // />
-            <View
-              style={{
-                backgroundColor: "white",
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <ActivityIndicator
-                style={{ marginTop: 20 }}
-                size="large"
-                color="#2E89AD"
-              />
-            </View>
+            <ActivityIndicator
+              style={{ marginTop: 20 }}
+              size="large"
+              color="#2E89AD"
+            />
           )}
         </View>
       </ScrollView>

@@ -15,8 +15,9 @@ limitations under the License.
 */
 import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import styles from "./styles/FetchPlacesButtonStyle";
+import I18n from "../../i18n/i18n";
 
 const FetchPlacesButton = (props: { onPress: () => void }) => {
   const { onPress } = props;
@@ -27,12 +28,13 @@ const FetchPlacesButton = (props: { onPress: () => void }) => {
           style={{
             color: "#2E89AD",
             fontFamily: "Raleway",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            marginRight: 10
           }}
         >
-          Je recherche une place
+          {I18n.t("places.refresh")}
         </Text>
-        <Icon name="arrow-right" size={15} color="#2E89AD" />
+        <Icon name="sync-alt" size={15} color="#2E89AD" />
       </TouchableOpacity>
     </View>
   );

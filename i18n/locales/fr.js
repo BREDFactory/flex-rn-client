@@ -20,11 +20,13 @@ export default {
     rer_zone: "Côté RER",
     south_zone: "Côté sud",
     forest_zone: "Côté forêt",
-    free_places: "Rechercher",
+    free_places: "Places disponibles",
     search_place: "Chercher une place...",
     floor: "Je recherche une place",
     zone: "Zone",
-    find: "RECHERCHE"
+    find: "RECHERCHE",
+    refresh: "Actualiser",
+    empty_result: "Désolé, aucune place n'est disponible avec les critères sélectionnés pour le moment."
   },
   users: {
     title: "Utilisateurs",
