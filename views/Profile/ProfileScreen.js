@@ -70,7 +70,8 @@ class ProfileScreen extends React.Component<Props, State> {
       fname: "",
       id: "",
       place: "",
-      isWrongFormatPlace: false
+      isWrongFormatPlace: false,
+      focusedScreen: true
     };
   }
 
@@ -86,6 +87,12 @@ class ProfileScreen extends React.Component<Props, State> {
         navigation.setParams(result);
       }
     });
+    navigation.addListener('willFocus', () =>
+     this.setState({ focusedScreen: true })
+   );
+   navigation.addListener('willBlur', () =>
+     this.setState({ focusedScreen: false })
+   );
   };
 
   DefaultComponent = () => {
@@ -94,6 +101,7 @@ class ProfileScreen extends React.Component<Props, State> {
       name,
       id,
       isWrongFormatPlace,
+      focusedScreen
     } = this.state;
 
     insertPlace = (placeText) => {
@@ -139,17 +147,15 @@ class ProfileScreen extends React.Component<Props, State> {
         <ScrollView style={styles.view} keyboardShouldPersistTaps="handled">
           <HeaderCard fname={fname} name={name} id={id} />
           <View>
-            <QRCodeComponent onRead={onSuccess} />
-            <View>
-              <ManualInsertionCard
-                onChangeText={text => this.placeInput = text.toUpperCase()}
-                onSubmitEditing={() => insertPlace(this.placeInput)}
-                onPress={() => insertPlace(this.placeInput)}
-              />
-              {isWrongFormatPlace ? (
-                <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
-              ) : null}
-            </View>
+            { focusedScreen ? <QRCodeComponent onRead={onSuccess} /> : <View />}
+            <ManualInsertionCard
+              onChangeText={text => this.placeInput = text.toUpperCase()}
+              onSubmitEditing={() => insertPlace(this.placeInput)}
+              onPress={() => insertPlace(this.placeInput)}
+            />
+            {isWrongFormatPlace ? (
+              <Text style={styles.debug}>{I18n.t("profile.format")}</Text>
+            ) : null}
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
