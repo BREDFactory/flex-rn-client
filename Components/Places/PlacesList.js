@@ -26,6 +26,7 @@ class PlacesList extends React.Component {
 
   render() {
 		const { places } = this.props;
+		console.log(places)
 		return (
 			<FlatList
 				data={places}
