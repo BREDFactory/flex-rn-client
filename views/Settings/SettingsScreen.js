@@ -68,7 +68,7 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
-const ProfileDescription = (props: { name: any, fname: any, id: any }) => {
+export const ProfileDescription = (props: { name: any, fname: any, id: any }) => {
   const { name, fname, id } = props;
   return (
     <View style={{ marginLeft: 20 }}>

@@ -24,7 +24,8 @@ import "react-native-qrcode-scanner";
 import Adapter from "enzyme-adapter-react-16";
 import {
   SettingsScreen,
-  ModalComponent
+  ModalComponent,
+  ProfileDescription
 } from "../../views/Settings/SettingsScreen";
 import DeconnectionButton from "../../Components/Settings/DeconnectionButton";
 import reducer, { fetchPhoto, logOut } from "../../Navigation/components/reducer";
@@ -85,6 +86,15 @@ it("renders correctly", async () => {
     .props()
     .onPhotoSelect("test");
 
+  wrapper
+    .find(ModalComponent)
+    .first()
+    .dive()
+
+  wrapper
+    .find(ProfileDescription)
+    .first()
+    .dive()
 
   expect(wrapper.find(ScrollView)).to.have.length(1);
 
