@@ -17,7 +17,7 @@ limitations under the License.
 
 import React from "react";
 import { AsyncStorage, View, Image, KeyboardAvoidingView, Platform } from "react-native";
-
+import { StackActions, NavigationActions } from "react-navigation";
 import { Text } from "react-native-elements";
 import LinearGradient from "react-native-linear-gradient";
 import styles from "./LoginScreenStyles";
@@ -140,10 +140,11 @@ class LoginScreen extends React.Component<Props, State> {
                 remoteDay: user.remoteDay,
                 pool: user.pool
               }));
-              navigation.navigate(
-                "Profile",
-                { photo: user.photo }
-              );
+              const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: "Profile" })]
+              });
+              navigation.dispatch(resetAction);
             });
           }
           else if (res.status === 400) {
