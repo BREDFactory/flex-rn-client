@@ -24,6 +24,12 @@ import LoginScreen from "../../views/Login/LoginScreen";
 import LoginButton from "../../Components/Login/LoginButton";
 import InputLogin from "../../Components/Login/InputLogin";
 
+jest.mock('react-native-device-info', () => {
+  return {
+    getVersion: () => 4
+  }
+})
+
 enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
 const navigation = { navigate: jest.fn(), popToTop: jest.fn(), dispatch: jest.fn() };
