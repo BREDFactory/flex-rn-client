@@ -102,7 +102,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode Integer.valueOf(System.env.VERSION_CODE ?: 0)
-        versionName "1.1.0"
+        versionName "1.1.0.${System.env.VERSION_CODE}"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-device-info')
     compile project(':react-native-udp')
     compile project(':react-native-tcp')
     compile project(':react-native-randombytes')

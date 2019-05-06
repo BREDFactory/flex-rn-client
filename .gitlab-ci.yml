@@ -30,8 +30,6 @@ test:
 build_apk:
   stage: build_apk
   image: openjdk:8-jdk
-  only:
-      - master
   artifacts:
     name: apk
     paths:

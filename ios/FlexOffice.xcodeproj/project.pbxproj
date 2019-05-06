@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -70,6 +69,7 @@
 		E4EAB67C4AFB4D24858BBD89 /* Raleway-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0BFCD3AB4D54C93AA6D50BF /* Raleway-BlackItalic.ttf */; };
 		F3E43FAEFBFE4FEC91F73E86 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE1AF9A50BF40DDB1CFF946 /* SimpleLineIcons.ttf */; };
 		F760004CAAA84B998D67AF7F /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CD0522F9D549A182B05C46 /* Raleway-SemiBold.ttf */; };
+		155CC1B7B6BA4985AA4E62CE /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CF499487BD45ADA630AB8A /* libRNDeviceInfo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -660,6 +660,8 @@
 		F2B72C09D086479CB0179D4B /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
 		F7897887FE9B4CD9B281932C /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F9CD0522F9D549A182B05C46 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Raleway-SemiBold.ttf"; path = "../assets/fonts/Raleway/Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		21E94D2F698F4911B9EF1250 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		13CF499487BD45ADA630AB8A /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -694,6 +696,7 @@
 				9594288AD4CC4C368D3FFE07 /* libTcpSockets.a in Frameworks */,
 				6A3366DD609947F3B8CE115D /* libUdpSockets.a in Frameworks */,
 				73EC40A0E8764DFBB0B192B8 /* libRNFS.a in Frameworks */,
+				155CC1B7B6BA4985AA4E62CE /* libRNDeviceInfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1048,7 @@
 				8961701C06B945DBA7656285 /* UdpSockets.xcodeproj */,
 				6001BCED7A954CD5936161D0 /* RNFS.xcodeproj */,
 				5695473D81C8464F90A5F971 /* BVLinearGradient.xcodeproj */,
+				21E94D2F698F4911B9EF1250 /* RNDeviceInfo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1939,6 +1943,7 @@
 					"$(SRCROOT)/../node_modules/react-native-udp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 				);
 				INFOPLIST_FILE = FlexOffice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1951,6 +1956,10 @@
 				PRODUCT_NAME = FlexOffice;
 				PROVISIONING_PROFILE_SPECIFIER = FlexOffice_Profile;
 				VERSIONING_SYSTEM = "apple-generic";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlexOffice\"",
+				);
 			};
 			name = Debug;
 		};
@@ -1979,6 +1988,7 @@
 					"$(SRCROOT)/../node_modules/react-native-udp/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 				);
 				INFOPLIST_FILE = FlexOffice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1991,6 +2001,10 @@
 				PRODUCT_NAME = FlexOffice;
 				PROVISIONING_PROFILE_SPECIFIER = BredFactory_Store;
 				VERSIONING_SYSTEM = "apple-generic";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlexOffice\"",
+				);
 			};
 			name = Release;
 		};

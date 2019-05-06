@@ -72,6 +72,7 @@
     "react-native-calendars": "^1.21.0",
     "react-native-camera": "^2.6.0",
     "react-native-crypto": "^2.1.2",
+    "react-native-device-info": "^1.6.1",
     "react-native-elements": "^1.1.0",
     "react-native-i18n": "^2.0.15",
     "react-native-level-fs": "^3.0.1",

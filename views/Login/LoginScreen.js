@@ -25,6 +25,7 @@ import server from "../../config/server";
 import config from "../../config/api";
 import regex from "../../config/regex";
 import type { Props, State } from "./LoginScreenType";
+import DeviceInfo from 'react-native-device-info';
 
 import logo from "../../assets/logo.png";
 
@@ -172,7 +173,7 @@ class LoginScreen extends React.Component<Props, State> {
           <LoginButton onPress={() => this.logIn()} />
           <Text style={styles.debug}>{debugField}</Text>
         </KeyboardAvoidingView>
-        <Text style={styles.version}>1.1.0</Text>
+        <Text style={styles.version}>{DeviceInfo.getVersion()}</Text>
       </View>
     );
   }
