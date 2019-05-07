@@ -189,7 +189,7 @@ export class SettingsScreen extends Component<Props, State> {
 
   saveRemote = async () => {
     const { id, photo, remoteDay } = this.state;
-    this.setState({ loadingSave: true });
+    // this.setState({ loadingSave: true });
 
     const payload = {
       id_user: id,
