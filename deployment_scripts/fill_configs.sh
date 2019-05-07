@@ -19,3 +19,4 @@ printf "
 	\"sockets\": \"$SERVER_SOCKETS\"
 }
 " > "$1/server.json"
+printf "$PLACES_CONFIG" > "$1/places.json"

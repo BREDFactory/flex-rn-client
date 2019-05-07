@@ -28,6 +28,7 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import config from "../../config/api";
 import server from "../../config/server";
+import placesConfig from "../../config/places";
 import { goTo } from "../../utils/utils";
 
 import I18n from "../../i18n/i18n";
@@ -114,12 +115,10 @@ class PlacesScreen extends React.Component<Props, State> {
 
   filterPlaces = () => {
     const { places, selectedFloorIndex, selectedZoneIndex, selectedSideIndex } = this.state;
-    const ZoneCodes = ["V", "B", "R"];
-    const sideIndex = ["RER", "BOIS", "MILIEU"];
 
     const floor = selectedFloorIndex === 0 ? "3" : "4";
-    const zoneCode = ZoneCodes[selectedZoneIndex];
-    const side = sideIndex[selectedSideIndex];
+    const zoneCode = placesConfig.zoneCodes[selectedZoneIndex];
+    const side = placesConfig.sideIndexUpper[selectedSideIndex];
 
     return places.filter(place => place.id[0] === floor && place.id[2] === zoneCode && place.id.slice(4, -2) === side);
   };
@@ -132,33 +131,29 @@ class PlacesScreen extends React.Component<Props, State> {
       selectedSideIndex
     } = this.state;
 
-    const floorIndex = ["3ème étage", "4ème étage"];
-    const zoneIndex = ["Zone verte", "Zone bleue", "Zone rouge"];
-    const sideIndex = ["RER", "Bois", "Milieu"];
-
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
         <View style={ styles.selectorContainer }>
-          
+
           <Text style={ styles.label }>{I18n.t("places.free_places")}</Text>
 
           {/* Floor selector */}
           <PlacesSelector
-            buttons={ floorIndex }
+            buttons={ placesConfig.floorIndex }
             onPress={ this.updateFloorIndex }
             selectedIndex={ selectedFloorIndex }
           />
-          
+
           {/* Zone selector */}
           <PlacesSelector
-            buttons={ zoneIndex }
+            buttons={ placesConfig.zoneIndex }
             onPress={ this.updateZoneIndex }
             selectedIndex={ selectedZoneIndex }
           />
 
           {/* Side selector */}
           <PlacesSelector
-            buttons={ sideIndex }
+            buttons={ placesConfig.sideIndex }
             onPress={ this.updateSideIndex }
             selectedIndex={ selectedSideIndex }
           />
