@@ -197,7 +197,7 @@ export class SettingsScreen extends Component<Props, State> {
       remoteDay
     };
 
-    await fetch(`${server.address}settings_user`, {
+    fetch(`${server.address}settings_user`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {

@@ -117,6 +117,7 @@ class UsersScreen extends React.Component<Props, State> {
     if (!friendLoading) {
       const newListOfUSers = users.filter(e => e.id !== item.id);
       this.setState({
+        users: users.map(x => x.id === item.id ? Object.assign(x, { isFriend: true }) : x),
         arrayOfFriends: append(item, arrayOfFriends),
         friendLoading: true
       });
@@ -175,15 +176,15 @@ class UsersScreen extends React.Component<Props, State> {
       .then(users => {
         if (this._isMounted) {
           // Here we check if users are in the friend list
-          const filteredUsers = users.filter(
-            word => !friend.find(e => e.id === word.id)
+          const mappedUsers = users.map(
+            word => Object.assign(word, { isFriend: !!friend.find(e => e.id === word.id) })
           );
           // Here we want to refresh the friend list
           const filteredFriends = users.filter(word =>
             friend.find(e => e.id === word.id)
           );
           this.setState({
-            users: friend.length > 0 ? filteredUsers : users,
+            users: mappedUsers,
             arrayOfFriends: filteredFriends
           });
         }
@@ -193,55 +194,33 @@ class UsersScreen extends React.Component<Props, State> {
 
   _handleSearch = search => {
     this.setState({ search });
-    if (search.length >= 3) this.getUsers();
+    // if (search.length >= 3) this.getUsers();
   };
 
+  sortUsers = (a, b) => {
+    const comp = b.isFriend - a.isFriend
+
+    if (comp)
+      return comp
+    return a.name.localeCompare(b.name)
+  }
+
   _handleList = () => {
-    const { users, search, arrayOfFriends, friend } = this.state;
+    const { users, search } = this.state;
 
-    const newT: string | Array<object> =
-      users !== []
-        ? users.filter(e => {
-            let finalResult = true;
-            // Object.keys(search).forEach(element => {
-            //   if (
-            //     search[element] !== e.name[element] &&
-            //     search[element] !== e.fname[element]
-            //   ) {
-            //     finalResult = false;
-            //   }
-            // });
-            for (let element in search) {
-              if (
-                search[element] !== e.name[element] &&
-                search[element] !== e.fname[element]
-              ) {
-                finalResult = false;
-              }
-            }
-            return finalResult;
-          })
-        : users;
-
-    newT.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-    users.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-    return search === ""
-      ? reject(contains(__, arrayOfFriends), users)
-      : reject(contains(__, arrayOfFriends), newT);
+    if (users === [])
+      return users
+    users.sort(this.sortUsers);
+    if (search === "")
+      return users
+    return users.filter(e => e.name.includes(search) || e.fname.includes(search))
   };
 
   removeFriend = friendToBeRemoved => {
     const { id, arrayOfFriends, friend, users, friendLoading } = this.state;
     const isRemovedUser = userFriend => userFriend.id !== friendToBeRemoved.id;
     this.setState({
+      users: users.map(x => isRemovedUser(x) ? Object.assign(x, { isFriend: false }) : x),
       arrayOfFriends: filter(isRemovedUser, arrayOfFriends),
       friend: filter(isRemovedUser, friend)
     });
@@ -319,40 +298,6 @@ class UsersScreen extends React.Component<Props, State> {
           {/* <FindPlacesCard users={() => this.getUsers()} /> */}
           {!loading ? (
             <View>
-              <View>
-                {arrayOfFriends.map(friend => {
-                  if (friend)
-                    return (
-                      <TouchableOpacity
-                        activeOpacity={0.1}
-                        key={friend.id}
-                        onPress={() => this.removeFriend(friend)}
-                      >
-                        <ListItem
-                          key={friend.id}
-                          title={`${friend.name} / ${friend.fname}`}
-                          subtitle={friend.id_place}
-                          containerStyle={{ margin: 0, padding: 5 }}
-                          titleStyle={{ fontFamily: "Raleway" }}
-                          rightIcon={{
-                            name: "star",
-                            color: "#2E89AD"
-                          }}
-                          leftAvatar={{
-                            source: friend.photo ? { uri: friend.photo } : profileDefaultPic,
-                            imageProps: {
-                              resizeMode: "contain",
-                              backgroundColor: "white"
-                            },
-                            rounded: false
-                          }}
-                          bottomDivider={true}
-                        />
-                      </TouchableOpacity>
-                    );
-                  return null;
-                })}
-              </View>
               {users !== [] && users.length > 0 ? (
                 <ListPlaces
                   handleList={this._handleList()}
@@ -361,7 +306,7 @@ class UsersScreen extends React.Component<Props, State> {
                       <TouchableOpacity
                         activeOpacity={0.1}
                         key={item.id}
-                        onPress={() => this.addFriend(item)}
+                        onPress={() => item.isFriend ? this.removeFriend(item) : this.addFriend(item)}
                       >
                         {/* <Card containerStyle={{ borderRadius: 10 }}> */}
                         <ListItem
@@ -370,7 +315,7 @@ class UsersScreen extends React.Component<Props, State> {
                           containerStyle={{ margin: 0, padding: 5 }}
                           titleStyle={{ fontFamily: "Raleway" }}
                           rightIcon={{
-                            name: "star-border",
+                            name: item.isFriend ? "star" : "star-border",
                             color: "#2E89AD"
                           }}
                           leftAvatar={{

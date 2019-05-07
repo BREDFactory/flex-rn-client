@@ -110,8 +110,6 @@ it("renders correctly", async () => {
   wrapper.setState({ users, arrayOfFriends: users, loading: false });
   expect(wrapper.state().loading).to.equal(false);
 
-  expect(wrapper.find(ListItem)).to.have.length(5);
-
   // wrapper
   //   .find(ListPlaces)
   //   .first()
@@ -126,7 +124,6 @@ it("renders correctly", async () => {
   expect(wrapper.find(ListPlaces).exists()).to.equal(true);
 
   expect(wrapper.find(ScrollView)).to.have.length(1);
-  expect(wrapper.find(TouchableOpacity)).to.have.length(6);
 
   const friend = { user: { friend: "" } };
   fetch = jest.fn(() => { return { then: f => f({ json: () => { return { then: f => f(friend) } } }) } });
@@ -153,9 +150,14 @@ it("renders correctly", async () => {
   expect(AsyncStorage.setItem.mock.calls).to.have.length(1);
   expect(AsyncStorage.setItem.mock.calls[0][0]).to.equal("USER");
 
+  expect(wrapper.find(ListPlaces).first().dive().find(ListItem)).to.have.length(1);
+  expect(wrapper.find(TouchableOpacity)).to.have.length(1);
+
   wrapper
+    .find(ListPlaces)
+    .dive()
     .find(TouchableOpacity)
-    .at(1)
+    .first()
     .props()
     .onPress();
 
