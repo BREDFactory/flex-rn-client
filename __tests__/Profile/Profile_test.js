@@ -128,6 +128,8 @@ it("renders correctly", async () => {
 
   const text = jest.fn(() => { return { then: () => undefined } });
 
+  wrapper.setState({ place: "4-V-RER10" })
+
   wrapper
     .dive()
     .dive()
