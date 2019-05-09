@@ -149,7 +149,7 @@ class UsersScreen extends React.Component<Props, State> {
   };
 
   fetchFriends = async () => {
-    const { id } = this.state;
+    const { id, users } = this.state;
     return fetch(`${server.address}users/${id}/friends`, {
       method: "GET",
       headers: {
@@ -160,9 +160,20 @@ class UsersScreen extends React.Component<Props, State> {
       .then(res => res.json())
       .then(arrayOfFriends => {
         this.setState({ arrayOfFriends })
+        this.refreshFriends(arrayOfFriends, users)
         AsyncStorage.setItem("USER", JSON.stringify(this.state));
       });
   };
+
+  refreshFriends = (arrayOfFriends, users) => {
+    // Here we check if users are in the friend list
+    const mappedUsers = users.map(
+      word => Object.assign(word, { isFriend: !!arrayOfFriends.find(e => e.id === word.id) })
+    );
+    this.setState({
+      users: mappedUsers
+    });
+  }
 
   getUsers = () => {
     const { arrayOfFriends } = this.state;
@@ -177,13 +188,7 @@ class UsersScreen extends React.Component<Props, State> {
       .then(res => res.json()) // transform data to json
       .then(users => {
         if (this._isMounted) {
-          // Here we check if users are in the friend list
-          const mappedUsers = users.map(
-            word => Object.assign(word, { isFriend: !!arrayOfFriends.find(e => e.id === word.id) })
-          );
-          this.setState({
-            users: mappedUsers
-          });
+          this.refreshFriends(arrayOfFriends, users)
         }
         this.setState({ loading: false });
       });
