@@ -65,9 +65,8 @@ class UsersScreen extends React.Component<Props, State> {
       search: "",
       userName: null,
       loading: false,
-      arrayOfFriends: [],
       friendLoading: false,
-      friend: []
+      arrayOfFriends: []
     };
   }
 
@@ -76,7 +75,7 @@ class UsersScreen extends React.Component<Props, State> {
       if (err || result === null) {
         goTo(this, "Login");
       } else {
-        const { remoteDay, historical, friend, id } = JSON.parse(result);
+        const { remoteDay, historical, arrayOfFriends, id } = JSON.parse(result);
         const userName = JSON.parse(result).name;
         const userFName = JSON.parse(result).fname;
         const place = JSON.parse(result).place;
@@ -91,9 +90,9 @@ class UsersScreen extends React.Component<Props, State> {
           place,
           historical,
           id,
-          friend
+          arrayOfFriends: arrayOfFriends || []
         });
-        await this.fetchFriends();
+        this.fetchFriends();
       }
     });
   };
@@ -140,9 +139,9 @@ class UsersScreen extends React.Component<Props, State> {
       })
         .then(res => res.json()) // transform data to json
         .then(friend => {
-          this.setState({
-            friend: append(item, friend.user.friend)
-          });
+          // this.setState({
+          //   arrayOfFriends: append(item, friend.user.friend)
+          // });
           AsyncStorage.setItem("USER", JSON.stringify(this.state));
           this.setState({ friendLoading: false });
         });
@@ -159,7 +158,10 @@ class UsersScreen extends React.Component<Props, State> {
       }
     })
       .then(res => res.json())
-      .then(arrayOfFriends => this.setState({ arrayOfFriends }));
+      .then(arrayOfFriends => {
+        this.setState({ arrayOfFriends })
+        AsyncStorage.setItem("USER", JSON.stringify(this.state));
+      });
   };
 
   getUsers = () => {
@@ -212,12 +214,11 @@ class UsersScreen extends React.Component<Props, State> {
   };
 
   removeFriend = friendToBeRemoved => {
-    const { id, arrayOfFriends, friend, users, friendLoading } = this.state;
-    const isRemovedUser = userFriend => userFriend.id !== friendToBeRemoved.id;
+    const { id, arrayOfFriends, users, friendLoading } = this.state;
+    const isNotRemovedUser = userFriend => userFriend.id !== friendToBeRemoved.id;
     this.setState({
-      users: users.map(x => isRemovedUser(x) ? Object.assign(x, { isFriend: false }) : x),
-      arrayOfFriends: filter(isRemovedUser, arrayOfFriends),
-      friend: filter(isRemovedUser, friend)
+      users: users.map(x => !isNotRemovedUser(x) ? Object.assign(x, { isFriend: false }) : x),
+      arrayOfFriends: filter(isNotRemovedUser, arrayOfFriends)
     });
     if (!friendLoading) {
       this.setState({ friendLoading: true });
@@ -238,7 +239,7 @@ class UsersScreen extends React.Component<Props, State> {
         .then(friendUser => {
           AsyncStorage.setItem(
             "USER",
-            JSON.stringify(omit(["arrayOfFriends"], this.state))
+            JSON.stringify(this.state)
           );
           this.setState({ friendLoading: false });
         });

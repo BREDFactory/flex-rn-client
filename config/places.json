@@ -1,7 +1,7 @@
 {
-    "zoneCodes": [""],
-    "sideIndexUpper": [""],
-    "floorIndex": [""],
-    "zoneIndex": [""],
-    "sideIndex": [""]
+    "zoneCodes": ["V", "B", "R"],
+    "sideIndexUpper": ["RER", "BOIS", "MILIEU"],
+    "floorIndex": ["3ème étage", "4ème étage"],
+    "zoneIndex": ["Zone verte", "Zone bleue", "Zone rouge"],
+    "sideIndex": ["RER", "Bois", "Milieu"]
 }
