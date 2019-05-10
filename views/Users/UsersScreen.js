@@ -149,7 +149,7 @@ class UsersScreen extends React.Component<Props, State> {
   };
 
   fetchFriends = async () => {
-    const { id, users } = this.state;
+    const { id } = this.state;
     return fetch(`${server.address}users/${id}/friends`, {
       method: "GET",
       headers: {
@@ -160,6 +160,7 @@ class UsersScreen extends React.Component<Props, State> {
       .then(res => res.json())
       .then(arrayOfFriends => {
         this.setState({ arrayOfFriends })
+        const { users } = this.state;
         this.refreshFriends(arrayOfFriends, users)
         AsyncStorage.setItem("USER", JSON.stringify(this.state));
       });
@@ -176,7 +177,6 @@ class UsersScreen extends React.Component<Props, State> {
   }
 
   getUsers = () => {
-    const { arrayOfFriends } = this.state;
     this.setState({ loading: true });
     fetch(`${server.address}users/`, {
       method: "GET",
@@ -188,6 +188,7 @@ class UsersScreen extends React.Component<Props, State> {
       .then(res => res.json()) // transform data to json
       .then(users => {
         if (this._isMounted) {
+          const { arrayOfFriends } = this.state;
           this.refreshFriends(arrayOfFriends, users)
         }
         this.setState({ loading: false });
