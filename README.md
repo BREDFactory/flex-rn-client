@@ -2,9 +2,9 @@
 [![Build Status](https://app.bitrise.io/app/8ba0832124e4cdf2/status.svg?token=HTfEgn2kTcAN_FI2qXEqeQ&branch=feature/refactoring)](https://app.bitrise.io/app/8ba0832124e4cdf2)
 [![Coverage Status](https://coveralls.io/repos/github/ayshiff/flex-rn-client/badge.svg?branch=master)](https://coveralls.io/github/ayshiff/flex-rn-client?branch=master)
 [![CircleCI](https://circleci.com/gh/ayshiff/flex-rn-client.svg?style=svg)](https://circleci.com/gh/ayshiff/flex-rn-client)
-![Flex-Office](assets/Presentation.jpg?raw=true) 
+![Flex-Office](assets/Presentation.jpg?raw=true)
 
-Simple mobile client in React-Native for **flex-server** project
+Simple mobile client in React-Native for [**flex-server**](https://github.com/BREDFactory/flex-server) project
 
 # Steps to follow
 
@@ -85,7 +85,7 @@ Set the FLEX_HOME environment variable
 
 ```$ export FLEX_HOME=/YOUR/PROJECT/PATH```
 
-or run in the root folder 
+or run in the root folder
 
 ```$ export FLEX_HOME=${PWD}```
 
@@ -105,15 +105,17 @@ $ chmod +x ./scripts/build.sh
 
 Make sure you have filled your API environment files by editing the ```.env``` file :
 (Follow these steps to have your server working :
-[flex-rn-server](https://github.com/ayshiff/flex-server)) 
+[flex-rn-server](https://github.com/ayshiff/flex-server))
 
-In Flex Client, be sure to have three files in the `config` directory :
+In Flex Client, be sure to have four files in the `config` directory :
 
 `server.json`
 
 `api.json`
 
 `regex.json`
+
+`places.json`
 
 Fill in your server address in `server.json` file :
 
@@ -125,7 +127,7 @@ Fill in your server address in `server.json` file :
 
 You'll add also the access token provided by Heroku :
 
-fill in your server address in `api.json` file :
+Fill in your api credentials in `api.json` file :
 
 ```
 {
@@ -138,10 +140,29 @@ fill in your server address in `api.json` file :
 
 (For android deployment use ```10.0.2.2``` for the host)
 
-And for `regex.json`:
+Fill in your regexes in `regex.json` file :
+
+```
+{
+    "idRegex": "^[A-Z]{2}[0-9]{5}$",
+    "placeRegex": "^[3-4]{1}[-]{1}[0-9]{2}$"
+}
+```
 
 You also have to configure environment variables of the *flex server* project.
 `CONFIG_REGEX`, `PLACE_REGEX`, `WIFI_REGEX`
+
+Fill in your place filters in `places.json` file :
+
+```
+{
+    "zoneCodes": ["A", "B", "C"],
+    "sideIndexUpper": ["FRONT", "MIDDLE", "BACK"],
+    "floorIndex": ["5th floor", "6th floor"],
+    "zoneIndex": ["Zone 1", "Zone 2", "Zone 3"],
+    "sideIndex": ["Front", "Middle", "Back"],
+}
+```
 
 ## Running your React Native iOS application in the Simulator
 
@@ -169,10 +190,10 @@ open FlexOffice.xcodeproj
 
 * Change the FlexOffice Scheme Run Build Configuration from 'Debug' to 'Release'
 
-* Clear your project and "Derived Data" Build 
+* Clear your project and "Derived Data" Build
 
 
-4. Modify App Delegate implementation : 
+4. Modify App Delegate implementation :
 ```
 FlexOfficeDelegate.m
 --------------------
@@ -232,7 +253,7 @@ $ ./scripts/build.sh
 
 ## Generating Signed APK
 
-For Android deployment: 
+For Android deployment:
 
 See the **[current doc](https://facebook.github.io/react-native/docs/signed-apk-android)**
 
@@ -246,8 +267,8 @@ android.enableAapt2=false
 
 It will fix the issue with `uncompiled PNG file passed as argument. Must be compiled first into .flat file.. error`.
 
-Inside `gradle.properties`. 
-(This is a temporaly fix and it will be fixed in the most recents versions of react-native !)
+Inside `gradle.properties`.
+(This is a temporary fix and it will be fixed in the most recents versions of react-native !)
 
 
 # ScreenShots
@@ -353,33 +374,33 @@ Inside `gradle.properties`.
 
 # List of commands
 
-- start: 
+- start:
 
 ```node node_modules/react-native/local-cli/cli.js start```
 
-- test: 
+- test:
 
 ```jest```
 
-- lint: 
+- lint:
 
 ```eslint Components```
 
-- pretty: 
+- pretty:
 
 ```prettier --semi false --print-width 100 --single-quote--trailing-comma all --write \"Components/\*_/_.js\"```
 
-- flow: 
+- flow:
 
 ```flow```
 
-- lint:fix: 
+- lint:fix:
 
 ```eslint Components/ --fix```
 
 The project uses [Flow](https://flow.org/) for type checking. Feel free to increase the type checking coverage by adding some tests 👍.
 
-The project also use [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/). You can see lint warnings / errors by running    
+The project also uses [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/). You can see lint warnings / errors by running
 `npm run lint`.
 
 
@@ -400,7 +421,7 @@ The project also use [ESlint](https://eslint.org/) and [Prettier](https://pretti
 "undefined is not an object(evaluating 'RNFSFileTypeRegular')"
 ```
 
-RESOLUTION : 
+RESOLUTION :
 Run this command on project root in Terminal :
 ```
 $ react-native link react-native
@@ -429,12 +450,12 @@ $ react-native bundle --entry-file index.js --platform ios --dev false --bundle-
 4. mainjs.bundle is not found
 
 There's probably a problem the correct node binary
-You can finish manually the last step of *Bundle React Native code and images*
+You can manually finish the last step of *Bundle React Native code and images*
 
-  * In Terminal, launch following command : 
+  * In Terminal, launch following command :
 
 ```
-react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios 
+react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
 ```
 
 
