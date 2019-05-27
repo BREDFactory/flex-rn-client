@@ -216,7 +216,7 @@ export class SettingsScreen extends Component<Props, State> {
   };
 
   saveRemote = async () => {
-    const { id, photo, remoteDay } = this.state;
+    const { id, photo, remoteDay, startDate, endDate } = this.state;
     // this.setState({ loadingSave: true });
 
     const payload = {
@@ -345,7 +345,7 @@ export class SettingsScreen extends Component<Props, State> {
               />
             </View>
             <TouchableOpacity
-              style={{ alignSelf: 'stretch' backgroundColor: '#841584' }}
+              style={{ alignSelf: 'stretch', backgroundColor: '#841584' }}
               onPress={() => this.saveRemote()}
               color="#841584"
             >
