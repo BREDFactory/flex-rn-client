@@ -19,7 +19,7 @@ export default StyleSheet.create({
   view: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 15,
     bottom: 0
   }
 });

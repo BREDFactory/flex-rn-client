@@ -71,10 +71,30 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 5
   },
+  viewContainerSemiFlex: {
+    backgroundColor: "#fff",
+    elevation: 2,
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    shadowColor: "#3662A0",
+    shadowOffset: { height: 1, width: 0 },
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: 20,
+    marginBottom: 0,
+    height: 100,
+    borderRadius: 5
+  },
   remoteText: {
     fontWeight: "bold",
     textAlign: "center",
     margin: 10,
     fontFamily: "Raleway"
+  },
+  input: {
+    height: 40,
+    borderWidth: 0
   }
 });
