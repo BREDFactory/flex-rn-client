@@ -328,15 +328,15 @@ export class SettingsScreen extends Component<Props, State> {
 
         { userPlace ? (
           <View style={styles.viewContainerSemiFlex}>
-            <Text style={styles.remoteText}>Je suis absent.e entre</Text>
-            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <Text style={styles.semiFlexText}>Je suis absent.e entre</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start'}}>
               <TextInput
                 style={styles.input}
                 underlineColorAndroid={'#DBE2EA'}
                 onChangeText={text => this.setState({ startDate: text })}
                 value={startDate}
               />
-              <Text style={styles.remoteText}>et</Text>
+              <Text style={styles.regularText}>et</Text>
               <TextInput
                 style={styles.input}
                 underlineColorAndroid={'#DBE2EA'}
@@ -345,11 +345,10 @@ export class SettingsScreen extends Component<Props, State> {
               />
             </View>
             <TouchableOpacity
-              style={{ alignSelf: 'stretch', backgroundColor: '#841584' }}
+              style={{ maxHeight: 40, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center', backgroundColor: '#1094F6', marginRight: 50, marginLeft: 50, marginTop: 0, marginBottom: 2, borderRadius: 5, flex: 1 }}
               onPress={() => this.saveRemote()}
-              color="#841584"
             >
-              <Text style={{ textAlign: 'center' }}>Confirmer</Text>
+              <Text style={{ textAlign: 'center', textAlignVertical: 'center', alignSelf: 'center', color: 'white', fontWeight: 'bold' }}>Confirmer</Text>
             </TouchableOpacity>
           </View>
         ) : null }

@@ -93,8 +93,23 @@ export default StyleSheet.create({
     margin: 10,
     fontFamily: "Raleway"
   },
+  semiFlexText: {
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 10,
+    marginBottom: 0,
+    fontFamily: "Raleway"
+  },
+  regularText: {
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 10,
+    marginBottom: 0,
+    fontFamily: "Raleway"
+  },
   input: {
     height: 40,
-    borderWidth: 0
+    borderWidth: 0,
+    margin: 0
   }
 });

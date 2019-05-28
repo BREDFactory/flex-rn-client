@@ -84,7 +84,7 @@ class PlacesScreen extends React.Component<Props, State> {
     });
   }
 
-  placeIsAllowed = place => moment().isBetween(place.start_date, place.end_date)
+  placeIsAllowed = place => place.start_date && place.end_date && moment().isBetween(place.start_date, place.end_date)
 
   getPlaces = () => {
     this.setState({ loading: true });
@@ -97,7 +97,7 @@ class PlacesScreen extends React.Component<Props, State> {
     })
       .then(res => res.json())
       .then(data => {
-        const result = data.filter(place => !place.using && (!place.semi_flex || placeIsAllowed(place)));
+        const result = data.filter(place => !place.using && (!place.semi_flex || this.placeIsAllowed(place)));
         this.setState({
           places: result,
           loading: false
