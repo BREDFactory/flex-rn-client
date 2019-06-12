@@ -45,7 +45,7 @@ export const getPlaces = (ctx, fn, element = null, loader = false) => {
     method: "GET",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "x-access-token": config.token
+      "authorization": `Bearer ${config.token}`
     }
   })
     .then(res => res.json()) // transform data to json

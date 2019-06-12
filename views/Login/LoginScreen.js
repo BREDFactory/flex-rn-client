@@ -124,7 +124,7 @@ class LoginScreen extends React.Component<Props, State> {
         body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json",
-          "x-access-token": config.token
+          "authorization": `Bearer ${config.token}`
         }
       })
         .then(res => {

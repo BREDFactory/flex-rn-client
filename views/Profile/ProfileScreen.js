@@ -115,7 +115,7 @@ class ProfileScreen extends React.Component<Props, State> {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": config.token
+            "authorization": `Bearer ${config.token}`
           },
           body: JSON.stringify(payload)
         })
@@ -199,7 +199,7 @@ class ProfileScreen extends React.Component<Props, State> {
       body: JSON.stringify(payload),
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": config.token
+        "authorization": `Bearer ${config.token}`
       }
     })
       .then(res => {

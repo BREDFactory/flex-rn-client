@@ -176,7 +176,7 @@ export class SettingsScreen extends Component<Props, State> {
           method: "GET",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "x-access-token": config.token
+            "authorization": `Bearer ${config.token}`
           }
         })
           .then(res => res.json()) // transform data to json
@@ -196,7 +196,7 @@ export class SettingsScreen extends Component<Props, State> {
       method: "GET",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "x-access-token": config.token
+        "authorization": `Bearer ${config.token}`
       }
     })
       .then(res => res.json()) // transform data to json
@@ -232,7 +232,7 @@ export class SettingsScreen extends Component<Props, State> {
       body: JSON.stringify(payload),
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": config.token
+        "authorization": `Bearer ${config.token}`
       }
     })
       .then(res => res.json())
@@ -246,7 +246,7 @@ export class SettingsScreen extends Component<Props, State> {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "x-access-token": config.token
+          "authorization": `Bearer ${config.token}`
         }
       })
         .then(res => res.json())

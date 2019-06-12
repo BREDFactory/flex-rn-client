@@ -42,7 +42,7 @@ export default class App extends React.Component {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": config.token
+            "authorization": `Bearer ${config.token}`
           }
         })
           .then(res => res.json())

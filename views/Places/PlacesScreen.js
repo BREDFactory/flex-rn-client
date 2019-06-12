@@ -92,7 +92,7 @@ class PlacesScreen extends React.Component<Props, State> {
       method: "GET",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "x-access-token": config.token
+        "authorization": `Bearer ${config.token}`
       }
     })
       .then(res => res.json())
