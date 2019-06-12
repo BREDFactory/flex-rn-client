@@ -75,9 +75,9 @@ it("renders correctly", async () => {
   AsyncStorage.getItem = jest.fn((_, f) => f(null, JSON.stringify(users[0])));
   fetch = jest.fn(() => { return { then: f => f({ json: () => { return { then: f => f(users) } } }) } });
   const wrapper = shallow(<UsersScreen navigation={navigation} />);
-  wrapper.setState({ users, arrayOfFriends: users, loading: false });
+  await wrapper.setState({ users, arrayOfFriends: users.slice(0, 2), loading: false });
 
-  wrapper.getUsers = jest.fn();
+  // wrapper.getUsers = jest.fn();
 
   const onPressEvent = jest.fn();
 
@@ -85,7 +85,7 @@ it("renders correctly", async () => {
 
   // Simulate onPress event on TouchableOpacity component
 
-  await wrapper.setState({friend: users});
+  // await wrapper.setState({friend: users});
 
   wrapper
     .find(TouchableOpacity)

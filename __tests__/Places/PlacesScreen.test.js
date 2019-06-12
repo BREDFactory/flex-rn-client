@@ -22,6 +22,7 @@ import enzyme, { shallow } from "enzyme";
 import ReactSixteenAdapter from "enzyme-adapter-react-16";
 import PlacesScreen from "../../views/Places/PlacesScreen";
 import FetchPlacesButton from "../../Components/Places/FetchPlacesButton";
+import PlacesSelector from "../../Components/Places/PlacesSelector";
 
 enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
@@ -44,10 +45,35 @@ it("renders correctly", () => {
   // Simulate onPress event on LeaveButton component
 
   wrapper
+    .find(PlacesSelector)
+    .at(0)
+    .props()
+    .onPress()
+
+  wrapper
+    .find(PlacesSelector)
+    .at(1)
+    .props()
+    .onPress()
+
+  wrapper
+    .find(PlacesSelector)
+    .at(2)
+    .props()
+    .onPress()
+
+  const places = [
+    { using: true, semi_flex: false, start_date: new Date(), end_date: new Date() },
+    { using: false, semi_flex: true, start_date: new Date(), end_date: new Date() }
+  ]
+  fetch = jest.fn(() => { return { then: f => f({ json: () => { return { then: f => f(places) } } }) } });
+
+  wrapper
     .find(FetchPlacesButton)
     .first()
     .props()
     .onPress();
+
 
   expect(wrapper.find(ScrollView)).to.have.length(1);
   expect(wrapper.find(FetchPlacesButton)).to.have.length(1);
@@ -61,8 +87,3 @@ it("should render loading component", () => {
 
   expect(wrapper.find(ActivityIndicator)).to.have.length(1);
 });
-
-function removeItem(arr, i) {
-  arr.splice(i, 1)
-  return arr
-}

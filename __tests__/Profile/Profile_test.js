@@ -122,7 +122,7 @@ it("renders correctly", async () => {
     .find(QRCodeComponent)
     .first()
     .props()
-    .onRead({ data: "abc"});
+    .onRead({ data: "4-V-RER10"});
 
   fetch = jest.fn(() => { return { then: resolve => resolve({ status: 400, text }) } });
 
@@ -151,7 +151,7 @@ it("renders correctly", async () => {
     .find(QRCodeComponent)
     .first()
     .props()
-    .onRead({ data: "abc"});
+    .onRead({ data: "4-V-RER10"});
 
   expect(
     wrapper
