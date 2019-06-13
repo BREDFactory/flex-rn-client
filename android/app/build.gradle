@@ -102,7 +102,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode Integer.valueOf(System.env.VERSION_CODE ?: 0)
-        versionName "1.1.0.${System.env.VERSION_CODE}"
+        versionName "2.0.0.${System.env.VERSION_CODE}"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
